@@ -1,0 +1,14 @@
+original_feature,mean_absolute_shap
+followup_attendance,1.1843396209847945
+treatment_duration_months,0.8137738913656664
+health_education,0.5881354666321496
+side_effects,0.38317573388202064
+medication_cost_burden,0.36096799238519484
+missed_doses_last_30_days,0.32655216601283726
+distance_to_clinic_km,0.214771948115452
+functional_status,0.18623612562105835
+caregiver_support,0.12475383677443655
+age_years,0.08784920258333917
+osteoporosis_treatment,0.07801442023627692
+sex,0.04178722033930714
+previous_fracture,0.012057484816914852

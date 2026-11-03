@@ -1,0 +1,14 @@
+original_feature,total_absolute_coefficient
+followup_attendance,3.168623481721239
+health_education,1.8797467898185927
+side_effects,1.8349299307367704
+medication_cost_burden,1.4734861766804435
+functional_status,1.1229040184884482
+treatment_duration_months,0.9798555596808378
+caregiver_support,0.5768174706278371
+osteoporosis_treatment,0.5567313241073084
+missed_doses_last_30_days,0.46014618716266875
+previous_fracture,0.13835682878242161
+sex,0.09173222002719773
+age_years,0.08615215850210013
+distance_to_clinic_km,0.05964759798739638

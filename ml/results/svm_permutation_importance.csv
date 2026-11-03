@@ -1,0 +1,14 @@
+original_feature,importance_mean
+followup_attendance,0.09675616833170704
+treatment_duration_months,0.04484990335718403
+missed_doses_last_30_days,0.032482369367176536
+medication_cost_burden,0.026574219314098247
+health_education,0.013251476801541108
+distance_to_clinic_km,0.009739016031730474
+age_years,0.00405437953578851
+side_effects,0.002515262244566774
+sex,0.0017521636126287099
+previous_fracture,-0.0005455135687693514
+functional_status,-0.004249555661715787
+osteoporosis_treatment,-0.012581092280621996
+caregiver_support,-0.012783306372849423

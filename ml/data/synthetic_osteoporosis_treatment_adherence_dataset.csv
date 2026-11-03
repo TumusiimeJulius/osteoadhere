@@ -1,0 +1,1001 @@
+patient_id,age_years,sex,osteoporosis_treatment,treatment_duration_months,previous_fracture,functional_status,followup_attendance,side_effects,medication_cost_burden,distance_to_clinic_km,caregiver_support,missed_doses_last_30_days,health_education,adherence_score,adherence
+SYN-0001,44,Female,Zoledronic acid,15,No,Mild limitation,Regular,None,Moderate,2.5,Limited,1,,0.926,Adherent
+SYN-0002,75,Male,Denosumab,3,No,Independent,Occasional,None,High,8.1,None,2,,0.856,Adherent
+SYN-0003,70,Male,Alendronate,46,Yes,Moderate limitation,Occasional,Mild,Moderate,10.4,Limited,1,Adequate,0.925,Adherent
+SYN-0004,60,Female,Risedronate,50,No,Independent,Regular,None,Moderate,3.3,Moderate,3,Partial,0.835,Adherent
+SYN-0005,59,Female,Denosumab,56,Yes,Mild limitation,Regular,None,High,4.5,Limited,2,Limited,0.876,Adherent
+SYN-0006,79,Male,Risedronate,69,No,Independent,Regular,None,Low,11.6,Strong,3,Partial,0.832,Adherent
+SYN-0007,43,Female,Denosumab,36,No,Mild limitation,Occasional,Mild,High,10.3,Moderate,0,Adequate,0.864,Adherent
+SYN-0008,72,Male,Risedronate,60,Yes,Independent,Occasional,Moderate,Low,7.6,None,1,Adequate,0.896,Adherent
+SYN-0009,49,Female,Alendronate,52,Yes,Independent,Occasional,Mild,Low,8.3,Moderate,3,Partial,0.882,Adherent
+SYN-0010,44,Female,Denosumab,20,No,Mild limitation,Regular,Moderate,Moderate,3.0,None,4,Adequate,0.931,Adherent
+SYN-0011,64,Female,Alendronate,61,Yes,Independent,Regular,Mild,Low,11.8,Strong,3,Limited,0.706,Non-adherent
+SYN-0012,84,Male,Alendronate,4,No,Independent,Occasional,Mild,High,15.7,Strong,2,Partial,0.934,Adherent
+SYN-0013,73,Female,Zoledronic acid,44,No,Moderate limitation,Regular,None,Low,25.4,Moderate,1,Adequate,0.907,Adherent
+SYN-0014,75,Female,Denosumab,68,No,Independent,Occasional,,Moderate,9.1,Limited,1,Adequate,0.783,Non-adherent
+SYN-0015,73,Female,Denosumab,48,Yes,Mild limitation,Regular,None,Low,16.1,Moderate,2,Limited,0.604,Non-adherent
+SYN-0016,76,Female,Alendronate,68,No,Mild limitation,Regular,None,High,2.3,Limited,3,Limited,0.739,Non-adherent
+SYN-0017,63,Female,Alendronate,5,No,Independent,Regular,None,Low,9.1,Strong,3,Limited,0.811,Adherent
+SYN-0018,45,Female,Denosumab,39,Yes,Independent,Regular,Moderate,Low,7.5,Limited,2,Adequate,0.888,Adherent
+SYN-0019,78,Female,Alendronate,57,Yes,Independent,Occasional,Mild,Low,6.5,Moderate,3,Partial,0.595,Non-adherent
+SYN-0020,60,Male,Alendronate,47,Yes,Mild limitation,Regular,Moderate,Moderate,,Strong,2,Adequate,0.938,Adherent
+SYN-0021,63,Male,Alendronate,64,Yes,Independent,Irregular,Severe,High,11.1,Limited,3,Adequate,0.493,Non-adherent
+SYN-0022,57,Female,Risedronate,34,No,Independent,Irregular,Moderate,High,1.9,Limited,2,Partial,0.814,Adherent
+SYN-0023,48,Female,Denosumab,50,No,Independent,Irregular,None,Low,11.5,Moderate,1,Limited,0.529,Non-adherent
+SYN-0024,82,Female,Denosumab,31,No,Moderate limitation,Occasional,Moderate,Moderate,5.5,Strong,2,Adequate,0.906,Adherent
+SYN-0025,75,Female,Denosumab,63,Yes,Moderate limitation,Occasional,Moderate,Low,8.4,Strong,4,Adequate,0.436,Non-adherent
+SYN-0026,69,Female,Alendronate,9,Yes,Severe limitation,Occasional,Moderate,Moderate,6.3,None,2,Adequate,0.809,Adherent
+SYN-0027,58,Male,Alendronate,19,Yes,,Regular,None,Moderate,2.9,Moderate,1,Adequate,0.913,Adherent
+SYN-0028,77,Male,Risedronate,7,No,Mild limitation,Regular,None,Low,3.2,Limited,1,Adequate,0.928,Adherent
+SYN-0029,65,Female,Alendronate,51,No,,Occasional,Moderate,Moderate,,Limited,1,Limited,0.594,Non-adherent
+SYN-0030,60,Female,Alendronate,17,Yes,Moderate limitation,Regular,None,High,6.6,Limited,1,Adequate,0.867,Adherent
+SYN-0031,60,Female,Alendronate,23,No,Mild limitation,Regular,None,Low,13.3,Strong,0,Partial,0.845,Adherent
+SYN-0032,50,Female,Alendronate,61,Yes,Independent,Irregular,None,Low,14.9,Moderate,1,Adequate,0.695,Non-adherent
+SYN-0033,44,Female,Risedronate,26,Yes,Mild limitation,Regular,None,Low,,Moderate,1,Adequate,0.934,Adherent
+SYN-0034,65,Female,Denosumab,11,Yes,,Occasional,None,Low,7.4,Strong,2,Adequate,0.942,Adherent
+SYN-0035,80,Female,Alendronate,2,No,Independent,Occasional,Severe,Low,5.4,Strong,3,Adequate,0.804,Adherent
+SYN-0036,42,Female,Risedronate,17,No,Independent,Regular,Moderate,Moderate,3.8,Moderate,2,Partial,0.922,Adherent
+SYN-0037,79,Female,Denosumab,66,No,Independent,Irregular,Moderate,Low,4.7,Limited,3,Partial,0.305,Non-adherent
+SYN-0038,78,Female,Denosumab,40,Yes,Moderate limitation,Regular,None,Moderate,7.8,Moderate,3,Limited,0.801,Adherent
+SYN-0039,52,Female,Denosumab,72,Yes,Independent,Irregular,None,High,4.6,Strong,5,Adequate,0.632,Non-adherent
+SYN-0040,69,Male,Risedronate,16,No,Moderate limitation,Occasional,None,High,2.2,None,3,Partial,0.774,Non-adherent
+SYN-0041,47,Male,Denosumab,26,Yes,Independent,Regular,None,Moderate,7.4,Strong,0,Limited,0.841,Adherent
+SYN-0042,74,Female,Alendronate,12,No,Mild limitation,Regular,None,Low,5.5,Strong,2,Adequate,0.961,Adherent
+SYN-0043,72,Male,Alendronate,29,No,Independent,Regular,Mild,Low,20.6,None,3,Limited,0.778,Non-adherent
+SYN-0044,56,Male,Alendronate,41,No,Moderate limitation,Regular,Severe,Low,2.3,Limited,2,Limited,0.62,Non-adherent
+SYN-0045,43,Female,Risedronate,59,No,Mild limitation,Regular,Mild,High,6.3,None,4,Limited,0.714,Non-adherent
+SYN-0046,84,Female,Risedronate,27,No,Independent,Irregular,None,High,4.9,Limited,1,Partial,0.706,Non-adherent
+SYN-0047,60,Female,Alendronate,56,No,Independent,Regular,None,Low,,Moderate,0,Partial,0.832,Adherent
+SYN-0048,81,Female,Denosumab,46,No,Independent,Irregular,None,Low,4.1,Strong,1,Adequate,0.728,Non-adherent
+SYN-0049,71,Female,Alendronate,22,No,Independent,Regular,None,Moderate,11.1,Moderate,1,Partial,0.847,Adherent
+SYN-0050,75,Female,Alendronate,66,Yes,Mild limitation,Irregular,None,Low,2.8,None,0,Limited,0.518,Non-adherent
+SYN-0051,74,Female,Alendronate,32,No,Severe limitation,Regular,None,High,11.2,Limited,1,Adequate,0.933,Adherent
+SYN-0052,48,Female,Risedronate,11,Yes,Mild limitation,Regular,Mild,Low,6.6,Moderate,2,Partial,0.923,Adherent
+SYN-0053,56,Female,Alendronate,70,No,Mild limitation,Occasional,Moderate,Low,2.9,Moderate,3,Partial,0.712,Non-adherent
+SYN-0054,61,Male,Alendronate,66,No,Independent,Regular,None,Low,4.4,Strong,1,Adequate,0.907,Adherent
+SYN-0055,62,Female,Alendronate,4,No,Moderate limitation,Irregular,None,Low,11.1,Moderate,4,Partial,0.693,Non-adherent
+SYN-0056,42,Female,Denosumab,65,No,Moderate limitation,Regular,None,Low,7.4,Limited,1,Partial,0.679,Non-adherent
+SYN-0057,65,Female,Denosumab,69,No,Independent,Occasional,None,High,3.8,Strong,1,Partial,0.546,Non-adherent
+SYN-0058,47,Female,Risedronate,60,Yes,Severe limitation,Occasional,Mild,Low,5.7,Moderate,1,Partial,0.666,Non-adherent
+SYN-0059,74,Female,Zoledronic acid,19,Yes,Independent,Occasional,Moderate,Moderate,7.5,None,3,Adequate,0.697,Non-adherent
+SYN-0060,71,Female,Denosumab,46,Yes,Moderate limitation,Regular,Moderate,Low,1.1,Moderate,1,Limited,0.862,Adherent
+SYN-0061,82,Female,Denosumab,39,No,Severe limitation,Regular,Mild,Low,4.9,Moderate,4,Partial,0.896,Adherent
+SYN-0062,74,Female,Zoledronic acid,45,No,Mild limitation,Regular,None,Low,13.5,Moderate,1,Partial,0.96,Adherent
+SYN-0063,56,Male,Denosumab,45,Yes,Independent,Regular,None,Low,15.1,Strong,1,Adequate,0.868,Adherent
+SYN-0064,84,Female,Denosumab,47,No,Mild limitation,Regular,None,Low,4.9,Strong,4,Adequate,0.946,Adherent
+SYN-0065,58,Female,Denosumab,38,Yes,Independent,Irregular,None,Low,11.2,Strong,2,Limited,0.837,Adherent
+SYN-0066,54,Female,Risedronate,50,No,Moderate limitation,Regular,Moderate,High,7.0,Strong,2,Adequate,0.769,Non-adherent
+SYN-0067,81,Female,Alendronate,38,Yes,Independent,Occasional,None,Moderate,12.3,Strong,1,Adequate,0.893,Adherent
+SYN-0068,57,Female,Alendronate,2,Yes,Mild limitation,Regular,None,High,6.7,Moderate,0,Partial,0.947,Adherent
+SYN-0069,43,Female,Risedronate,3,No,Moderate limitation,Regular,None,Low,11.2,Strong,1,Partial,0.918,Adherent
+SYN-0070,61,Female,Risedronate,69,No,Independent,Regular,None,Moderate,5.4,None,2,Limited,0.725,Non-adherent
+SYN-0071,76,Female,Risedronate,66,Yes,,Regular,Moderate,Moderate,2.1,Strong,3,Partial,0.656,Non-adherent
+SYN-0072,48,Male,Zoledronic acid,43,No,Mild limitation,Regular,None,Low,7.3,Moderate,1,Limited,0.619,Non-adherent
+SYN-0073,61,Female,Risedronate,13,No,Independent,Regular,,Low,5.5,Limited,1,Adequate,0.944,Adherent
+SYN-0074,45,Female,Denosumab,57,No,Independent,Regular,None,Moderate,6.7,Strong,1,Partial,0.8,Adherent
+SYN-0075,71,Male,Alendronate,11,No,Independent,Irregular,Moderate,Moderate,11.8,Moderate,2,Limited,0.527,Non-adherent
+SYN-0076,61,Female,Alendronate,28,No,Independent,Regular,Mild,Moderate,25.2,Limited,0,Partial,0.927,Adherent
+SYN-0077,55,Male,Denosumab,24,Yes,Mild limitation,Regular,Mild,Low,18.3,Moderate,1,Adequate,0.861,Adherent
+SYN-0078,50,Female,Denosumab,1,No,Mild limitation,Regular,None,High,6.5,Strong,1,Adequate,0.948,Adherent
+SYN-0079,65,Male,Denosumab,59,No,Independent,Regular,None,Low,3.8,Limited,1,Partial,0.882,Adherent
+SYN-0080,70,Female,Denosumab,37,Yes,Independent,Occasional,Moderate,High,7.9,Limited,2,Partial,0.6,Non-adherent
+SYN-0081,83,Female,Denosumab,23,Yes,Independent,Regular,None,High,6.1,Moderate,4,Partial,0.832,Adherent
+SYN-0082,60,Female,Alendronate,37,Yes,Independent,Occasional,None,High,19.8,Strong,2,Partial,0.604,Non-adherent
+SYN-0083,47,Female,Risedronate,1,No,Mild limitation,Regular,Mild,Moderate,21.5,Strong,1,Partial,0.946,Adherent
+SYN-0084,78,Female,Alendronate,32,No,Independent,Regular,,Low,12.5,Limited,6,Adequate,0.891,Adherent
+SYN-0085,68,Male,Zoledronic acid,38,No,Mild limitation,Irregular,None,Moderate,3.0,Moderate,5,Partial,0.691,Non-adherent
+SYN-0086,72,Female,Denosumab,25,Yes,Moderate limitation,Regular,Moderate,Moderate,7.5,Strong,1,Partial,0.889,Adherent
+SYN-0087,44,Female,Alendronate,60,Yes,Mild limitation,Occasional,None,Moderate,9.6,Moderate,1,Adequate,0.764,Non-adherent
+SYN-0088,54,Female,Risedronate,18,No,Mild limitation,Regular,None,Low,7.1,None,2,Adequate,0.821,Adherent
+SYN-0089,75,Female,Alendronate,10,No,Independent,Irregular,,Low,7.0,Strong,0,Partial,0.889,Adherent
+SYN-0090,78,Female,Alendronate,38,No,Independent,Regular,Mild,Low,8.3,Strong,1,Partial,0.92,Adherent
+SYN-0091,60,Male,Alendronate,64,No,Independent,Regular,None,Moderate,33.4,Moderate,0,Adequate,0.861,Adherent
+SYN-0092,77,Female,Alendronate,28,No,Moderate limitation,Occasional,None,Moderate,4.7,Moderate,2,Adequate,0.894,Adherent
+SYN-0093,78,Female,Denosumab,4,No,Moderate limitation,Regular,Mild,High,25.1,Moderate,3,Adequate,0.95,Adherent
+SYN-0094,57,Female,Risedronate,70,No,Independent,Regular,Mild,Moderate,10.0,Limited,2,Partial,0.892,Adherent
+SYN-0095,81,Female,Denosumab,32,No,Independent,Irregular,Severe,Moderate,9.4,Strong,5,Partial,0.411,Non-adherent
+SYN-0096,53,Female,Denosumab,13,Yes,Independent,Occasional,None,Low,6.3,Moderate,0,Adequate,0.82,Adherent
+SYN-0097,51,Female,Alendronate,45,Yes,Mild limitation,Occasional,None,Moderate,5.3,Moderate,0,Limited,0.641,Non-adherent
+SYN-0098,71,Female,Alendronate,24,Yes,Mild limitation,Occasional,Mild,Low,1.2,Moderate,1,Adequate,0.87,Adherent
+SYN-0099,69,Male,Denosumab,68,Yes,Mild limitation,Irregular,Mild,Low,,Moderate,1,Adequate,0.854,Adherent
+SYN-0100,46,Female,Alendronate,22,Yes,Moderate limitation,Irregular,None,Low,1.5,Limited,1,Adequate,0.777,Non-adherent
+SYN-0101,78,Female,Denosumab,40,No,Independent,Occasional,Mild,Low,1.5,Moderate,1,Partial,0.76,Non-adherent
+SYN-0102,49,Female,Alendronate,40,Yes,Mild limitation,Regular,None,Low,2.6,Limited,3,Partial,0.816,Adherent
+SYN-0103,77,Male,Zoledronic acid,18,No,Mild limitation,Regular,Moderate,Moderate,15.7,Strong,2,Adequate,0.866,Adherent
+SYN-0104,40,Female,Denosumab,36,No,Independent,Occasional,Moderate,Low,15.7,Moderate,1,Partial,0.747,Non-adherent
+SYN-0105,76,Male,Alendronate,8,No,Moderate limitation,Irregular,None,Low,4.0,Moderate,1,Partial,0.678,Non-adherent
+SYN-0106,76,Male,Alendronate,47,No,Independent,Regular,Severe,Low,2.0,Moderate,1,Limited,0.821,Adherent
+SYN-0107,75,Male,Denosumab,55,Yes,Mild limitation,Regular,Severe,Moderate,5.1,Strong,2,Limited,0.651,Non-adherent
+SYN-0108,70,Female,Alendronate,69,No,Mild limitation,Regular,None,Moderate,11.4,None,3,Partial,0.925,Adherent
+SYN-0109,61,Female,Risedronate,24,Yes,Moderate limitation,Regular,,Low,13.7,Limited,2,Adequate,0.867,Adherent
+SYN-0110,72,Female,Risedronate,21,No,Mild limitation,Irregular,Mild,Low,8.2,Limited,3,Adequate,0.912,Adherent
+SYN-0111,52,Female,Alendronate,40,Yes,Independent,Regular,None,High,9.3,Limited,1,Limited,0.904,Adherent
+SYN-0112,75,Female,Denosumab,50,Yes,Moderate limitation,Occasional,None,Moderate,8.6,Strong,1,Partial,0.751,Non-adherent
+SYN-0113,65,Male,Denosumab,72,No,Moderate limitation,Occasional,None,Moderate,1.6,Moderate,0,Partial,0.707,Non-adherent
+SYN-0114,61,Male,Alendronate,2,No,Mild limitation,Irregular,Moderate,Moderate,2.2,Moderate,3,Limited,0.523,Non-adherent
+SYN-0115,63,Female,Denosumab,18,No,Moderate limitation,Regular,,High,20.5,Limited,2,Limited,0.77,Non-adherent
+SYN-0116,66,Female,Alendronate,19,No,Independent,Irregular,Mild,High,8.2,Strong,2,Partial,0.71,Non-adherent
+SYN-0117,41,Female,Alendronate,19,Yes,Mild limitation,Occasional,None,Low,0.9,Strong,1,Limited,0.833,Adherent
+SYN-0118,46,Female,Zoledronic acid,34,No,Moderate limitation,Occasional,None,Moderate,9.6,Limited,1,Adequate,0.739,Non-adherent
+SYN-0119,51,Female,Denosumab,63,Yes,Independent,Regular,Moderate,Low,3.3,Strong,2,Partial,0.917,Adherent
+SYN-0120,45,Female,Alendronate,3,Yes,Mild limitation,Regular,None,Moderate,,Limited,5,Limited,0.846,Adherent
+SYN-0121,60,Female,Alendronate,59,Yes,Severe limitation,Occasional,None,Low,13.4,Strong,3,Adequate,0.779,Non-adherent
+SYN-0122,70,Female,Risedronate,45,Yes,Moderate limitation,Regular,None,Low,10.9,Moderate,1,Adequate,0.877,Adherent
+SYN-0123,70,Male,Denosumab,45,Yes,Moderate limitation,Regular,Mild,High,8.1,Limited,2,Partial,0.795,Adherent
+SYN-0124,61,Female,Alendronate,49,No,Independent,Occasional,None,High,,Moderate,1,Partial,0.69,Non-adherent
+SYN-0125,79,Male,Risedronate,9,Yes,Severe limitation,Occasional,None,Low,17.8,Strong,1,Adequate,0.894,Adherent
+SYN-0126,66,Female,Denosumab,54,Yes,Independent,Regular,None,High,3.4,Strong,6,Adequate,0.788,Non-adherent
+SYN-0127,43,Male,Alendronate,18,No,Mild limitation,Regular,None,Low,10.9,Strong,2,Adequate,0.955,Adherent
+SYN-0128,75,Female,Alendronate,38,Yes,,Regular,None,Low,4.5,Strong,1,Adequate,0.927,Adherent
+SYN-0129,66,Female,Alendronate,49,No,Moderate limitation,Irregular,Mild,High,3.0,Moderate,0,Limited,0.697,Non-adherent
+SYN-0130,69,Male,Risedronate,44,No,Moderate limitation,Irregular,None,Low,17.8,Moderate,2,Partial,0.704,Non-adherent
+SYN-0131,66,Male,Risedronate,24,No,Mild limitation,Regular,None,Low,12.0,Strong,0,Partial,0.924,Adherent
+SYN-0132,65,Male,Denosumab,29,No,Mild limitation,Regular,Mild,Moderate,8.6,Strong,1,Adequate,0.918,Adherent
+SYN-0133,44,Female,Zoledronic acid,35,Yes,Independent,Regular,Mild,Low,3.7,None,0,Adequate,0.946,Adherent
+SYN-0134,65,Female,Denosumab,3,Yes,Mild limitation,Regular,None,Low,18.2,Strong,4,Adequate,0.936,Adherent
+SYN-0135,76,Female,Denosumab,53,No,Mild limitation,Irregular,None,Low,3.3,Moderate,3,Limited,0.586,Non-adherent
+SYN-0136,53,Female,Risedronate,8,No,Independent,Regular,None,Moderate,2.7,Moderate,1,Limited,0.895,Adherent
+SYN-0137,67,Female,Risedronate,34,No,Mild limitation,Regular,Moderate,Low,7.1,Strong,0,Adequate,0.887,Adherent
+SYN-0138,41,Female,Denosumab,48,Yes,Moderate limitation,Regular,None,Low,,None,1,Limited,0.814,Adherent
+SYN-0139,55,Female,Alendronate,6,No,Mild limitation,Regular,None,Moderate,5.5,Strong,3,Adequate,0.929,Adherent
+SYN-0140,60,Male,Denosumab,72,Yes,Moderate limitation,Irregular,None,Low,40.0,Limited,3,Adequate,0.597,Non-adherent
+SYN-0141,85,Female,Denosumab,28,Yes,Independent,Occasional,None,Low,8.0,Moderate,1,Partial,0.889,Adherent
+SYN-0142,49,Male,Alendronate,2,Yes,Mild limitation,Occasional,None,Moderate,4.5,Limited,1,Adequate,0.937,Adherent
+SYN-0143,52,Female,Risedronate,48,No,Independent,Regular,None,Moderate,4.9,Moderate,1,Limited,0.937,Adherent
+SYN-0144,58,Female,Alendronate,41,Yes,Independent,Irregular,Mild,Low,22.0,Limited,3,Adequate,0.697,Non-adherent
+SYN-0145,85,Female,Alendronate,47,No,Independent,Regular,Mild,High,6.6,Moderate,3,Partial,0.851,Adherent
+SYN-0146,79,Male,Risedronate,55,No,Independent,Irregular,Mild,Moderate,17.4,Moderate,3,Adequate,0.476,Non-adherent
+SYN-0147,41,Female,Alendronate,35,No,Independent,Irregular,Mild,Low,1.4,Limited,0,Adequate,0.882,Adherent
+SYN-0148,50,Female,Denosumab,60,No,Mild limitation,Regular,None,Moderate,14.6,Moderate,0,Adequate,0.799,Adherent
+SYN-0149,77,Female,Denosumab,27,No,Independent,Irregular,Moderate,Moderate,3.8,Moderate,0,Limited,0.533,Non-adherent
+SYN-0150,42,Female,Denosumab,40,Yes,Independent,Regular,Mild,Moderate,12.2,Strong,0,Partial,0.91,Adherent
+SYN-0151,79,Female,Alendronate,12,Yes,Independent,Occasional,Moderate,Moderate,3.8,Strong,2,Partial,0.733,Non-adherent
+SYN-0152,52,Male,Alendronate,45,No,Mild limitation,Regular,Mild,Moderate,5.2,Moderate,3,Adequate,0.844,Adherent
+SYN-0153,82,Female,Alendronate,19,Yes,Independent,Regular,None,High,2.9,Strong,2,Adequate,0.879,Adherent
+SYN-0154,53,Female,Alendronate,51,Yes,Independent,Regular,None,Moderate,12.4,Moderate,4,Adequate,0.91,Adherent
+SYN-0155,59,Male,Denosumab,58,Yes,Mild limitation,Regular,None,High,13.7,Strong,0,Partial,0.73,Non-adherent
+SYN-0156,70,Female,Risedronate,62,Yes,Independent,Regular,None,Moderate,3.9,Moderate,0,Adequate,0.893,Adherent
+SYN-0157,45,Male,Alendronate,67,Yes,Moderate limitation,Regular,None,High,1.9,Limited,1,Adequate,0.805,Adherent
+SYN-0158,65,Female,Denosumab,9,Yes,Independent,Occasional,None,High,17.3,Moderate,1,Partial,0.881,Adherent
+SYN-0159,63,Female,Risedronate,10,No,Independent,Regular,None,Low,4.3,Limited,3,Partial,0.938,Adherent
+SYN-0160,76,Female,Alendronate,67,Yes,Independent,Regular,Moderate,Low,6.4,Strong,4,Adequate,0.554,Non-adherent
+SYN-0161,85,Female,Alendronate,28,No,Mild limitation,Irregular,Mild,Moderate,3.3,Strong,1,Adequate,0.894,Adherent
+SYN-0162,70,Male,Zoledronic acid,2,No,Independent,Irregular,Mild,Low,11.6,Limited,2,Adequate,0.796,Adherent
+SYN-0163,58,Female,Denosumab,21,Yes,Moderate limitation,Regular,None,Moderate,11.8,Limited,2,Partial,0.913,Adherent
+SYN-0164,58,Female,Alendronate,61,No,Independent,Regular,Mild,Moderate,19.1,Limited,1,Adequate,0.825,Adherent
+SYN-0165,59,Female,Denosumab,26,No,Mild limitation,Occasional,Moderate,High,14.9,Moderate,2,Partial,0.73,Non-adherent
+SYN-0166,77,Female,Denosumab,6,No,Independent,Occasional,Mild,Low,14.2,Limited,2,Adequate,0.972,Adherent
+SYN-0167,54,Male,Denosumab,52,Yes,Independent,Regular,Mild,Moderate,6.8,Limited,1,Limited,0.848,Adherent
+SYN-0168,47,Male,Alendronate,15,Yes,Independent,Occasional,None,Low,6.2,Limited,2,Limited,0.786,Non-adherent
+SYN-0169,55,Female,Alendronate,26,Yes,Mild limitation,Regular,None,Moderate,11.5,Limited,4,Adequate,0.897,Adherent
+SYN-0170,41,Female,Denosumab,1,No,Independent,Regular,Mild,Low,6.5,Strong,0,Adequate,0.89,Adherent
+SYN-0171,44,Female,Alendronate,44,No,Severe limitation,Occasional,Severe,Moderate,15.2,Strong,1,Adequate,0.838,Adherent
+SYN-0172,44,Female,Zoledronic acid,33,No,Mild limitation,Occasional,None,Moderate,3.2,Moderate,1,Limited,0.826,Adherent
+SYN-0173,75,Male,Denosumab,63,No,Severe limitation,Irregular,None,Moderate,1.4,Moderate,2,Partial,0.472,Non-adherent
+SYN-0174,73,Female,Alendronate,25,No,Independent,Regular,None,Moderate,10.6,Limited,1,Partial,0.845,Adherent
+SYN-0175,72,Female,Denosumab,15,No,Moderate limitation,Regular,None,Low,4.7,Moderate,3,Adequate,0.928,Adherent
+SYN-0176,61,Female,Denosumab,12,Yes,Mild limitation,Regular,Severe,Low,,Strong,2,Adequate,0.918,Adherent
+SYN-0177,72,Male,Denosumab,15,No,Mild limitation,Regular,Mild,Low,26.9,Limited,1,Partial,0.855,Adherent
+SYN-0178,47,Female,Risedronate,33,Yes,,Regular,None,High,7.3,Strong,2,Partial,0.898,Adherent
+SYN-0179,81,Female,Denosumab,7,Yes,Mild limitation,Regular,None,High,2.2,Limited,2,Partial,0.875,Adherent
+SYN-0180,63,Female,Risedronate,29,No,Moderate limitation,Occasional,None,Low,4.3,Strong,5,Limited,0.63,Non-adherent
+SYN-0181,83,Female,Denosumab,62,No,,Occasional,None,Low,5.8,Moderate,1,Partial,0.709,Non-adherent
+SYN-0182,47,Female,Denosumab,56,Yes,Independent,Regular,Mild,Low,10.4,Moderate,3,Partial,0.928,Adherent
+SYN-0183,62,Female,Denosumab,46,No,Mild limitation,Regular,Moderate,Moderate,4.3,Strong,5,Limited,0.532,Non-adherent
+SYN-0184,72,Female,Alendronate,65,Yes,Mild limitation,Occasional,Mild,Low,6.4,Strong,0,Partial,0.691,Non-adherent
+SYN-0185,62,Female,Alendronate,57,Yes,Moderate limitation,Regular,None,Low,8.8,Strong,1,Limited,0.891,Adherent
+SYN-0186,60,Female,Alendronate,47,Yes,,Irregular,Mild,Low,10.0,Moderate,4,Limited,0.633,Non-adherent
+SYN-0187,47,Female,Risedronate,63,No,Independent,Regular,Mild,Low,6.8,Moderate,4,Adequate,0.786,Non-adherent
+SYN-0188,57,Male,Risedronate,9,No,Independent,Occasional,None,Low,21.8,Limited,0,Partial,0.926,Adherent
+SYN-0189,50,Female,Zoledronic acid,59,Yes,Independent,Irregular,Mild,Low,11.7,Strong,1,Partial,0.786,Non-adherent
+SYN-0190,53,Female,Risedronate,22,Yes,Mild limitation,Occasional,Mild,Moderate,11.3,Moderate,3,Adequate,0.889,Adherent
+SYN-0191,71,Female,Denosumab,53,Yes,Independent,Occasional,Moderate,Moderate,11.0,Strong,1,Partial,0.622,Non-adherent
+SYN-0192,68,Male,Denosumab,66,Yes,Mild limitation,Occasional,None,Low,15.3,None,2,Adequate,0.698,Non-adherent
+SYN-0193,67,Female,Alendronate,36,No,Mild limitation,Regular,None,Moderate,8.4,Limited,1,Adequate,0.931,Adherent
+SYN-0194,56,Female,Denosumab,7,No,Moderate limitation,Occasional,None,Moderate,3.1,None,2,Adequate,0.765,Non-adherent
+SYN-0195,84,Male,Zoledronic acid,27,No,Independent,Irregular,,Moderate,9.7,None,0,Partial,0.859,Adherent
+SYN-0196,44,Female,Risedronate,30,Yes,Mild limitation,Irregular,None,High,10.5,Moderate,2,Partial,0.841,Adherent
+SYN-0197,55,Female,Alendronate,68,No,Independent,Regular,Mild,Low,16.9,Limited,0,Partial,0.829,Adherent
+SYN-0198,45,Female,Denosumab,68,Yes,Moderate limitation,Regular,None,High,2.9,Moderate,0,Adequate,0.871,Adherent
+SYN-0199,55,Female,Denosumab,41,Yes,,Occasional,None,Moderate,3.5,Limited,1,Partial,0.893,Adherent
+SYN-0200,84,Female,Denosumab,69,No,Independent,Occasional,Severe,Moderate,7.5,Moderate,2,Adequate,0.828,Adherent
+SYN-0201,56,Female,Denosumab,32,No,Independent,Regular,None,Low,11.2,Moderate,1,Adequate,0.966,Adherent
+SYN-0202,81,Female,Denosumab,30,No,Moderate limitation,Regular,None,Low,2.4,None,1,Adequate,0.79,Non-adherent
+SYN-0203,62,Female,Alendronate,61,No,Independent,Regular,Mild,Low,2.9,Limited,3,Limited,0.758,Non-adherent
+SYN-0204,72,Male,Zoledronic acid,49,No,Mild limitation,Regular,None,High,13.0,None,2,Adequate,0.861,Adherent
+SYN-0205,61,Female,Risedronate,38,No,Mild limitation,Regular,None,Moderate,2.5,Strong,4,Partial,0.816,Adherent
+SYN-0206,52,Female,Denosumab,33,Yes,Mild limitation,Regular,Mild,Low,3.5,Strong,1,,0.949,Adherent
+SYN-0207,75,Male,Alendronate,51,Yes,Independent,Regular,None,Moderate,13.6,Moderate,5,Adequate,0.938,Adherent
+SYN-0208,84,Male,Risedronate,55,Yes,Independent,Irregular,None,Low,11.1,Moderate,1,Limited,0.539,Non-adherent
+SYN-0209,52,Female,Denosumab,36,Yes,Independent,Regular,None,Low,4.4,Moderate,3,Adequate,0.896,Adherent
+SYN-0210,75,Female,Alendronate,3,Yes,Independent,Regular,Moderate,Moderate,10.2,Strong,2,Adequate,0.863,Adherent
+SYN-0211,52,Male,Denosumab,8,Yes,Mild limitation,Regular,None,Moderate,8.9,Limited,3,Adequate,0.924,Adherent
+SYN-0212,72,Female,Risedronate,11,No,Independent,Regular,,Moderate,6.6,Strong,1,Partial,0.911,Adherent
+SYN-0213,76,Male,Denosumab,34,No,Independent,Irregular,None,Moderate,5.4,Limited,3,Limited,0.776,Non-adherent
+SYN-0214,60,Male,Denosumab,45,No,Independent,Irregular,Mild,Moderate,9.9,Limited,3,Partial,0.566,Non-adherent
+SYN-0215,73,Male,Alendronate,58,Yes,Mild limitation,Regular,None,High,2.7,Moderate,4,Partial,0.418,Non-adherent
+SYN-0216,52,Female,Denosumab,17,No,Independent,Regular,None,Low,9.9,Moderate,3,Adequate,0.838,Adherent
+SYN-0217,43,Female,Alendronate,57,Yes,Mild limitation,Regular,Mild,Moderate,8.3,Strong,2,Limited,0.713,Non-adherent
+SYN-0218,44,Female,Zoledronic acid,48,Yes,Independent,Regular,Mild,Moderate,8.8,Strong,1,Adequate,0.87,Adherent
+SYN-0219,60,Female,Zoledronic acid,4,Yes,Severe limitation,Regular,None,Low,3.4,Limited,3,Adequate,0.93,Adherent
+SYN-0220,81,Male,Denosumab,26,Yes,Mild limitation,Regular,None,Low,17.1,Moderate,5,Limited,0.74,Non-adherent
+SYN-0221,45,Female,Alendronate,22,Yes,Independent,Regular,None,Low,4.4,Strong,2,Adequate,0.868,Adherent
+SYN-0222,60,Female,Alendronate,64,No,Independent,Occasional,None,Low,4.9,None,2,Adequate,0.648,Non-adherent
+SYN-0223,72,Female,Denosumab,67,No,Independent,Regular,Mild,Moderate,6.4,Moderate,1,Adequate,0.796,Adherent
+SYN-0224,49,Male,Zoledronic acid,59,No,Independent,Regular,None,Low,11.1,Limited,5,Adequate,0.801,Adherent
+SYN-0225,73,Female,Risedronate,39,Yes,Independent,Regular,None,Moderate,8.6,Moderate,2,Partial,0.834,Adherent
+SYN-0226,54,Female,Alendronate,36,No,Moderate limitation,Regular,,Low,1.8,None,0,Adequate,0.935,Adherent
+SYN-0227,77,Female,Alendronate,23,No,Mild limitation,Regular,None,Low,7.2,Strong,2,Limited,0.809,Adherent
+SYN-0228,66,Female,Denosumab,56,Yes,Independent,Regular,None,Low,7.7,Strong,3,Adequate,0.851,Adherent
+SYN-0229,65,Female,Alendronate,7,No,Mild limitation,Regular,None,Low,17.4,Limited,0,Partial,0.905,Adherent
+SYN-0230,48,Female,Risedronate,20,No,Independent,Regular,None,High,5.7,Limited,3,Partial,0.902,Adherent
+SYN-0231,61,Female,Denosumab,10,No,Severe limitation,Irregular,Moderate,Low,10.4,Moderate,3,Partial,0.645,Non-adherent
+SYN-0232,79,Female,Alendronate,36,Yes,Independent,Irregular,None,Low,34.9,Strong,2,Partial,0.827,Adherent
+SYN-0233,40,Female,Denosumab,22,No,Mild limitation,Regular,Moderate,Low,15.5,Moderate,0,Partial,0.789,Non-adherent
+SYN-0234,74,Female,Alendronate,15,Yes,Moderate limitation,Regular,None,Low,3.2,Limited,0,Partial,0.923,Adherent
+SYN-0235,62,Female,Denosumab,28,Yes,Independent,Occasional,None,Moderate,12.1,Limited,3,Limited,0.72,Non-adherent
+SYN-0236,73,Female,Denosumab,62,Yes,Independent,Occasional,None,Moderate,9.9,Moderate,3,Adequate,0.652,Non-adherent
+SYN-0237,70,Female,Denosumab,41,No,Independent,Regular,None,Low,5.6,Strong,6,Adequate,0.862,Adherent
+SYN-0238,59,Female,Alendronate,60,Yes,Moderate limitation,Regular,Mild,Moderate,12.2,Moderate,2,Partial,0.93,Adherent
+SYN-0239,54,Female,Risedronate,66,Yes,Mild limitation,Regular,Moderate,Moderate,3.2,Limited,2,Adequate,0.725,Non-adherent
+SYN-0240,68,Female,Denosumab,65,Yes,Mild limitation,Occasional,Mild,High,4.4,Moderate,1,Adequate,0.738,Non-adherent
+SYN-0241,46,Female,Alendronate,26,No,Moderate limitation,Regular,Mild,Moderate,6.5,Moderate,2,Limited,0.772,Non-adherent
+SYN-0242,66,Female,Alendronate,64,No,Moderate limitation,Regular,None,Low,5.4,None,5,Adequate,0.638,Non-adherent
+SYN-0243,44,Male,Alendronate,66,No,Independent,Regular,,Moderate,11.3,Strong,2,Adequate,0.811,Adherent
+SYN-0244,69,Female,Denosumab,70,Yes,Mild limitation,Regular,Mild,High,7.1,Moderate,1,Partial,0.728,Non-adherent
+SYN-0245,68,Female,Denosumab,26,Yes,Mild limitation,Regular,None,Moderate,5.0,Moderate,2,Adequate,0.906,Adherent
+SYN-0246,43,Female,Zoledronic acid,17,No,Independent,Occasional,None,High,15.3,Moderate,2,Adequate,0.832,Adherent
+SYN-0247,74,Female,Denosumab,43,Yes,Moderate limitation,Regular,Moderate,High,11.0,Limited,1,Adequate,0.652,Non-adherent
+SYN-0248,59,Female,Risedronate,68,No,Independent,Regular,Severe,Low,2.1,Moderate,2,Adequate,0.672,Non-adherent
+SYN-0249,76,Male,Risedronate,65,No,Independent,Regular,Mild,Moderate,2.1,Moderate,1,Adequate,0.907,Adherent
+SYN-0250,41,Male,Risedronate,42,No,Moderate limitation,Irregular,None,Moderate,5.0,Strong,0,Partial,0.587,Non-adherent
+SYN-0251,48,Female,Zoledronic acid,11,No,Independent,Regular,Moderate,Moderate,2.4,Limited,2,Adequate,0.886,Adherent
+SYN-0252,62,Female,Alendronate,31,No,Independent,Regular,None,Moderate,13.8,Strong,0,Adequate,0.941,Adherent
+SYN-0253,48,Female,Denosumab,52,Yes,Independent,Regular,,High,4.6,Strong,4,Partial,0.683,Non-adherent
+SYN-0254,55,Female,Denosumab,41,No,Mild limitation,Irregular,None,Moderate,10.4,Moderate,3,Adequate,0.795,Adherent
+SYN-0255,70,Female,Alendronate,25,Yes,Moderate limitation,Occasional,Moderate,Moderate,12.0,Moderate,3,Adequate,0.638,Non-adherent
+SYN-0256,46,Female,Zoledronic acid,25,No,Independent,Irregular,Moderate,Low,1.2,None,3,Adequate,0.767,Non-adherent
+SYN-0257,71,Female,Alendronate,5,Yes,Independent,Occasional,Mild,Low,4.8,Limited,1,Adequate,0.921,Adherent
+SYN-0258,44,Male,Denosumab,21,Yes,Independent,Regular,None,High,6.2,Limited,4,Adequate,0.886,Adherent
+SYN-0259,48,Female,Denosumab,49,No,Severe limitation,Regular,None,Moderate,8.8,Moderate,3,Adequate,0.927,Adherent
+SYN-0260,67,Female,Denosumab,18,Yes,Independent,Regular,None,Low,13.3,Moderate,7,Limited,0.799,Adherent
+SYN-0261,76,Female,Alendronate,72,Yes,Severe limitation,Occasional,Moderate,High,27.7,None,1,Limited,0.33,Non-adherent
+SYN-0262,47,Female,Alendronate,6,No,Moderate limitation,Occasional,None,High,20.4,Moderate,2,Limited,0.881,Adherent
+SYN-0263,53,Female,Alendronate,43,Yes,Independent,Regular,None,Moderate,7.0,Limited,3,Adequate,0.959,Adherent
+SYN-0264,82,Female,Alendronate,36,No,Moderate limitation,Irregular,Mild,Low,7.0,Moderate,1,Partial,0.67,Non-adherent
+SYN-0265,85,Male,Alendronate,60,Yes,Mild limitation,Regular,None,Moderate,19.1,Strong,1,Partial,0.841,Adherent
+SYN-0266,66,Female,Alendronate,64,Yes,Mild limitation,Regular,Moderate,Low,7.3,Moderate,1,Adequate,0.895,Adherent
+SYN-0267,60,Female,Denosumab,40,Yes,Independent,Regular,None,Low,4.7,Strong,2,Limited,0.844,Adherent
+SYN-0268,55,Female,Alendronate,46,No,Moderate limitation,Irregular,Moderate,Moderate,13.9,Strong,4,Partial,0.626,Non-adherent
+SYN-0269,68,Female,Alendronate,51,No,Moderate limitation,Irregular,None,High,9.1,Strong,4,Adequate,0.73,Non-adherent
+SYN-0270,67,Female,Denosumab,38,Yes,Mild limitation,Regular,None,Low,2.1,Strong,3,Limited,0.794,Adherent
+SYN-0271,53,Female,Zoledronic acid,14,No,Severe limitation,Irregular,None,High,5.8,Moderate,0,Adequate,0.836,Adherent
+SYN-0272,41,Female,Denosumab,31,No,Independent,Irregular,None,High,2.5,Limited,1,Adequate,0.762,Non-adherent
+SYN-0273,46,Female,Zoledronic acid,18,No,Moderate limitation,Irregular,Mild,Low,0.5,Moderate,2,Adequate,0.719,Non-adherent
+SYN-0274,84,Male,Denosumab,34,No,Moderate limitation,Irregular,None,Low,22.2,Limited,1,Adequate,0.716,Non-adherent
+SYN-0275,59,Female,Zoledronic acid,45,No,Independent,Regular,None,Moderate,8.0,Moderate,6,Limited,0.71,Non-adherent
+SYN-0276,62,Male,Risedronate,16,No,Independent,Occasional,Mild,Moderate,6.0,Strong,2,Partial,0.905,Adherent
+SYN-0277,61,Female,Denosumab,18,No,Independent,Occasional,None,Low,5.0,Strong,2,Adequate,0.93,Adherent
+SYN-0278,76,Female,Risedronate,60,No,Moderate limitation,Occasional,Mild,Moderate,7.4,None,0,Partial,0.809,Adherent
+SYN-0279,42,Female,Alendronate,28,Yes,Independent,Regular,Mild,Moderate,,Moderate,2,Limited,0.896,Adherent
+SYN-0280,43,Male,Risedronate,15,Yes,Mild limitation,Occasional,None,Moderate,3.3,None,3,Limited,0.807,Adherent
+SYN-0281,52,Female,Alendronate,52,No,Independent,Irregular,Mild,Moderate,5.2,Moderate,0,Limited,0.711,Non-adherent
+SYN-0282,62,Male,Denosumab,52,Yes,Independent,Regular,None,Low,17.9,Limited,5,Limited,0.814,Adherent
+SYN-0283,70,Female,Alendronate,60,Yes,Mild limitation,Irregular,None,Low,13.7,Limited,2,Partial,0.709,Non-adherent
+SYN-0284,62,Female,Alendronate,55,Yes,Independent,Regular,None,Low,5.2,None,1,Adequate,0.756,Non-adherent
+SYN-0285,60,Male,Alendronate,72,Yes,Moderate limitation,Regular,Moderate,High,23.7,Strong,1,Limited,0.529,Non-adherent
+SYN-0286,83,Female,Denosumab,42,No,Independent,Regular,Mild,High,7.0,None,2,Adequate,0.747,Non-adherent
+SYN-0287,47,Male,Alendronate,21,No,Moderate limitation,Occasional,None,Moderate,3.9,Moderate,1,Adequate,0.938,Adherent
+SYN-0288,66,Female,Denosumab,63,No,Independent,Occasional,Severe,Low,9.4,Limited,1,Adequate,0.831,Adherent
+SYN-0289,64,Male,Denosumab,20,Yes,Severe limitation,Regular,None,Moderate,19.7,Moderate,1,Adequate,0.797,Adherent
+SYN-0290,61,Female,Alendronate,21,No,,Occasional,Moderate,Low,17.3,Moderate,2,Partial,0.889,Adherent
+SYN-0291,77,Female,Denosumab,60,Yes,Independent,Regular,Mild,Low,4.1,Moderate,3,,0.799,Adherent
+SYN-0292,52,Female,Alendronate,64,No,Independent,Regular,Moderate,Low,2.8,Limited,5,Adequate,0.849,Adherent
+SYN-0293,83,Female,Alendronate,25,No,Independent,Irregular,Moderate,High,5.6,Strong,7,Partial,0.533,Non-adherent
+SYN-0294,55,Female,Denosumab,53,No,Mild limitation,Occasional,Severe,Low,10.5,Moderate,2,Adequate,0.822,Adherent
+SYN-0295,65,Female,Denosumab,67,No,Moderate limitation,Occasional,None,Moderate,12.5,Moderate,2,Partial,0.748,Non-adherent
+SYN-0296,63,Female,Alendronate,58,No,Independent,Occasional,Mild,High,15.8,Limited,4,Adequate,0.54,Non-adherent
+SYN-0297,79,Female,Zoledronic acid,1,No,Independent,Irregular,Moderate,Moderate,8.3,Moderate,5,Adequate,0.709,Non-adherent
+SYN-0298,60,Female,Alendronate,48,No,Mild limitation,Regular,Mild,Low,8.5,Limited,3,Partial,0.88,Adherent
+SYN-0299,53,Female,Risedronate,13,No,,Regular,None,High,8.1,Moderate,1,Partial,0.877,Adherent
+SYN-0300,40,Female,Zoledronic acid,61,Yes,Mild limitation,Regular,Severe,Moderate,14.4,Moderate,1,Adequate,0.836,Adherent
+SYN-0301,56,Female,Zoledronic acid,5,No,Independent,Occasional,None,Low,12.7,Moderate,2,Adequate,0.892,Adherent
+SYN-0302,78,Female,Zoledronic acid,72,Yes,Mild limitation,Occasional,None,Moderate,4.0,Limited,2,Adequate,0.716,Non-adherent
+SYN-0303,40,Male,Alendronate,13,Yes,Severe limitation,Occasional,Mild,High,11.7,Limited,4,Partial,0.627,Non-adherent
+SYN-0304,81,Female,Denosumab,31,No,Independent,Regular,None,Moderate,13.8,Moderate,2,Adequate,0.9,Adherent
+SYN-0305,64,Female,Zoledronic acid,17,No,Independent,Regular,Mild,Moderate,14.6,Strong,2,Adequate,0.939,Adherent
+SYN-0306,46,Female,Denosumab,59,Yes,Independent,Occasional,None,Low,9.2,Moderate,1,Limited,0.479,Non-adherent
+SYN-0307,53,Female,Alendronate,29,Yes,Mild limitation,Irregular,Mild,Low,8.8,Strong,2,Partial,0.661,Non-adherent
+SYN-0308,65,Female,Risedronate,54,Yes,Independent,Regular,Moderate,Moderate,7.2,Strong,2,Adequate,0.628,Non-adherent
+SYN-0309,54,Female,Risedronate,5,No,Moderate limitation,Regular,None,Low,7.7,Limited,2,Partial,0.882,Adherent
+SYN-0310,44,Male,Alendronate,33,Yes,Mild limitation,Regular,Mild,Low,21.4,Moderate,1,Adequate,0.959,Adherent
+SYN-0311,70,Female,Alendronate,66,No,Mild limitation,Regular,None,Low,7.9,Moderate,1,Adequate,0.792,Non-adherent
+SYN-0312,70,Female,Risedronate,67,No,Moderate limitation,Regular,Moderate,Low,4.3,None,2,Partial,0.771,Non-adherent
+SYN-0313,45,Male,Denosumab,16,No,Independent,Regular,Moderate,Low,9.3,Strong,1,Adequate,0.979,Adherent
+SYN-0314,52,Female,Alendronate,29,No,Moderate limitation,Occasional,None,Moderate,12.4,Strong,1,Adequate,0.942,Adherent
+SYN-0315,51,Female,Denosumab,30,Yes,Independent,Regular,Mild,Low,14.2,Strong,0,,0.896,Adherent
+SYN-0316,70,Male,Risedronate,41,Yes,Mild limitation,Regular,None,Low,3.3,Strong,2,Partial,0.916,Adherent
+SYN-0317,73,Male,Denosumab,39,No,Moderate limitation,Regular,Mild,High,18.7,Limited,3,Limited,0.632,Non-adherent
+SYN-0318,73,Female,Risedronate,8,Yes,Moderate limitation,Irregular,Mild,High,12.0,Limited,1,Limited,0.509,Non-adherent
+SYN-0319,83,Female,Risedronate,55,Yes,Moderate limitation,Regular,None,Low,18.0,Moderate,0,Adequate,0.906,Adherent
+SYN-0320,75,Female,Zoledronic acid,17,Yes,Independent,Regular,Mild,Low,2.3,Strong,3,Partial,0.916,Adherent
+SYN-0321,54,Female,Denosumab,23,Yes,Moderate limitation,Regular,None,Low,14.9,Moderate,1,Adequate,0.962,Adherent
+SYN-0322,44,Female,Risedronate,61,No,Mild limitation,Occasional,None,Low,3.1,Strong,2,Partial,0.68,Non-adherent
+SYN-0323,68,Female,Risedronate,50,No,Mild limitation,Irregular,Moderate,Low,6.0,Limited,3,Adequate,0.665,Non-adherent
+SYN-0324,82,Female,Zoledronic acid,29,No,Independent,Regular,None,High,12.3,Moderate,1,Adequate,0.907,Adherent
+SYN-0325,84,Male,Denosumab,66,No,Independent,Regular,Mild,Moderate,2.9,Strong,1,Adequate,0.872,Adherent
+SYN-0326,50,Female,Alendronate,29,No,Mild limitation,Regular,None,Low,4.9,Limited,1,Partial,0.896,Adherent
+SYN-0327,50,Female,Risedronate,41,Yes,Independent,Occasional,Moderate,High,2.3,Limited,3,Adequate,0.585,Non-adherent
+SYN-0328,41,Female,Risedronate,18,No,Mild limitation,Irregular,Mild,Low,12.1,Moderate,2,Partial,0.804,Adherent
+SYN-0329,46,Male,Denosumab,14,No,Moderate limitation,Regular,None,Low,3.9,Moderate,0,Limited,0.919,Adherent
+SYN-0330,65,Female,Risedronate,36,Yes,Moderate limitation,Regular,None,Low,7.6,Moderate,4,Partial,0.825,Adherent
+SYN-0331,65,Female,Risedronate,41,No,Independent,Occasional,None,Low,9.9,Strong,1,Adequate,0.899,Adherent
+SYN-0332,57,Female,Denosumab,59,Yes,Moderate limitation,Occasional,,High,9.2,Strong,2,Adequate,0.77,Non-adherent
+SYN-0333,54,Female,Risedronate,29,Yes,Independent,Regular,None,Low,8.6,Limited,3,Limited,0.897,Adherent
+SYN-0334,78,Female,Alendronate,65,Yes,Independent,Regular,None,Moderate,8.6,None,2,Partial,0.675,Non-adherent
+SYN-0335,61,Female,Alendronate,44,Yes,Moderate limitation,Regular,Mild,Low,2.4,Moderate,2,Adequate,0.907,Adherent
+SYN-0336,77,Female,Alendronate,6,Yes,Independent,Occasional,None,High,6.3,Moderate,0,Limited,0.721,Non-adherent
+SYN-0337,84,Female,Alendronate,54,No,Independent,Occasional,None,Moderate,8.6,Moderate,3,Adequate,0.814,Adherent
+SYN-0338,54,Male,Risedronate,42,No,Independent,Occasional,None,Moderate,7.9,Moderate,2,Adequate,0.769,Non-adherent
+SYN-0339,49,Female,Denosumab,29,Yes,Mild limitation,Irregular,None,Low,6.8,Strong,0,Adequate,0.913,Adherent
+SYN-0340,83,Female,Denosumab,34,No,Moderate limitation,Regular,Mild,High,4.4,Moderate,3,Adequate,0.913,Adherent
+SYN-0341,69,Female,Alendronate,22,Yes,Independent,Regular,Moderate,Moderate,9.1,Limited,3,Adequate,0.933,Adherent
+SYN-0342,53,Male,Zoledronic acid,45,No,Independent,Regular,Moderate,Low,10.3,Limited,4,Partial,0.856,Adherent
+SYN-0343,68,Female,Alendronate,41,Yes,Mild limitation,Irregular,Moderate,High,5.4,None,2,Adequate,0.517,Non-adherent
+SYN-0344,63,Female,Denosumab,33,Yes,Independent,Occasional,None,Low,14.2,Strong,2,Partial,0.777,Non-adherent
+SYN-0345,81,Female,Alendronate,21,No,Mild limitation,Regular,None,Low,18.9,Moderate,1,Partial,0.963,Adherent
+SYN-0346,51,Male,Zoledronic acid,29,No,Severe limitation,Regular,Mild,Moderate,7.7,Moderate,4,Limited,0.815,Adherent
+SYN-0347,85,Female,Alendronate,36,No,Moderate limitation,Occasional,Moderate,Low,4.1,Strong,3,Adequate,0.621,Non-adherent
+SYN-0348,83,Female,Zoledronic acid,34,No,Moderate limitation,Occasional,Mild,Moderate,2.8,Strong,4,Partial,0.861,Adherent
+SYN-0349,48,Female,Risedronate,23,No,Mild limitation,Occasional,None,Low,6.0,Limited,0,Adequate,0.906,Adherent
+SYN-0350,47,Male,Denosumab,42,Yes,Moderate limitation,Regular,Mild,Low,7.3,Moderate,2,Partial,0.939,Adherent
+SYN-0351,64,Female,Alendronate,17,Yes,Independent,Irregular,Mild,Low,2.7,Moderate,1,Adequate,0.865,Adherent
+SYN-0352,42,Female,Denosumab,37,Yes,Independent,Occasional,Moderate,Low,5.8,Strong,2,Partial,0.724,Non-adherent
+SYN-0353,53,Male,Risedronate,9,Yes,Mild limitation,Occasional,Mild,High,13.8,Moderate,0,Adequate,0.945,Adherent
+SYN-0354,60,Male,Denosumab,34,Yes,Independent,Occasional,None,Moderate,1.0,Strong,2,Partial,0.651,Non-adherent
+SYN-0355,84,Female,Denosumab,57,No,Moderate limitation,Irregular,None,Moderate,8.0,Strong,2,Adequate,0.669,Non-adherent
+SYN-0356,85,Female,Denosumab,59,Yes,Mild limitation,Irregular,None,Low,4.9,Moderate,3,Adequate,0.6,Non-adherent
+SYN-0357,46,Female,Alendronate,51,No,Severe limitation,Occasional,None,Moderate,7.4,Moderate,1,Partial,0.497,Non-adherent
+SYN-0358,81,Male,Alendronate,54,No,Independent,Regular,Moderate,Low,19.6,None,3,Adequate,0.852,Adherent
+SYN-0359,44,Female,Alendronate,5,No,Mild limitation,Regular,None,Low,7.2,Moderate,2,Partial,0.885,Adherent
+SYN-0360,74,Female,Alendronate,25,No,Mild limitation,Irregular,None,Moderate,,Strong,1,Partial,0.852,Adherent
+SYN-0361,78,Female,Zoledronic acid,48,Yes,Independent,Occasional,None,Moderate,11.6,Strong,2,Partial,0.814,Adherent
+SYN-0362,80,Female,Denosumab,58,Yes,Mild limitation,Regular,Mild,Moderate,9.2,Limited,4,Partial,0.857,Adherent
+SYN-0363,50,Male,Denosumab,42,No,Mild limitation,Regular,Mild,High,8.0,Strong,1,Partial,0.802,Adherent
+SYN-0364,81,Female,Risedronate,62,No,Severe limitation,Irregular,None,High,9.4,Strong,2,Limited,0.38,Non-adherent
+SYN-0365,45,Female,Zoledronic acid,20,Yes,Mild limitation,Irregular,Moderate,Low,16.2,Moderate,3,Adequate,0.746,Non-adherent
+SYN-0366,63,Male,Denosumab,12,Yes,Independent,Irregular,None,Low,13.2,Strong,4,Partial,0.84,Adherent
+SYN-0367,61,Male,Denosumab,7,No,Independent,Regular,None,Low,6.1,Moderate,2,Partial,0.911,Adherent
+SYN-0368,54,Male,Alendronate,42,No,Mild limitation,Occasional,None,Moderate,18.9,Moderate,1,,0.804,Adherent
+SYN-0369,41,Female,Risedronate,48,Yes,Independent,Irregular,Mild,High,5.1,Strong,2,Adequate,0.538,Non-adherent
+SYN-0370,75,Female,Denosumab,21,No,Independent,Regular,Mild,High,8.0,Limited,1,Adequate,0.919,Adherent
+SYN-0371,55,Female,Alendronate,57,No,Independent,Regular,Moderate,Low,8.7,Moderate,4,Partial,0.673,Non-adherent
+SYN-0372,70,Female,Risedronate,54,Yes,Independent,Irregular,None,High,5.9,Moderate,2,Adequate,0.664,Non-adherent
+SYN-0373,58,Male,Denosumab,26,No,Mild limitation,Regular,,Moderate,17.6,Strong,1,Partial,0.787,Non-adherent
+SYN-0374,57,Female,Denosumab,18,Yes,Independent,Occasional,Mild,High,5.7,Moderate,1,Partial,0.771,Non-adherent
+SYN-0375,80,Female,Denosumab,54,No,Mild limitation,Occasional,None,Moderate,6.8,Strong,1,Partial,0.807,Adherent
+SYN-0376,44,Male,Denosumab,49,No,Independent,Occasional,None,Low,14.5,Moderate,0,Adequate,0.891,Adherent
+SYN-0377,73,Female,Alendronate,13,Yes,Mild limitation,Regular,None,Low,5.3,Strong,3,Partial,0.965,Adherent
+SYN-0378,74,Female,Alendronate,19,No,Independent,Occasional,Moderate,High,2.6,None,3,Partial,0.723,Non-adherent
+SYN-0379,57,Female,Risedronate,35,No,Moderate limitation,Regular,None,Low,8.2,Strong,4,Adequate,0.954,Adherent
+SYN-0380,52,Female,Zoledronic acid,37,No,Independent,Irregular,None,Low,3.3,None,1,Adequate,0.674,Non-adherent
+SYN-0381,40,Female,Risedronate,12,Yes,Mild limitation,Regular,Mild,Low,3.0,None,4,Adequate,0.797,Adherent
+SYN-0382,83,Female,Zoledronic acid,69,No,Independent,Occasional,Moderate,Low,1.0,Moderate,0,Limited,0.619,Non-adherent
+SYN-0383,83,Male,Risedronate,28,No,Independent,Occasional,Mild,High,1.2,Moderate,1,Adequate,0.894,Adherent
+SYN-0384,51,Female,Denosumab,28,No,Independent,Regular,Mild,Low,1.3,Moderate,0,Adequate,0.955,Adherent
+SYN-0385,41,Female,Alendronate,5,Yes,Moderate limitation,Regular,None,Low,20.5,None,1,Adequate,0.961,Adherent
+SYN-0386,45,Female,Alendronate,64,No,Moderate limitation,Occasional,Moderate,Moderate,1.3,Moderate,0,Adequate,0.432,Non-adherent
+SYN-0387,43,Female,Alendronate,17,No,Independent,Regular,None,Moderate,3.3,Moderate,1,Adequate,0.968,Adherent
+SYN-0388,78,Female,Alendronate,72,No,Independent,Regular,None,Low,6.9,Strong,1,Partial,0.85,Adherent
+SYN-0389,81,Female,Denosumab,36,No,Mild limitation,Regular,Severe,Low,11.2,Limited,2,Adequate,0.666,Non-adherent
+SYN-0390,47,Female,Risedronate,63,Yes,,Irregular,None,Low,12.0,Strong,5,Partial,0.664,Non-adherent
+SYN-0391,74,Female,Alendronate,13,Yes,Independent,Occasional,None,Low,4.1,Strong,2,Adequate,0.903,Adherent
+SYN-0392,48,Male,Denosumab,12,No,Moderate limitation,Regular,Mild,Low,7.9,Strong,1,Adequate,0.953,Adherent
+SYN-0393,56,Female,Risedronate,58,No,Mild limitation,Irregular,None,Low,6.7,Moderate,0,Partial,0.804,Adherent
+SYN-0394,67,Female,Alendronate,60,Yes,Mild limitation,Regular,None,Moderate,7.6,Limited,3,Partial,0.854,Adherent
+SYN-0395,73,Female,Alendronate,40,No,Independent,Regular,Mild,High,8.3,Limited,3,Limited,0.615,Non-adherent
+SYN-0396,80,Male,Alendronate,3,No,Independent,Regular,Mild,High,9.9,Strong,4,Adequate,0.888,Adherent
+SYN-0397,42,Female,Zoledronic acid,68,Yes,Independent,Regular,Mild,Low,4.8,Moderate,1,Partial,0.673,Non-adherent
+SYN-0398,49,Female,Alendronate,29,Yes,Mild limitation,Regular,None,Low,15.8,Limited,5,Partial,0.896,Adherent
+SYN-0399,52,Female,Alendronate,68,No,Independent,Occasional,Mild,High,5.7,Moderate,0,Adequate,0.873,Adherent
+SYN-0400,54,Female,Alendronate,63,No,Moderate limitation,Regular,Moderate,Moderate,26.9,Strong,5,Partial,0.538,Non-adherent
+SYN-0401,85,Female,Zoledronic acid,62,Yes,Moderate limitation,Occasional,None,Moderate,5.1,Moderate,2,Adequate,0.737,Non-adherent
+SYN-0402,75,Female,Alendronate,50,No,Mild limitation,Regular,None,Low,8.0,Moderate,5,Adequate,0.793,Non-adherent
+SYN-0403,54,Female,Denosumab,49,No,Independent,Regular,None,Low,6.8,None,1,Partial,0.801,Adherent
+SYN-0404,84,Female,Alendronate,39,No,Independent,Regular,Mild,Moderate,7.8,Moderate,1,Partial,0.907,Adherent
+SYN-0405,62,Male,Zoledronic acid,2,No,Independent,Occasional,None,Moderate,14.7,Strong,0,Limited,0.826,Adherent
+SYN-0406,63,Female,Risedronate,28,No,Mild limitation,Occasional,Mild,Low,6.5,Limited,0,Limited,0.872,Adherent
+SYN-0407,59,Female,Risedronate,53,No,Moderate limitation,Regular,Severe,High,2.9,Strong,2,Adequate,0.821,Adherent
+SYN-0408,46,Female,Alendronate,59,Yes,Independent,Regular,None,Moderate,4.8,Limited,2,Partial,0.905,Adherent
+SYN-0409,82,Female,Denosumab,41,No,Moderate limitation,Regular,Mild,Moderate,6.5,Moderate,2,Limited,0.75,Non-adherent
+SYN-0410,40,Female,Denosumab,52,Yes,Independent,Irregular,None,Low,8.5,Strong,1,Adequate,0.877,Adherent
+SYN-0411,48,Female,Alendronate,2,No,Independent,Regular,None,Moderate,4.1,Moderate,1,Adequate,0.974,Adherent
+SYN-0412,50,Male,Alendronate,34,Yes,Independent,Occasional,Mild,Moderate,4.4,Strong,0,Limited,0.911,Adherent
+SYN-0413,52,Male,Denosumab,37,No,Mild limitation,Regular,None,Low,8.7,Strong,2,Adequate,0.904,Adherent
+SYN-0414,46,Male,Risedronate,65,Yes,Independent,Regular,Moderate,Moderate,8.9,Moderate,1,Limited,0.644,Non-adherent
+SYN-0415,40,Male,Alendronate,23,Yes,Independent,Occasional,Mild,Moderate,13.4,Limited,4,Adequate,0.776,Non-adherent
+SYN-0416,71,Male,Alendronate,17,Yes,Moderate limitation,Regular,None,High,4.7,Limited,1,Limited,0.772,Non-adherent
+SYN-0417,84,Female,Zoledronic acid,26,No,Mild limitation,Regular,None,Low,10.5,Moderate,4,Partial,0.875,Adherent
+SYN-0418,45,Female,Denosumab,13,No,Independent,Irregular,None,High,6.8,Strong,4,Partial,0.778,Non-adherent
+SYN-0419,53,Female,Zoledronic acid,41,Yes,Independent,Regular,Moderate,Moderate,5.2,Moderate,2,,0.899,Adherent
+SYN-0420,63,Female,Denosumab,47,No,Mild limitation,Regular,Mild,Low,6.9,Moderate,3,Adequate,0.859,Adherent
+SYN-0421,82,Female,Risedronate,58,No,Independent,Regular,None,Low,7.6,Strong,1,Partial,0.851,Adherent
+SYN-0422,71,Male,Alendronate,70,Yes,Independent,Regular,Mild,Low,2.7,Limited,1,Limited,0.79,Non-adherent
+SYN-0423,75,Female,Risedronate,6,No,Mild limitation,Occasional,Mild,Low,2.8,None,3,Limited,0.711,Non-adherent
+SYN-0424,66,Female,Alendronate,18,Yes,Independent,Regular,Mild,Moderate,11.5,Strong,3,Limited,0.914,Adherent
+SYN-0425,59,Female,Alendronate,22,Yes,Mild limitation,Irregular,None,Moderate,5.6,Limited,2,Partial,0.802,Adherent
+SYN-0426,49,Female,Alendronate,18,No,Independent,Occasional,None,Low,8.5,Moderate,2,Partial,0.857,Adherent
+SYN-0427,79,Female,Alendronate,60,Yes,Independent,Irregular,None,High,11.3,Strong,4,Partial,0.569,Non-adherent
+SYN-0428,76,Male,Denosumab,11,No,Independent,Irregular,None,Low,7.0,Moderate,1,Partial,0.857,Adherent
+SYN-0429,41,Female,Alendronate,3,No,Independent,Irregular,None,Moderate,10.7,Strong,2,Partial,0.843,Adherent
+SYN-0430,72,Female,Risedronate,62,No,Independent,Occasional,None,High,7.7,Strong,1,Adequate,0.666,Non-adherent
+SYN-0431,43,Female,Zoledronic acid,70,No,Independent,Regular,None,High,7.9,None,2,Adequate,0.849,Adherent
+SYN-0432,73,Female,Zoledronic acid,17,No,Moderate limitation,Regular,None,Moderate,15.5,Moderate,3,Partial,0.91,Adherent
+SYN-0433,77,Female,Denosumab,24,No,Moderate limitation,Occasional,None,Moderate,6.4,Strong,1,Adequate,0.862,Adherent
+SYN-0434,46,Female,Denosumab,37,Yes,Independent,Regular,Moderate,Low,11.6,Moderate,3,Adequate,0.87,Adherent
+SYN-0435,59,Female,Denosumab,38,Yes,Mild limitation,Occasional,Mild,Low,2.2,None,1,Adequate,0.858,Adherent
+SYN-0436,45,Female,Alendronate,72,No,Mild limitation,Regular,None,Low,8.3,Moderate,3,Partial,0.875,Adherent
+SYN-0437,66,Male,Risedronate,30,Yes,Moderate limitation,Irregular,None,Low,18.0,Limited,2,,0.576,Non-adherent
+SYN-0438,82,Female,Zoledronic acid,1,Yes,Independent,Regular,None,Low,28.1,Limited,4,Partial,0.947,Adherent
+SYN-0439,43,Male,Alendronate,31,Yes,Independent,Irregular,Moderate,Low,2.4,Moderate,2,Limited,0.605,Non-adherent
+SYN-0440,58,Female,Alendronate,41,No,Independent,Regular,Mild,High,5.6,Limited,2,Limited,0.748,Non-adherent
+SYN-0441,84,Female,Alendronate,38,Yes,Independent,Regular,None,High,3.4,Moderate,1,Adequate,0.854,Adherent
+SYN-0442,53,Male,Risedronate,37,Yes,Independent,Irregular,Moderate,High,6.6,Limited,4,Adequate,0.444,Non-adherent
+SYN-0443,46,Female,Risedronate,67,Yes,Moderate limitation,Irregular,Moderate,Moderate,12.8,Moderate,2,Adequate,0.37,Non-adherent
+SYN-0444,62,Female,Alendronate,59,Yes,Moderate limitation,Occasional,Moderate,Low,15.8,Strong,1,Adequate,0.813,Adherent
+SYN-0445,63,Female,Denosumab,19,No,Independent,Irregular,None,Low,16.2,Strong,0,Partial,0.927,Adherent
+SYN-0446,70,Female,Denosumab,26,Yes,Independent,Regular,None,Moderate,2.2,Moderate,1,Adequate,0.846,Adherent
+SYN-0447,54,Female,Alendronate,49,No,Independent,Irregular,Mild,Moderate,7.5,Limited,0,Limited,0.568,Non-adherent
+SYN-0448,83,Male,Denosumab,30,No,Mild limitation,Regular,None,Low,4.6,Limited,4,Partial,0.908,Adherent
+SYN-0449,63,Male,Alendronate,31,Yes,Mild limitation,Occasional,Mild,Moderate,6.3,Moderate,3,Adequate,0.851,Adherent
+SYN-0450,53,Female,Denosumab,13,No,Independent,Regular,Mild,Moderate,,Strong,1,Limited,0.937,Adherent
+SYN-0451,84,Female,Denosumab,19,No,,Regular,,Low,2.3,Strong,3,Limited,0.869,Adherent
+SYN-0452,82,Female,Alendronate,54,No,Severe limitation,Occasional,None,Low,15.9,Limited,1,Partial,0.696,Non-adherent
+SYN-0453,62,Female,Denosumab,61,Yes,,Occasional,None,Low,4.1,Moderate,0,Partial,0.758,Non-adherent
+SYN-0454,41,Female,Denosumab,57,Yes,,Regular,None,Moderate,4.7,Limited,1,Limited,0.566,Non-adherent
+SYN-0455,67,Male,Denosumab,23,No,Mild limitation,Irregular,Mild,High,18.1,Strong,1,,0.576,Non-adherent
+SYN-0456,65,Male,Denosumab,10,No,Independent,Occasional,Mild,Moderate,1.9,Moderate,4,Limited,0.872,Adherent
+SYN-0457,46,Female,Risedronate,12,No,Independent,Regular,None,Moderate,9.8,None,3,Adequate,0.953,Adherent
+SYN-0458,69,Female,Alendronate,29,No,Mild limitation,Occasional,Mild,High,14.0,Strong,6,Partial,0.828,Adherent
+SYN-0459,78,Female,Denosumab,38,Yes,Independent,Regular,None,Low,17.2,Strong,2,Partial,0.9,Adherent
+SYN-0460,44,Female,Zoledronic acid,65,No,Moderate limitation,Regular,Mild,Moderate,9.3,Moderate,1,Adequate,0.682,Non-adherent
+SYN-0461,73,Female,Zoledronic acid,65,No,Independent,Occasional,None,Moderate,11.7,Moderate,1,Adequate,0.751,Non-adherent
+SYN-0462,46,Female,Risedronate,1,No,Independent,Regular,Mild,Moderate,14.0,None,1,Adequate,0.964,Adherent
+SYN-0463,74,Female,Zoledronic acid,51,Yes,Independent,Regular,Mild,Low,,Limited,1,Adequate,0.957,Adherent
+SYN-0464,59,Female,Alendronate,22,Yes,Severe limitation,Occasional,None,High,3.7,Limited,4,Adequate,0.889,Adherent
+SYN-0465,40,Male,Denosumab,15,No,Independent,Regular,Mild,High,18.9,Strong,1,Adequate,0.907,Adherent
+SYN-0466,84,Female,Alendronate,40,No,Independent,Irregular,Moderate,Low,10.9,Moderate,3,Partial,0.416,Non-adherent
+SYN-0467,47,Male,Denosumab,3,No,Independent,Occasional,None,Low,7.5,Limited,0,Partial,0.878,Adherent
+SYN-0468,67,Female,Denosumab,25,Yes,Mild limitation,Regular,Mild,Low,2.4,Moderate,3,Partial,0.887,Adherent
+SYN-0469,48,Female,Risedronate,40,Yes,Severe limitation,Regular,Moderate,Moderate,0.8,None,1,Adequate,0.918,Adherent
+SYN-0470,82,Female,Risedronate,20,No,Independent,Regular,Moderate,Moderate,9.7,Moderate,1,Partial,0.881,Adherent
+SYN-0471,73,Female,Alendronate,43,No,Moderate limitation,Occasional,None,Low,0.8,Strong,4,Adequate,0.817,Adherent
+SYN-0472,77,Female,Denosumab,34,No,Independent,Regular,Mild,High,7.5,Moderate,5,Adequate,0.853,Adherent
+SYN-0473,59,Female,Denosumab,58,No,Mild limitation,Irregular,Severe,Low,,Limited,2,Partial,0.52,Non-adherent
+SYN-0474,61,Male,Alendronate,14,Yes,Independent,Regular,Mild,Moderate,5.1,Strong,2,Limited,0.922,Adherent
+SYN-0475,69,Female,Alendronate,5,No,Mild limitation,Occasional,None,Low,16.3,Moderate,0,Limited,0.802,Adherent
+SYN-0476,76,Female,Alendronate,39,No,Mild limitation,Regular,None,Moderate,4.3,Limited,3,Partial,0.78,Non-adherent
+SYN-0477,78,Female,Risedronate,19,No,Mild limitation,Regular,Mild,Moderate,7.7,Strong,1,Partial,0.957,Adherent
+SYN-0478,40,Female,Denosumab,51,No,Independent,Regular,None,Low,4.3,Moderate,2,Partial,0.703,Non-adherent
+SYN-0479,70,Female,Denosumab,7,No,Moderate limitation,Occasional,None,Low,9.1,Limited,0,Partial,0.948,Adherent
+SYN-0480,45,Female,Alendronate,42,No,Severe limitation,Irregular,,High,8.2,Limited,5,Adequate,0.361,Non-adherent
+SYN-0481,53,Male,Denosumab,72,No,Independent,Regular,Mild,Moderate,7.5,Moderate,2,Adequate,0.814,Adherent
+SYN-0482,78,Male,Alendronate,7,No,Mild limitation,Regular,None,High,14.0,None,3,Limited,0.879,Adherent
+SYN-0483,51,Female,Denosumab,22,No,Moderate limitation,Regular,Moderate,Moderate,1.9,None,2,Limited,0.786,Non-adherent
+SYN-0484,76,Female,Alendronate,61,No,Independent,Regular,Mild,Moderate,1.4,Moderate,0,Adequate,0.809,Adherent
+SYN-0485,61,Female,Zoledronic acid,39,No,Moderate limitation,Irregular,Severe,Low,2.8,Strong,2,Adequate,0.675,Non-adherent
+SYN-0486,50,Male,Denosumab,13,No,Independent,Irregular,Moderate,Moderate,8.2,Limited,3,Adequate,0.763,Non-adherent
+SYN-0487,55,Female,Alendronate,16,No,Moderate limitation,Irregular,None,Low,10.1,Strong,1,Adequate,0.835,Adherent
+SYN-0488,64,Female,Denosumab,56,No,Independent,Regular,Mild,Low,0.5,Limited,1,Adequate,0.858,Adherent
+SYN-0489,75,Female,Denosumab,62,Yes,Independent,Regular,None,Low,10.0,Moderate,3,Partial,0.815,Adherent
+SYN-0490,67,Male,Alendronate,26,No,Mild limitation,Occasional,Severe,Low,5.7,Moderate,4,Adequate,0.65,Non-adherent
+SYN-0491,82,Female,Alendronate,35,No,Mild limitation,Regular,None,High,19.2,Moderate,1,Adequate,0.969,Adherent
+SYN-0492,79,Female,Zoledronic acid,57,Yes,Moderate limitation,Occasional,Mild,High,9.6,Moderate,4,Adequate,0.688,Non-adherent
+SYN-0493,74,Male,Alendronate,13,No,Severe limitation,Regular,Moderate,Moderate,17.8,None,0,Partial,0.819,Adherent
+SYN-0494,67,Female,Alendronate,15,No,Independent,Regular,None,Low,15.8,Strong,1,Adequate,0.921,Adherent
+SYN-0495,53,Male,Risedronate,56,Yes,Independent,Irregular,Moderate,High,5.7,None,3,Adequate,0.704,Non-adherent
+SYN-0496,58,Female,Denosumab,14,No,Independent,Regular,None,Moderate,12.9,Strong,1,,0.82,Adherent
+SYN-0497,45,Female,Alendronate,56,No,Independent,Irregular,None,Low,5.7,Limited,0,Partial,0.748,Non-adherent
+SYN-0498,57,Female,Alendronate,36,No,Mild limitation,Regular,None,Moderate,20.8,None,1,Adequate,0.887,Adherent
+SYN-0499,82,Male,Denosumab,72,Yes,Moderate limitation,Regular,None,Moderate,6.1,Moderate,1,Partial,0.683,Non-adherent
+SYN-0500,59,Female,Risedronate,3,No,Moderate limitation,Regular,Mild,Low,10.5,Strong,2,Adequate,0.905,Adherent
+SYN-0501,45,Female,Denosumab,69,Yes,Independent,Regular,Moderate,Moderate,23.2,Limited,4,Partial,0.735,Non-adherent
+SYN-0502,69,Female,Risedronate,17,No,Independent,Regular,None,Moderate,10.8,Limited,2,Adequate,0.896,Adherent
+SYN-0503,84,Female,Denosumab,3,Yes,Mild limitation,Regular,Mild,Low,5.3,Moderate,4,Limited,0.89,Adherent
+SYN-0504,79,Female,Zoledronic acid,53,No,Independent,Occasional,Moderate,Low,2.5,Moderate,0,Limited,0.844,Adherent
+SYN-0505,52,Female,Alendronate,39,No,Independent,Irregular,Mild,Moderate,1.9,Limited,2,Partial,0.739,Non-adherent
+SYN-0506,60,Female,Denosumab,61,No,Independent,Regular,None,Moderate,10.0,Strong,3,Limited,0.626,Non-adherent
+SYN-0507,64,Male,Risedronate,8,No,Independent,Regular,Moderate,High,6.9,Moderate,0,Adequate,0.837,Adherent
+SYN-0508,51,Female,Alendronate,6,No,Independent,Regular,None,High,2.8,Moderate,2,,0.863,Adherent
+SYN-0509,52,Female,Alendronate,41,No,Mild limitation,Occasional,Mild,Moderate,12.0,Strong,1,Adequate,0.835,Adherent
+SYN-0510,50,Female,Denosumab,64,Yes,Independent,Occasional,Mild,Moderate,11.9,Limited,3,Adequate,0.795,Adherent
+SYN-0511,85,Female,Alendronate,30,No,Mild limitation,Regular,Mild,Moderate,6.8,Moderate,3,Partial,0.896,Adherent
+SYN-0512,74,Female,Alendronate,58,No,Mild limitation,Occasional,None,Moderate,18.3,None,3,Partial,0.847,Adherent
+SYN-0513,78,Female,Alendronate,66,No,Moderate limitation,Regular,None,Low,1.6,Moderate,2,Partial,0.823,Adherent
+SYN-0514,77,Male,Risedronate,63,No,Independent,Regular,Mild,Moderate,5.4,Moderate,3,Limited,0.657,Non-adherent
+SYN-0515,84,Female,Risedronate,37,No,Independent,Regular,,Moderate,10.7,Moderate,1,Partial,0.938,Adherent
+SYN-0516,44,Female,Risedronate,51,No,Independent,Irregular,None,Moderate,3.1,Moderate,3,Limited,0.761,Non-adherent
+SYN-0517,80,Female,Alendronate,38,No,Independent,Regular,Mild,High,12.8,Limited,3,Limited,0.808,Adherent
+SYN-0518,43,Male,Alendronate,49,Yes,Independent,Regular,Mild,Moderate,15.3,Moderate,4,,0.779,Non-adherent
+SYN-0519,61,Female,Zoledronic acid,41,No,Moderate limitation,Regular,None,Low,0.5,Limited,3,Adequate,0.925,Adherent
+SYN-0520,67,Female,Alendronate,38,No,Independent,Occasional,None,Low,,Moderate,3,Partial,0.767,Non-adherent
+SYN-0521,56,Male,Zoledronic acid,32,No,Independent,Regular,Severe,Low,10.3,Strong,2,Partial,0.53,Non-adherent
+SYN-0522,46,Female,Alendronate,48,No,Independent,Regular,None,Low,4.9,Strong,4,Limited,0.848,Adherent
+SYN-0523,48,Male,Alendronate,55,Yes,Moderate limitation,Regular,None,Moderate,2.1,Limited,1,,0.934,Adherent
+SYN-0524,77,Female,Alendronate,67,Yes,Moderate limitation,Occasional,None,Low,13.9,Moderate,2,Adequate,0.893,Adherent
+SYN-0525,54,Female,Risedronate,45,No,Mild limitation,Regular,None,Low,2.7,Moderate,3,Adequate,0.846,Adherent
+SYN-0526,54,Female,Risedronate,8,No,Mild limitation,Irregular,Severe,Low,10.3,Moderate,5,Adequate,0.674,Non-adherent
+SYN-0527,82,Male,Denosumab,43,Yes,Mild limitation,Regular,None,Moderate,2.8,Moderate,1,Partial,0.893,Adherent
+SYN-0528,46,Female,Alendronate,23,Yes,Mild limitation,Regular,None,Moderate,7.3,Limited,4,Adequate,0.915,Adherent
+SYN-0529,82,Female,Risedronate,2,No,Independent,Irregular,None,Low,13.5,Moderate,0,Adequate,0.877,Adherent
+SYN-0530,82,Female,Zoledronic acid,6,No,Mild limitation,Irregular,None,Low,5.0,None,1,Partial,0.772,Non-adherent
+SYN-0531,67,Female,Alendronate,43,Yes,Moderate limitation,Regular,None,Low,18.7,Strong,3,Adequate,0.905,Adherent
+SYN-0532,47,Female,Risedronate,69,Yes,Independent,Irregular,Severe,Low,10.9,Moderate,2,Adequate,0.611,Non-adherent
+SYN-0533,47,Female,Alendronate,37,No,Mild limitation,Regular,Mild,Low,3.1,Strong,2,Partial,0.934,Adherent
+SYN-0534,53,Male,Risedronate,33,Yes,Mild limitation,Regular,None,Low,2.3,Limited,1,Partial,0.848,Adherent
+SYN-0535,66,Female,Alendronate,7,No,Mild limitation,Irregular,None,Low,3.9,Moderate,1,Limited,0.76,Non-adherent
+SYN-0536,47,Female,Denosumab,49,No,Independent,Occasional,None,High,7.1,Moderate,1,Partial,0.682,Non-adherent
+SYN-0537,60,Female,Denosumab,4,Yes,Mild limitation,Regular,None,Moderate,19.8,Limited,2,Limited,0.863,Adherent
+SYN-0538,45,Female,Alendronate,61,No,Moderate limitation,Occasional,Mild,High,22.2,Moderate,3,Adequate,0.519,Non-adherent
+SYN-0539,64,Female,Zoledronic acid,59,Yes,Independent,Regular,None,Low,4.9,Strong,3,Partial,0.826,Adherent
+SYN-0540,40,Female,Denosumab,72,Yes,Independent,Regular,Mild,Low,4.7,Moderate,1,Partial,0.86,Adherent
+SYN-0541,72,Female,Alendronate,21,No,Independent,Irregular,Moderate,High,12.1,Strong,0,Partial,0.629,Non-adherent
+SYN-0542,42,Female,Denosumab,12,No,Independent,Occasional,None,Low,12.1,Limited,3,Adequate,0.885,Adherent
+SYN-0543,48,Female,Zoledronic acid,22,No,Severe limitation,Occasional,Moderate,Moderate,16.8,Limited,2,Adequate,0.84,Adherent
+SYN-0544,48,Female,Denosumab,58,Yes,Mild limitation,Occasional,None,High,17.1,Limited,1,Adequate,0.879,Adherent
+SYN-0545,78,Female,Denosumab,16,Yes,Independent,Occasional,None,Moderate,3.7,Limited,0,Partial,0.847,Adherent
+SYN-0546,42,Female,Alendronate,64,No,Independent,Regular,Moderate,Low,1.8,Limited,2,Partial,0.617,Non-adherent
+SYN-0547,59,Female,Risedronate,12,No,Severe limitation,Irregular,None,Moderate,11.0,Moderate,2,Adequate,0.822,Adherent
+SYN-0548,67,Female,Risedronate,4,No,Independent,Occasional,Mild,Low,8.6,Strong,1,Partial,0.95,Adherent
+SYN-0549,63,Male,Alendronate,16,Yes,Mild limitation,Occasional,Mild,Low,1.0,Moderate,2,Partial,0.751,Non-adherent
+SYN-0550,71,Female,Alendronate,55,No,Independent,Regular,None,Low,1.8,None,1,Partial,0.871,Adherent
+SYN-0551,76,Female,Denosumab,44,No,Independent,Regular,Moderate,High,10.6,None,3,Adequate,0.846,Adherent
+SYN-0552,58,Female,Alendronate,26,No,,Regular,None,Moderate,6.6,Limited,5,,0.584,Non-adherent
+SYN-0553,78,Female,Risedronate,48,Yes,Independent,Regular,Moderate,Low,10.8,Strong,4,Partial,0.8,Adherent
+SYN-0554,54,Female,Denosumab,47,No,Mild limitation,Regular,None,Low,2.9,Strong,2,Partial,0.896,Adherent
+SYN-0555,85,Female,Alendronate,40,Yes,Independent,Occasional,None,Moderate,11.3,Limited,1,Partial,0.791,Non-adherent
+SYN-0556,63,Female,Risedronate,38,No,Mild limitation,Irregular,None,High,9.3,Strong,2,Partial,0.563,Non-adherent
+SYN-0557,73,Male,Denosumab,8,No,Moderate limitation,Regular,Moderate,Low,11.9,Moderate,1,Adequate,0.883,Adherent
+SYN-0558,80,Female,Risedronate,19,No,Mild limitation,Regular,None,Low,,Moderate,2,Limited,0.866,Adherent
+SYN-0559,76,Female,Alendronate,38,No,Independent,Occasional,Moderate,High,4.3,Moderate,1,Adequate,0.71,Non-adherent
+SYN-0560,79,Female,Alendronate,10,No,Mild limitation,Regular,None,High,2.1,Moderate,1,Partial,0.862,Adherent
+SYN-0561,64,Male,Denosumab,35,No,Severe limitation,Irregular,None,High,5.8,None,0,Limited,0.524,Non-adherent
+SYN-0562,41,Female,Alendronate,9,No,Independent,Regular,None,Low,14.8,Limited,1,Partial,0.957,Adherent
+SYN-0563,62,Female,Risedronate,57,No,Independent,Regular,None,Low,17.6,Moderate,1,Partial,0.752,Non-adherent
+SYN-0564,48,Female,Alendronate,8,Yes,Moderate limitation,Regular,Moderate,Low,2.7,Moderate,4,Adequate,0.748,Non-adherent
+SYN-0565,80,Female,Risedronate,7,No,Independent,Irregular,None,Low,7.1,Limited,4,Adequate,0.897,Adherent
+SYN-0566,50,Male,Denosumab,46,No,Mild limitation,Regular,Mild,High,20.0,Moderate,4,Partial,0.766,Non-adherent
+SYN-0567,50,Female,Risedronate,16,No,Mild limitation,Occasional,Mild,Low,21.7,Moderate,1,Adequate,0.878,Adherent
+SYN-0568,51,Female,Denosumab,26,No,Independent,Regular,None,Moderate,5.6,Limited,1,Adequate,0.926,Adherent
+SYN-0569,69,Female,Alendronate,23,No,Mild limitation,Regular,Mild,High,15.7,Strong,2,Limited,0.852,Adherent
+SYN-0570,66,Female,Risedronate,16,Yes,Mild limitation,Irregular,Moderate,High,14.0,Strong,2,Adequate,0.635,Non-adherent
+SYN-0571,83,Male,Denosumab,55,No,Independent,Regular,Mild,Moderate,13.2,Limited,1,Adequate,0.919,Adherent
+SYN-0572,59,Female,Risedronate,50,Yes,Moderate limitation,Regular,Mild,High,1.6,Moderate,3,Adequate,0.76,Non-adherent
+SYN-0573,52,Female,Alendronate,18,Yes,Independent,Regular,Mild,Low,4.6,Strong,3,,0.88,Adherent
+SYN-0574,42,Male,Denosumab,50,No,Independent,Irregular,Mild,Low,6.5,Strong,3,Adequate,0.453,Non-adherent
+SYN-0575,40,Male,Risedronate,52,Yes,Moderate limitation,Regular,None,Low,6.4,None,0,Partial,0.913,Adherent
+SYN-0576,57,Female,Risedronate,39,Yes,Independent,Regular,Mild,High,7.0,Moderate,2,Partial,0.817,Adherent
+SYN-0577,82,Female,Denosumab,42,No,Moderate limitation,Irregular,None,High,23.2,Moderate,2,Adequate,0.78,Non-adherent
+SYN-0578,64,Female,Alendronate,68,Yes,Independent,Occasional,Mild,Low,5.8,Strong,0,Adequate,0.855,Adherent
+SYN-0579,81,Female,Alendronate,33,No,Mild limitation,Irregular,Severe,Low,9.6,None,1,Adequate,0.676,Non-adherent
+SYN-0580,44,Female,Alendronate,28,Yes,Independent,Occasional,Moderate,Low,9.4,Limited,1,Partial,0.77,Non-adherent
+SYN-0581,44,Female,Risedronate,39,No,Mild limitation,Occasional,Moderate,Low,7.1,Moderate,2,Adequate,0.819,Adherent
+SYN-0582,78,Male,Alendronate,61,No,Moderate limitation,Regular,Mild,High,2.9,Moderate,4,Adequate,0.708,Non-adherent
+SYN-0583,44,Male,Denosumab,52,Yes,Moderate limitation,Regular,Mild,Low,7.8,Limited,3,Adequate,0.795,Adherent
+SYN-0584,42,Male,Alendronate,6,No,Severe limitation,Occasional,None,Moderate,1.0,Limited,1,Adequate,0.888,Adherent
+SYN-0585,58,Male,Zoledronic acid,34,No,Mild limitation,Occasional,None,Moderate,10.3,Limited,1,Partial,0.768,Non-adherent
+SYN-0586,82,Female,Alendronate,54,No,Moderate limitation,Irregular,None,Low,0.8,None,1,Adequate,0.846,Adherent
+SYN-0587,71,Female,Alendronate,17,Yes,Mild limitation,Occasional,None,Low,9.7,Moderate,1,Limited,0.862,Adherent
+SYN-0588,44,Female,Alendronate,72,No,Moderate limitation,Regular,Severe,High,4.4,Moderate,4,Adequate,0.514,Non-adherent
+SYN-0589,78,Female,Denosumab,59,No,Mild limitation,Regular,,Moderate,3.2,Moderate,1,Partial,0.759,Non-adherent
+SYN-0590,78,Female,Risedronate,61,Yes,Moderate limitation,Occasional,None,Low,12.3,Limited,4,Partial,0.719,Non-adherent
+SYN-0591,76,Female,Alendronate,6,No,Independent,Regular,None,Low,5.3,Strong,2,Adequate,0.935,Adherent
+SYN-0592,81,Female,Denosumab,42,Yes,Mild limitation,Occasional,Mild,High,7.5,Strong,1,Partial,0.777,Non-adherent
+SYN-0593,51,Female,Zoledronic acid,39,No,Mild limitation,Occasional,None,High,,Limited,3,Limited,0.686,Non-adherent
+SYN-0594,85,Female,Alendronate,46,Yes,Independent,Regular,Moderate,High,18.4,Moderate,1,Partial,0.593,Non-adherent
+SYN-0595,54,Female,Denosumab,62,Yes,Independent,Occasional,,Moderate,8.0,Limited,1,Limited,0.263,Non-adherent
+SYN-0596,76,Female,Alendronate,26,No,Severe limitation,Occasional,None,High,8.0,Strong,4,Partial,0.671,Non-adherent
+SYN-0597,66,Female,Alendronate,39,No,Independent,Irregular,,Low,10.4,Moderate,1,Adequate,0.846,Adherent
+SYN-0598,75,Male,Risedronate,49,No,Independent,Regular,None,Moderate,0.5,Strong,2,Limited,0.802,Adherent
+SYN-0599,68,Male,Alendronate,55,No,Independent,Occasional,None,Low,19.6,Limited,1,Adequate,0.908,Adherent
+SYN-0600,69,Female,Alendronate,56,No,Independent,Regular,None,Moderate,5.6,Limited,1,Partial,0.854,Adherent
+SYN-0601,68,Female,Denosumab,25,Yes,Mild limitation,Occasional,None,High,18.9,Moderate,3,,0.87,Adherent
+SYN-0602,75,Female,Alendronate,72,Yes,Moderate limitation,Regular,None,High,5.5,Moderate,2,Limited,0.823,Adherent
+SYN-0603,73,Male,Denosumab,1,No,Severe limitation,Irregular,None,Moderate,4.5,Strong,1,Limited,0.847,Adherent
+SYN-0604,46,Male,Denosumab,36,Yes,Mild limitation,Irregular,None,Moderate,10.0,Limited,2,Adequate,0.663,Non-adherent
+SYN-0605,77,Female,Zoledronic acid,44,No,Mild limitation,Occasional,Mild,High,26.2,None,3,Partial,0.652,Non-adherent
+SYN-0606,64,Female,Denosumab,5,Yes,Independent,Occasional,None,High,15.7,Limited,3,Adequate,0.915,Adherent
+SYN-0607,54,Female,Denosumab,33,Yes,Moderate limitation,Regular,Moderate,Moderate,10.7,Strong,0,Partial,0.874,Adherent
+SYN-0608,63,Female,Denosumab,43,Yes,Independent,Occasional,None,Low,9.8,Moderate,4,Partial,0.808,Adherent
+SYN-0609,84,Male,Alendronate,44,Yes,Independent,Regular,None,Low,7.7,Strong,1,Adequate,0.826,Adherent
+SYN-0610,79,Female,Alendronate,9,Yes,,Occasional,None,High,18.3,Strong,3,Partial,0.908,Adherent
+SYN-0611,78,Female,Risedronate,20,No,Moderate limitation,Regular,Mild,Moderate,12.5,Strong,2,Adequate,0.895,Adherent
+SYN-0612,61,Female,Risedronate,18,Yes,Independent,Occasional,None,Moderate,2.0,Strong,0,Partial,0.693,Non-adherent
+SYN-0613,76,Female,Alendronate,47,No,Mild limitation,Regular,None,Moderate,3.3,Strong,2,Limited,0.807,Adherent
+SYN-0614,57,Male,Zoledronic acid,24,No,Independent,Occasional,None,Low,11.0,Limited,2,Partial,0.568,Non-adherent
+SYN-0615,71,Male,Alendronate,42,No,Independent,Occasional,Severe,Low,2.8,Strong,1,Partial,0.513,Non-adherent
+SYN-0616,69,Female,Denosumab,53,No,Independent,Regular,None,High,8.0,Limited,5,Adequate,0.945,Adherent
+SYN-0617,51,Female,Alendronate,58,Yes,Independent,Regular,None,Low,13.2,None,2,Adequate,0.825,Adherent
+SYN-0618,52,Male,Alendronate,14,Yes,Mild limitation,Irregular,Moderate,Moderate,10.0,Moderate,3,Adequate,0.583,Non-adherent
+SYN-0619,42,Female,Alendronate,66,Yes,Independent,Occasional,None,Moderate,2.4,Moderate,2,Adequate,0.795,Adherent
+SYN-0620,46,Male,Alendronate,12,No,Mild limitation,Regular,,High,3.4,Limited,3,Adequate,0.853,Adherent
+SYN-0621,59,Female,Alendronate,2,No,Independent,Regular,Moderate,Low,10.2,Strong,3,Partial,0.907,Adherent
+SYN-0622,61,Female,Alendronate,4,Yes,Moderate limitation,Regular,None,Moderate,24.4,Moderate,4,,0.84,Adherent
+SYN-0623,47,Male,Alendronate,15,No,Mild limitation,Occasional,None,Low,6.8,Moderate,2,Adequate,0.905,Adherent
+SYN-0624,59,Female,Alendronate,63,No,Moderate limitation,Occasional,None,Low,13.5,Limited,3,Partial,0.575,Non-adherent
+SYN-0625,67,Female,Alendronate,15,No,Independent,Regular,None,Low,10.1,Limited,3,Limited,0.969,Adherent
+SYN-0626,50,Female,Risedronate,50,No,Mild limitation,Occasional,Moderate,Low,4.4,Limited,2,Adequate,0.803,Adherent
+SYN-0627,55,Female,Alendronate,31,No,Moderate limitation,Occasional,Mild,High,13.6,Limited,1,Partial,0.766,Non-adherent
+SYN-0628,56,Female,Alendronate,3,No,Independent,Occasional,Mild,High,1.6,Moderate,1,Adequate,0.851,Adherent
+SYN-0629,63,Female,Alendronate,32,No,Independent,Regular,None,Low,12.9,Limited,0,Partial,0.875,Adherent
+SYN-0630,56,Male,Alendronate,3,Yes,Independent,Regular,Mild,High,10.5,Limited,3,Partial,0.815,Adherent
+SYN-0631,73,Male,Alendronate,35,Yes,Independent,Regular,Mild,Moderate,4.7,Moderate,3,Adequate,0.861,Adherent
+SYN-0632,55,Female,Denosumab,41,No,Independent,Regular,None,Moderate,3.0,None,2,Adequate,0.95,Adherent
+SYN-0633,59,Female,Denosumab,38,No,Independent,Regular,Moderate,High,5.1,Limited,4,Limited,0.612,Non-adherent
+SYN-0634,57,Female,Denosumab,21,Yes,Independent,Regular,Mild,Moderate,4.1,Moderate,2,Adequate,0.801,Adherent
+SYN-0635,48,Male,Risedronate,56,No,Mild limitation,Regular,Mild,Low,6.0,Strong,2,Partial,0.741,Non-adherent
+SYN-0636,71,Female,Risedronate,43,Yes,Independent,Occasional,None,Low,5.5,Strong,1,Partial,0.875,Adherent
+SYN-0637,50,Female,Alendronate,19,No,Independent,Regular,None,Moderate,4.7,Limited,3,Adequate,0.913,Adherent
+SYN-0638,53,Female,Denosumab,32,Yes,Mild limitation,Occasional,,High,1.5,Strong,3,Partial,0.726,Non-adherent
+SYN-0639,76,Female,Denosumab,8,No,Independent,Regular,Mild,Moderate,,Moderate,5,,0.937,Adherent
+SYN-0640,83,Female,Denosumab,67,No,Independent,Occasional,None,Low,15.0,Moderate,1,Adequate,0.731,Non-adherent
+SYN-0641,70,Female,Denosumab,55,Yes,Independent,Regular,None,Low,4.8,Limited,1,Limited,0.876,Adherent
+SYN-0642,82,Male,Risedronate,21,Yes,Independent,Occasional,Moderate,High,6.1,Limited,3,Adequate,0.679,Non-adherent
+SYN-0643,79,Male,Denosumab,49,No,Independent,Occasional,None,Low,5.3,Limited,0,Partial,0.853,Adherent
+SYN-0644,62,Male,Denosumab,49,Yes,Independent,Regular,None,Moderate,18.6,Moderate,2,Adequate,0.873,Adherent
+SYN-0645,75,Female,Alendronate,44,Yes,Independent,Occasional,Mild,Moderate,4.0,Strong,2,Adequate,0.823,Adherent
+SYN-0646,55,Female,Denosumab,4,No,Severe limitation,Regular,None,Low,3.8,Moderate,4,Partial,0.923,Adherent
+SYN-0647,61,Female,Alendronate,64,Yes,Moderate limitation,Occasional,None,Low,10.7,Strong,0,Partial,0.836,Adherent
+SYN-0648,64,Male,Denosumab,69,Yes,Independent,Regular,None,Low,8.5,Moderate,2,Adequate,0.852,Adherent
+SYN-0649,84,Female,Denosumab,71,Yes,Independent,Regular,Moderate,Low,10.9,None,2,Partial,0.624,Non-adherent
+SYN-0650,79,Male,Alendronate,71,No,Independent,Regular,None,Moderate,10.4,Moderate,3,Partial,0.904,Adherent
+SYN-0651,62,Female,Zoledronic acid,67,Yes,Moderate limitation,Irregular,Mild,High,13.8,Moderate,4,Adequate,0.657,Non-adherent
+SYN-0652,70,Male,Alendronate,54,Yes,Moderate limitation,Regular,Severe,Low,2.3,Moderate,2,Partial,0.669,Non-adherent
+SYN-0653,49,Female,Denosumab,5,Yes,Independent,Occasional,Mild,Moderate,10.0,Limited,3,Partial,0.793,Non-adherent
+SYN-0654,77,Female,Denosumab,34,Yes,Independent,Regular,Mild,Low,3.8,Moderate,3,Partial,0.923,Adherent
+SYN-0655,65,Female,Zoledronic acid,18,Yes,Independent,Regular,Mild,Low,1.0,Moderate,1,Partial,0.919,Adherent
+SYN-0656,64,Female,Denosumab,16,Yes,Moderate limitation,Regular,None,Moderate,10.3,Strong,2,Partial,0.9,Adherent
+SYN-0657,75,Female,Alendronate,60,Yes,,Irregular,Mild,Moderate,9.9,Moderate,2,Limited,0.621,Non-adherent
+SYN-0658,69,Female,Alendronate,59,Yes,Independent,Occasional,Moderate,Moderate,7.3,Strong,1,Partial,0.717,Non-adherent
+SYN-0659,43,Female,Risedronate,38,No,Mild limitation,Regular,Mild,Low,14.0,Moderate,0,,0.923,Adherent
+SYN-0660,53,Female,Alendronate,54,Yes,Independent,Occasional,,Moderate,3.8,Limited,0,Adequate,0.915,Adherent
+SYN-0661,48,Female,Risedronate,10,Yes,Mild limitation,Regular,None,Low,11.5,Strong,2,Limited,0.945,Adherent
+SYN-0662,73,Female,Alendronate,16,No,Moderate limitation,Regular,Moderate,High,6.5,Moderate,1,Limited,0.843,Adherent
+SYN-0663,41,Male,Risedronate,62,No,Independent,Occasional,None,Moderate,6.9,Strong,1,,0.905,Adherent
+SYN-0664,49,Female,Risedronate,33,No,Independent,Regular,Moderate,High,1.2,Strong,1,Adequate,0.844,Adherent
+SYN-0665,67,Female,Denosumab,40,Yes,Mild limitation,Regular,None,Low,14.1,Strong,3,Adequate,0.928,Adherent
+SYN-0666,71,Male,Alendronate,34,Yes,Independent,Occasional,Mild,Low,9.7,Strong,3,Limited,0.848,Adherent
+SYN-0667,63,Male,Denosumab,15,Yes,Moderate limitation,Regular,Moderate,Moderate,,None,6,Limited,0.827,Adherent
+SYN-0668,79,Female,Risedronate,60,Yes,Independent,Irregular,None,Low,3.4,None,2,Partial,0.708,Non-adherent
+SYN-0669,82,Male,Alendronate,55,Yes,Moderate limitation,Occasional,None,Moderate,,Limited,1,Adequate,0.876,Adherent
+SYN-0670,46,Female,Risedronate,50,No,Independent,Irregular,Moderate,Moderate,6.5,Moderate,1,Limited,0.787,Non-adherent
+SYN-0671,83,Female,Risedronate,26,Yes,Independent,Occasional,None,High,10.0,Limited,3,Adequate,0.767,Non-adherent
+SYN-0672,68,Female,Alendronate,47,No,Independent,Irregular,None,Low,8.6,Limited,4,Adequate,0.709,Non-adherent
+SYN-0673,69,Female,Risedronate,69,Yes,Independent,Regular,None,High,20.9,Moderate,2,Adequate,0.799,Adherent
+SYN-0674,44,Female,Alendronate,47,Yes,Independent,Occasional,None,Low,16.9,Strong,2,Partial,0.745,Non-adherent
+SYN-0675,68,Female,Alendronate,36,No,Mild limitation,Regular,Mild,Moderate,6.0,Limited,2,Partial,0.71,Non-adherent
+SYN-0676,73,Female,Zoledronic acid,20,No,Independent,Irregular,None,Moderate,10.3,None,5,Adequate,0.856,Adherent
+SYN-0677,66,Female,Risedronate,38,Yes,Independent,Regular,None,Low,5.6,Strong,1,Adequate,0.864,Adherent
+SYN-0678,43,Female,Denosumab,27,No,Independent,Occasional,Moderate,High,13.7,Moderate,3,Partial,0.683,Non-adherent
+SYN-0679,64,Female,Alendronate,45,Yes,Independent,Occasional,None,High,6.7,Moderate,1,Adequate,0.651,Non-adherent
+SYN-0680,83,Female,Denosumab,4,Yes,Moderate limitation,Regular,None,High,5.0,Moderate,3,Adequate,0.93,Adherent
+SYN-0681,73,Female,Denosumab,14,No,Severe limitation,Irregular,Mild,High,8.8,Limited,3,Adequate,0.661,Non-adherent
+SYN-0682,46,Female,Denosumab,57,Yes,Independent,Regular,Moderate,Moderate,16.0,Moderate,2,Adequate,0.721,Non-adherent
+SYN-0683,84,Female,Denosumab,28,No,Moderate limitation,Regular,Mild,Low,14.4,None,0,Adequate,0.925,Adherent
+SYN-0684,84,Female,Alendronate,32,No,Mild limitation,Occasional,,High,5.3,Limited,1,Partial,0.602,Non-adherent
+SYN-0685,47,Female,Risedronate,40,Yes,Severe limitation,Regular,None,Low,19.8,Strong,4,Adequate,0.838,Adherent
+SYN-0686,76,Male,Alendronate,32,Yes,Independent,Regular,None,High,3.6,Limited,1,Adequate,0.904,Adherent
+SYN-0687,58,Female,Denosumab,55,Yes,Independent,Regular,Moderate,Moderate,4.6,Limited,1,Partial,0.858,Adherent
+SYN-0688,67,Male,Zoledronic acid,18,No,Independent,Regular,Moderate,Moderate,13.4,Moderate,0,Adequate,0.871,Adherent
+SYN-0689,60,Female,Alendronate,55,No,Moderate limitation,Occasional,Mild,Low,1.1,Moderate,0,Partial,0.692,Non-adherent
+SYN-0690,76,Female,Denosumab,16,Yes,Mild limitation,Irregular,None,Low,7.5,Limited,0,Adequate,0.864,Adherent
+SYN-0691,85,Female,Alendronate,27,Yes,Independent,Occasional,None,Low,6.0,Moderate,5,Limited,0.798,Adherent
+SYN-0692,76,Female,Zoledronic acid,43,No,Independent,Regular,None,Low,20.5,Strong,4,Adequate,0.945,Adherent
+SYN-0693,82,Male,Denosumab,64,Yes,Mild limitation,Occasional,Moderate,Low,3.0,Moderate,3,,0.47,Non-adherent
+SYN-0694,83,Male,Alendronate,17,No,Moderate limitation,Irregular,Moderate,Low,3.4,Strong,3,Partial,0.634,Non-adherent
+SYN-0695,44,Male,Zoledronic acid,43,No,Independent,Occasional,None,Low,22.3,Limited,0,Partial,0.899,Adherent
+SYN-0696,51,Female,Denosumab,5,No,Mild limitation,Regular,None,Moderate,6.0,Strong,1,Partial,0.972,Adherent
+SYN-0697,73,Female,Alendronate,6,Yes,Independent,Regular,None,Low,15.6,Moderate,1,Adequate,0.905,Adherent
+SYN-0698,67,Female,Risedronate,56,Yes,Independent,Irregular,None,High,5.3,Moderate,2,Adequate,0.57,Non-adherent
+SYN-0699,42,Female,Alendronate,52,Yes,Mild limitation,Irregular,Mild,Low,4.4,Limited,2,Limited,0.681,Non-adherent
+SYN-0700,44,Female,Zoledronic acid,28,No,Moderate limitation,Regular,Mild,Moderate,16.2,Moderate,0,Limited,0.857,Adherent
+SYN-0701,63,Female,Alendronate,45,No,Severe limitation,Irregular,None,Low,25.7,None,2,,0.603,Non-adherent
+SYN-0702,68,Female,Denosumab,28,Yes,Independent,Regular,Mild,Moderate,17.0,Limited,3,Partial,0.895,Adherent
+SYN-0703,47,Male,Denosumab,20,No,Independent,Regular,Severe,Moderate,5.0,Strong,4,Partial,0.889,Adherent
+SYN-0704,47,Female,Alendronate,32,No,Independent,Occasional,None,Moderate,7.3,Limited,1,Partial,0.707,Non-adherent
+SYN-0705,45,Female,Alendronate,23,Yes,Independent,Occasional,None,Low,3.5,Strong,0,Limited,0.921,Adherent
+SYN-0706,65,Female,Zoledronic acid,59,Yes,Independent,Regular,None,Moderate,4.0,Limited,2,Limited,0.756,Non-adherent
+SYN-0707,40,Female,Denosumab,30,Yes,Independent,Irregular,None,Low,3.8,Moderate,2,Adequate,0.835,Adherent
+SYN-0708,66,Female,Risedronate,24,No,Independent,Irregular,Mild,Moderate,5.4,Strong,2,Partial,0.885,Adherent
+SYN-0709,61,Female,Alendronate,39,No,Independent,Regular,Mild,Low,8.1,Strong,3,Adequate,0.915,Adherent
+SYN-0710,61,Female,Alendronate,55,No,Independent,Occasional,None,Moderate,7.5,Moderate,1,Adequate,0.809,Adherent
+SYN-0711,71,Female,Denosumab,20,No,Moderate limitation,Occasional,None,Low,12.1,Limited,2,Partial,0.888,Adherent
+SYN-0712,64,Male,Risedronate,68,No,Independent,Occasional,Moderate,Moderate,8.5,Limited,3,Partial,0.578,Non-adherent
+SYN-0713,73,Female,Denosumab,34,No,Mild limitation,Irregular,None,Low,11.3,Strong,1,Adequate,0.853,Adherent
+SYN-0714,75,Female,Risedronate,48,No,,Occasional,Mild,Low,12.6,Moderate,1,Partial,0.777,Non-adherent
+SYN-0715,82,Female,Denosumab,69,No,Mild limitation,Regular,Mild,Low,5.1,Moderate,0,Adequate,0.925,Adherent
+SYN-0716,76,Female,Alendronate,32,No,Independent,Regular,Moderate,Low,6.6,Moderate,0,Adequate,0.8,Adherent
+SYN-0717,63,Female,Alendronate,15,No,,Irregular,Mild,Moderate,40.0,Strong,3,Partial,0.656,Non-adherent
+SYN-0718,62,Female,Denosumab,54,No,Mild limitation,Irregular,Moderate,High,4.8,Moderate,2,Partial,0.298,Non-adherent
+SYN-0719,50,Female,Denosumab,1,No,Mild limitation,Regular,Mild,Moderate,11.8,Limited,2,Partial,0.91,Adherent
+SYN-0720,67,Female,Alendronate,33,No,Independent,Regular,None,Low,2.5,Moderate,2,Adequate,0.824,Adherent
+SYN-0721,46,Female,Alendronate,71,No,Independent,Occasional,None,Low,12.8,Limited,2,Partial,0.631,Non-adherent
+SYN-0722,82,Female,Risedronate,30,No,Mild limitation,Regular,None,High,4.2,Moderate,3,Adequate,0.798,Adherent
+SYN-0723,78,Male,Risedronate,50,No,Independent,Regular,None,Low,,Moderate,3,Limited,0.908,Adherent
+SYN-0724,45,Female,Alendronate,38,No,Mild limitation,Irregular,None,Low,2.1,Moderate,2,Adequate,0.682,Non-adherent
+SYN-0725,76,Female,Denosumab,16,No,Independent,Irregular,None,High,7.1,Strong,4,,0.458,Non-adherent
+SYN-0726,45,Male,Alendronate,23,No,Independent,Irregular,None,Low,7.3,Strong,2,Adequate,0.842,Adherent
+SYN-0727,73,Female,Denosumab,38,No,Moderate limitation,Occasional,None,Low,6.4,None,3,Adequate,0.912,Adherent
+SYN-0728,44,Female,Alendronate,8,Yes,Independent,Regular,None,Low,,Limited,2,Adequate,0.933,Adherent
+SYN-0729,62,Male,Alendronate,30,No,Mild limitation,Irregular,Mild,Moderate,15.3,Limited,4,Partial,0.702,Non-adherent
+SYN-0730,70,Female,Zoledronic acid,30,No,Independent,Regular,Mild,Low,3.3,Strong,0,Limited,0.942,Adherent
+SYN-0731,73,Female,Alendronate,61,No,Independent,Regular,Moderate,Moderate,6.6,Strong,2,Partial,0.839,Adherent
+SYN-0732,59,Female,Zoledronic acid,9,No,Moderate limitation,Irregular,Mild,Low,2.3,Strong,1,Adequate,0.884,Adherent
+SYN-0733,82,Female,Alendronate,61,No,Independent,Occasional,Moderate,Low,1.4,None,2,Adequate,0.597,Non-adherent
+SYN-0734,75,Female,Denosumab,30,No,Independent,Irregular,Mild,Low,8.4,Limited,4,,0.756,Non-adherent
+SYN-0735,49,Female,Denosumab,47,Yes,Moderate limitation,Regular,None,High,3.1,Moderate,1,Adequate,0.764,Non-adherent
+SYN-0736,70,Female,Denosumab,41,No,Mild limitation,Irregular,Severe,Low,7.5,None,1,Limited,0.359,Non-adherent
+SYN-0737,73,Female,Alendronate,22,Yes,Mild limitation,Occasional,None,Moderate,8.6,Strong,1,Adequate,0.947,Adherent
+SYN-0738,55,Female,Alendronate,68,No,Independent,Occasional,Mild,Low,1.6,Moderate,2,Partial,0.842,Adherent
+SYN-0739,73,Female,Alendronate,17,No,Independent,Irregular,Mild,Low,9.5,Strong,2,Limited,0.788,Non-adherent
+SYN-0740,81,Female,Risedronate,3,No,Mild limitation,Regular,None,Low,14.8,Moderate,1,Adequate,0.851,Adherent
+SYN-0741,77,Male,Alendronate,55,Yes,Independent,Occasional,Mild,Moderate,11.1,None,1,Adequate,0.666,Non-adherent
+SYN-0742,75,Female,Alendronate,45,Yes,Independent,Occasional,None,Low,3.4,Limited,2,Limited,0.675,Non-adherent
+SYN-0743,69,Female,Alendronate,65,No,Moderate limitation,Occasional,None,High,7.1,Strong,4,Adequate,0.671,Non-adherent
+SYN-0744,52,Female,Alendronate,33,No,Independent,Irregular,None,High,7.7,Strong,4,Partial,0.449,Non-adherent
+SYN-0745,76,Female,Risedronate,2,Yes,Independent,Occasional,None,Moderate,6.7,Moderate,2,Limited,0.812,Adherent
+SYN-0746,56,Female,Alendronate,2,No,Independent,Regular,None,Moderate,2.4,Strong,6,Adequate,0.963,Adherent
+SYN-0747,64,Female,Alendronate,32,Yes,Independent,Regular,Mild,Moderate,3.9,Moderate,4,Limited,0.867,Adherent
+SYN-0748,54,Female,Zoledronic acid,18,No,Mild limitation,Irregular,Mild,Moderate,6.2,Moderate,0,Adequate,0.873,Adherent
+SYN-0749,54,Male,Risedronate,67,Yes,Moderate limitation,Irregular,None,Low,,Strong,1,Partial,0.516,Non-adherent
+SYN-0750,47,Male,Alendronate,9,Yes,Independent,Irregular,Mild,High,4.8,Strong,1,Adequate,0.634,Non-adherent
+SYN-0751,84,Female,Risedronate,64,Yes,Independent,Regular,None,High,1.2,Strong,6,Partial,0.536,Non-adherent
+SYN-0752,46,Female,Denosumab,16,No,Mild limitation,Regular,None,Low,5.0,None,2,Adequate,0.812,Adherent
+SYN-0753,43,Female,Alendronate,9,No,Independent,Occasional,Mild,High,20.9,Moderate,3,Adequate,0.851,Adherent
+SYN-0754,83,Female,Zoledronic acid,20,No,Mild limitation,Occasional,Moderate,High,9.6,Moderate,2,Adequate,0.809,Adherent
+SYN-0755,65,Female,Denosumab,11,No,Moderate limitation,Regular,None,Low,8.4,Moderate,1,Adequate,0.906,Adherent
+SYN-0756,60,Male,Risedronate,29,Yes,Mild limitation,Occasional,None,High,3.8,Limited,1,Partial,0.798,Adherent
+SYN-0757,73,Female,Denosumab,24,Yes,Independent,Regular,Mild,Low,5.2,Strong,1,Adequate,0.969,Adherent
+SYN-0758,57,Male,Denosumab,39,Yes,Severe limitation,Regular,Moderate,Low,1.1,Strong,5,Adequate,0.924,Adherent
+SYN-0759,45,Female,Alendronate,39,No,Independent,Regular,None,Low,3.6,Limited,0,Adequate,0.949,Adherent
+SYN-0760,73,Male,Risedronate,1,Yes,Moderate limitation,Regular,None,Moderate,9.3,Limited,2,Adequate,0.931,Adherent
+SYN-0761,48,Female,Denosumab,9,No,Mild limitation,Regular,None,Low,8.4,Strong,2,Adequate,0.957,Adherent
+SYN-0762,65,Female,Denosumab,12,Yes,Mild limitation,Irregular,Mild,High,4.4,Moderate,1,Adequate,0.9,Adherent
+SYN-0763,83,Female,Risedronate,15,Yes,Moderate limitation,Occasional,Moderate,Low,6.7,None,2,Partial,0.488,Non-adherent
+SYN-0764,83,Male,Alendronate,7,Yes,Mild limitation,Irregular,Mild,Low,7.5,Strong,0,Partial,0.914,Adherent
+SYN-0765,56,Female,Zoledronic acid,23,Yes,Independent,Regular,,Moderate,4.6,Strong,0,Partial,0.889,Adherent
+SYN-0766,75,Male,Alendronate,40,No,Independent,Regular,Mild,Low,10.0,Moderate,0,Adequate,0.899,Adherent
+SYN-0767,68,Female,Denosumab,23,No,Mild limitation,Regular,Moderate,Moderate,8.3,Strong,0,Limited,0.823,Adherent
+SYN-0768,62,Male,Risedronate,24,Yes,Mild limitation,Occasional,None,Low,5.3,Moderate,2,Partial,0.858,Adherent
+SYN-0769,46,Female,Denosumab,34,No,Independent,Regular,Moderate,High,2.5,Limited,7,Partial,0.527,Non-adherent
+SYN-0770,57,Female,Denosumab,40,No,Mild limitation,Occasional,None,Moderate,5.0,Moderate,1,Adequate,0.842,Adherent
+SYN-0771,69,Male,Zoledronic acid,24,No,Mild limitation,Irregular,None,Low,4.8,Moderate,0,Adequate,0.882,Adherent
+SYN-0772,85,Female,Zoledronic acid,16,No,Independent,Irregular,Mild,Low,4.4,Moderate,1,Adequate,0.865,Adherent
+SYN-0773,40,Female,Denosumab,30,No,Independent,Regular,None,Low,1.7,Limited,1,Adequate,0.939,Adherent
+SYN-0774,73,Female,Denosumab,2,No,Independent,Occasional,Severe,High,17.4,Strong,2,Partial,0.616,Non-adherent
+SYN-0775,78,Female,Denosumab,36,No,Independent,Regular,None,Moderate,16.9,Moderate,1,Adequate,0.944,Adherent
+SYN-0776,83,Female,Alendronate,68,No,Independent,Regular,None,Low,6.5,Limited,3,Adequate,0.912,Adherent
+SYN-0777,59,Female,Risedronate,29,No,Independent,Occasional,None,Low,8.5,Moderate,1,,0.927,Adherent
+SYN-0778,45,Female,Alendronate,8,Yes,Independent,Occasional,Mild,High,9.9,Strong,3,Adequate,0.874,Adherent
+SYN-0779,52,Male,Denosumab,51,No,Independent,Occasional,None,Low,6.6,Moderate,4,Adequate,0.868,Adherent
+SYN-0780,79,Female,Zoledronic acid,10,No,Mild limitation,Regular,Mild,Moderate,8.9,Limited,1,,0.964,Adherent
+SYN-0781,80,Female,Risedronate,14,Yes,Independent,Irregular,None,Moderate,10.8,Strong,2,Partial,0.942,Adherent
+SYN-0782,69,Female,Alendronate,11,No,Severe limitation,Irregular,None,Low,8.1,Limited,6,Adequate,0.864,Adherent
+SYN-0783,45,Female,Alendronate,64,No,Moderate limitation,Regular,Mild,Moderate,12.1,Limited,0,Partial,0.848,Adherent
+SYN-0784,45,Female,Denosumab,71,Yes,Mild limitation,Irregular,None,Low,4.3,Moderate,2,Limited,0.441,Non-adherent
+SYN-0785,61,Male,Alendronate,42,No,,Regular,Mild,Low,7.1,Strong,2,Limited,0.808,Adherent
+SYN-0786,67,Male,Alendronate,45,No,,Occasional,None,High,33.8,Limited,2,Partial,0.684,Non-adherent
+SYN-0787,41,Female,Denosumab,47,No,Independent,Irregular,None,Moderate,14.0,Strong,0,Adequate,0.84,Adherent
+SYN-0788,71,Female,Denosumab,44,Yes,Mild limitation,Irregular,Mild,High,8.2,Limited,1,Partial,0.558,Non-adherent
+SYN-0789,65,Female,Alendronate,40,Yes,Independent,Irregular,Mild,Moderate,3.3,Limited,1,Limited,0.815,Adherent
+SYN-0790,40,Female,Alendronate,72,No,Mild limitation,Regular,Moderate,Low,7.4,Strong,2,Adequate,0.642,Non-adherent
+SYN-0791,44,Female,Denosumab,53,Yes,,Irregular,None,Moderate,13.4,Limited,2,Adequate,0.547,Non-adherent
+SYN-0792,60,Female,Denosumab,7,Yes,Independent,Occasional,None,Moderate,11.6,Moderate,2,Partial,0.849,Adherent
+SYN-0793,73,Female,Zoledronic acid,29,Yes,Independent,Regular,Mild,Low,1.3,Moderate,2,Adequate,0.879,Adherent
+SYN-0794,77,Female,Alendronate,71,Yes,Severe limitation,Regular,Mild,Low,1.8,Moderate,4,Partial,0.611,Non-adherent
+SYN-0795,59,Female,Alendronate,30,No,Independent,Occasional,Mild,Moderate,,Moderate,2,Adequate,0.822,Adherent
+SYN-0796,53,Female,Alendronate,15,No,Independent,Occasional,Mild,Moderate,10.0,Limited,4,Adequate,0.816,Adherent
+SYN-0797,84,Female,Denosumab,63,No,Independent,Regular,Mild,Low,1.9,Limited,3,Partial,0.816,Adherent
+SYN-0798,61,Female,Alendronate,45,No,Independent,Irregular,None,High,3.2,Strong,1,Partial,0.566,Non-adherent
+SYN-0799,54,Female,Alendronate,41,Yes,Moderate limitation,Occasional,Mild,Low,6.4,Moderate,1,Partial,0.763,Non-adherent
+SYN-0800,60,Female,Denosumab,31,Yes,Mild limitation,Regular,None,Low,14.9,Limited,3,Partial,0.877,Adherent
+SYN-0801,40,Female,Denosumab,9,Yes,Independent,Regular,None,Low,10.3,Moderate,1,,0.943,Adherent
+SYN-0802,53,Female,Denosumab,28,Yes,Independent,Occasional,Mild,High,5.8,Moderate,1,Adequate,0.922,Adherent
+SYN-0803,63,Female,Risedronate,32,Yes,Independent,Occasional,None,Low,12.4,Moderate,2,Limited,0.799,Adherent
+SYN-0804,82,Female,Risedronate,68,Yes,Independent,Occasional,None,Moderate,24.8,Limited,1,Adequate,0.823,Adherent
+SYN-0805,73,Male,Risedronate,23,Yes,Moderate limitation,Regular,Moderate,Low,7.4,Moderate,1,Adequate,0.889,Adherent
+SYN-0806,75,Male,Alendronate,11,Yes,Mild limitation,Occasional,Mild,Moderate,2.4,Strong,3,Limited,0.854,Adherent
+SYN-0807,65,Female,Risedronate,31,No,Independent,Occasional,Mild,Moderate,3.3,Moderate,2,Adequate,0.889,Adherent
+SYN-0808,45,Female,Risedronate,72,No,Mild limitation,Irregular,Moderate,Low,3.3,Strong,1,Limited,0.652,Non-adherent
+SYN-0809,57,Female,Zoledronic acid,35,No,Independent,Regular,None,High,4.0,Strong,2,Adequate,0.724,Non-adherent
+SYN-0810,85,Male,Denosumab,28,No,Mild limitation,Occasional,Mild,Low,5.5,Strong,2,Adequate,0.856,Adherent
+SYN-0811,42,Female,Denosumab,49,No,Mild limitation,Regular,None,Low,8.7,Limited,0,Adequate,0.926,Adherent
+SYN-0812,80,Male,Alendronate,47,Yes,Mild limitation,Regular,None,Moderate,2.1,None,1,Partial,0.84,Adherent
+SYN-0813,71,Female,Risedronate,22,No,Mild limitation,Occasional,None,Moderate,2.4,Moderate,5,Partial,0.697,Non-adherent
+SYN-0814,53,Female,Alendronate,70,Yes,Severe limitation,Occasional,None,Low,10.8,Strong,1,Adequate,0.633,Non-adherent
+SYN-0815,75,Female,Alendronate,43,No,Independent,Occasional,None,Moderate,4.8,Limited,1,Adequate,0.903,Adherent
+SYN-0816,78,Female,Alendronate,5,Yes,Independent,Occasional,None,Low,3.6,Strong,2,Adequate,0.85,Adherent
+SYN-0817,41,Female,Alendronate,30,No,Independent,Regular,Mild,Moderate,6.0,None,2,Adequate,0.771,Non-adherent
+SYN-0818,44,Female,Denosumab,67,Yes,Mild limitation,Regular,None,Moderate,16.6,Moderate,4,Partial,0.858,Adherent
+SYN-0819,70,Female,Risedronate,29,No,Mild limitation,Regular,None,High,11.8,Strong,1,Partial,0.891,Adherent
+SYN-0820,85,Male,Denosumab,41,No,Mild limitation,Regular,Severe,Low,11.2,Moderate,0,Adequate,0.832,Adherent
+SYN-0821,41,Female,Alendronate,45,No,Mild limitation,Occasional,Mild,Moderate,20.4,Moderate,3,Adequate,0.741,Non-adherent
+SYN-0822,70,Female,Alendronate,51,No,Independent,Irregular,,Moderate,9.0,Limited,1,Partial,0.587,Non-adherent
+SYN-0823,46,Female,Risedronate,63,No,Mild limitation,Occasional,None,Low,21.6,Strong,1,Adequate,0.896,Adherent
+SYN-0824,69,Male,Alendronate,11,Yes,Mild limitation,Regular,None,Low,22.7,Limited,3,Adequate,0.847,Adherent
+SYN-0825,68,Female,Alendronate,38,No,Independent,Regular,Mild,High,2.1,Limited,3,Partial,0.657,Non-adherent
+SYN-0826,44,Male,Denosumab,39,No,Independent,Regular,Mild,Low,1.6,Limited,2,Adequate,0.875,Adherent
+SYN-0827,71,Female,Alendronate,11,Yes,,Occasional,None,Moderate,3.1,Limited,3,Adequate,0.884,Adherent
+SYN-0828,81,Female,Alendronate,49,Yes,Independent,Regular,Moderate,Low,15.5,Strong,1,Adequate,0.821,Adherent
+SYN-0829,79,Female,Zoledronic acid,9,No,Moderate limitation,Occasional,Mild,High,6.1,Moderate,1,Partial,0.87,Adherent
+SYN-0830,41,Female,Risedronate,33,No,,Occasional,Mild,Low,5.5,Limited,1,Adequate,0.926,Adherent
+SYN-0831,51,Female,Zoledronic acid,24,No,Mild limitation,Occasional,None,High,12.6,Moderate,3,Partial,0.79,Non-adherent
+SYN-0832,51,Female,Alendronate,12,No,Independent,Regular,Mild,Moderate,4.6,Strong,2,Adequate,0.953,Adherent
+SYN-0833,60,Female,Denosumab,60,Yes,Mild limitation,Regular,None,Low,8.2,Strong,3,Adequate,0.884,Adherent
+SYN-0834,46,Male,Alendronate,18,No,Mild limitation,Occasional,Severe,Moderate,10.8,Strong,1,Partial,0.734,Non-adherent
+SYN-0835,79,Male,Risedronate,19,Yes,Independent,Occasional,None,Moderate,3.4,Limited,2,Adequate,0.791,Non-adherent
+SYN-0836,75,Male,Denosumab,62,No,Moderate limitation,Regular,None,Low,2.7,Moderate,0,Adequate,0.83,Adherent
+SYN-0837,77,Female,Denosumab,64,No,Independent,Irregular,None,Low,7.4,Limited,3,Adequate,0.519,Non-adherent
+SYN-0838,49,Female,Alendronate,3,Yes,Independent,Regular,Mild,Moderate,8.1,None,1,Partial,0.893,Adherent
+SYN-0839,40,Male,Zoledronic acid,21,No,Independent,Regular,Severe,Moderate,11.9,Strong,1,Adequate,0.88,Adherent
+SYN-0840,81,Female,Alendronate,52,Yes,Independent,Regular,Moderate,Low,3.0,Limited,2,Partial,0.623,Non-adherent
+SYN-0841,53,Female,Alendronate,57,No,Moderate limitation,Regular,Mild,High,4.1,Strong,4,Adequate,0.82,Adherent
+SYN-0842,70,Male,Alendronate,72,No,Independent,Regular,Severe,Low,22.5,Strong,0,Adequate,0.672,Non-adherent
+SYN-0843,81,Female,Denosumab,40,No,Independent,Regular,Mild,Low,13.8,Strong,4,Adequate,0.816,Adherent
+SYN-0844,41,Female,Alendronate,1,No,Independent,Occasional,None,Moderate,6.5,Moderate,1,Adequate,0.871,Adherent
+SYN-0845,40,Male,Denosumab,63,No,Independent,Regular,Mild,Low,15.3,Moderate,2,Partial,0.725,Non-adherent
+SYN-0846,40,Female,Alendronate,12,No,Independent,Irregular,None,Low,3.1,Moderate,4,Adequate,0.862,Adherent
+SYN-0847,47,Female,Denosumab,9,No,Independent,Irregular,None,Moderate,6.0,Strong,3,Limited,0.723,Non-adherent
+SYN-0848,42,Female,Denosumab,49,No,Mild limitation,Regular,None,Low,8.0,Strong,2,Adequate,0.93,Adherent
+SYN-0849,77,Female,Alendronate,44,Yes,Independent,Regular,None,Low,5.5,Moderate,5,Partial,0.79,Non-adherent
+SYN-0850,67,Female,Alendronate,5,Yes,Moderate limitation,Occasional,Moderate,Moderate,5.6,Strong,0,Adequate,0.842,Adherent
+SYN-0851,85,Male,Alendronate,13,No,Independent,Irregular,Severe,Moderate,11.5,Limited,2,Partial,0.827,Adherent
+SYN-0852,76,Male,Denosumab,43,Yes,Mild limitation,Irregular,None,High,13.9,None,2,Adequate,0.436,Non-adherent
+SYN-0853,84,Female,Alendronate,19,Yes,Moderate limitation,Regular,Mild,Moderate,5.0,Limited,3,Partial,0.945,Adherent
+SYN-0854,50,Female,Risedronate,50,Yes,Independent,Regular,None,Moderate,2.2,Moderate,0,Limited,0.936,Adherent
+SYN-0855,53,Male,Risedronate,30,No,Independent,Regular,None,Low,1.8,Moderate,1,Partial,0.931,Adherent
+SYN-0856,79,Female,Denosumab,43,Yes,Severe limitation,Irregular,None,Moderate,1.0,Moderate,2,Adequate,0.718,Non-adherent
+SYN-0857,51,Female,Risedronate,35,No,Independent,Occasional,None,Low,20.2,None,2,Partial,0.88,Adherent
+SYN-0858,42,Female,Risedronate,27,No,Mild limitation,Regular,None,Low,11.6,None,5,Adequate,0.852,Adherent
+SYN-0859,70,Female,Denosumab,25,No,Independent,Occasional,None,High,9.9,Moderate,0,Adequate,0.805,Adherent
+SYN-0860,76,Female,Alendronate,51,Yes,Independent,Regular,None,Moderate,4.5,Moderate,1,Adequate,0.881,Adherent
+SYN-0861,84,Female,Denosumab,38,No,,Occasional,None,Moderate,4.5,Limited,5,Partial,0.689,Non-adherent
+SYN-0862,82,Female,Alendronate,43,Yes,Moderate limitation,Regular,Moderate,Low,,Strong,3,Adequate,0.762,Non-adherent
+SYN-0863,45,Female,Risedronate,42,No,Independent,Occasional,None,Low,1.6,Moderate,1,Partial,0.887,Adherent
+SYN-0864,75,Female,Denosumab,15,Yes,Moderate limitation,Occasional,None,Moderate,5.2,Moderate,2,Partial,0.791,Non-adherent
+SYN-0865,78,Female,Zoledronic acid,66,No,Mild limitation,Occasional,Mild,Moderate,15.6,Limited,2,Adequate,0.79,Non-adherent
+SYN-0866,72,Female,Denosumab,41,Yes,Independent,Regular,None,Moderate,5.2,Moderate,2,Adequate,0.813,Adherent
+SYN-0867,77,Female,Alendronate,52,No,Independent,Irregular,None,Low,11.2,Strong,1,Partial,0.704,Non-adherent
+SYN-0868,78,Female,Risedronate,64,Yes,Independent,Occasional,None,Low,6.7,Strong,1,Adequate,0.697,Non-adherent
+SYN-0869,60,Female,Alendronate,67,No,Independent,Regular,Mild,Moderate,0.5,Moderate,2,Adequate,0.773,Non-adherent
+SYN-0870,41,Female,Risedronate,49,No,Mild limitation,Regular,Mild,Moderate,6.5,None,1,Adequate,0.874,Adherent
+SYN-0871,60,Female,Risedronate,57,Yes,Independent,Occasional,Mild,Low,7.5,Limited,2,Limited,0.819,Adherent
+SYN-0872,49,Male,Alendronate,34,Yes,Independent,Regular,Mild,Low,6.1,Moderate,1,Adequate,0.938,Adherent
+SYN-0873,45,Female,Alendronate,54,Yes,Mild limitation,Regular,None,Low,2.6,Strong,1,Adequate,0.921,Adherent
+SYN-0874,45,Male,Alendronate,24,Yes,Mild limitation,Regular,None,Low,6.2,Limited,3,Adequate,0.913,Adherent
+SYN-0875,72,Male,Alendronate,52,No,Mild limitation,Regular,None,Moderate,1.1,Limited,4,Adequate,0.848,Adherent
+SYN-0876,63,Female,Alendronate,7,Yes,Mild limitation,Regular,None,Low,5.2,Moderate,3,Limited,0.923,Adherent
+SYN-0877,64,Female,Denosumab,66,Yes,,Occasional,None,Moderate,11.8,Moderate,3,Partial,0.641,Non-adherent
+SYN-0878,74,Male,Zoledronic acid,18,No,Mild limitation,Regular,None,Moderate,19.5,Strong,1,Partial,0.944,Adherent
+SYN-0879,65,Female,Alendronate,48,Yes,Independent,Occasional,Mild,High,17.4,Limited,3,Partial,0.816,Adherent
+SYN-0880,68,Female,Denosumab,1,Yes,Independent,Regular,None,High,3.0,Moderate,0,Adequate,0.89,Adherent
+SYN-0881,43,Female,Denosumab,12,No,Independent,Regular,None,Low,1.9,Moderate,1,Partial,0.888,Adherent
+SYN-0882,79,Female,Alendronate,72,No,Mild limitation,Regular,Mild,Low,8.0,None,0,Limited,0.711,Non-adherent
+SYN-0883,60,Female,Alendronate,61,No,Mild limitation,Occasional,,Low,,Moderate,2,Partial,0.564,Non-adherent
+SYN-0884,47,Male,Alendronate,17,No,Independent,Irregular,Moderate,Moderate,10.6,None,2,Partial,0.579,Non-adherent
+SYN-0885,77,Male,Alendronate,10,No,Moderate limitation,Regular,Moderate,Low,4.2,Moderate,1,Adequate,0.955,Adherent
+SYN-0886,73,Female,Denosumab,59,Yes,Moderate limitation,Regular,Moderate,Low,7.3,Moderate,1,Limited,0.627,Non-adherent
+SYN-0887,42,Female,Denosumab,72,No,Independent,Regular,None,Low,7.0,None,1,Adequate,0.915,Adherent
+SYN-0888,48,Female,Alendronate,13,No,Mild limitation,Regular,None,Low,5.3,None,1,Partial,0.875,Adherent
+SYN-0889,40,Male,Denosumab,48,No,Independent,Irregular,Mild,Moderate,1.5,None,1,Adequate,0.898,Adherent
+SYN-0890,52,Female,Alendronate,21,Yes,Severe limitation,Regular,Mild,Moderate,11.7,Limited,0,Partial,0.872,Adherent
+SYN-0891,44,Male,Zoledronic acid,54,Yes,Independent,Irregular,Mild,Moderate,8.1,Moderate,2,Limited,0.608,Non-adherent
+SYN-0892,72,Male,Denosumab,31,No,Independent,Occasional,None,High,12.2,Strong,1,Partial,0.682,Non-adherent
+SYN-0893,64,Female,Alendronate,10,No,Independent,Regular,None,Low,14.2,Moderate,1,Adequate,0.918,Adherent
+SYN-0894,85,Female,Alendronate,24,No,Independent,Irregular,None,Low,6.6,None,2,Partial,0.84,Adherent
+SYN-0895,74,Male,Zoledronic acid,39,No,Mild limitation,Regular,None,Low,11.7,Moderate,1,Limited,0.891,Adherent
+SYN-0896,68,Female,Denosumab,58,No,Mild limitation,Occasional,None,Moderate,19.8,Limited,3,Partial,0.829,Adherent
+SYN-0897,63,Female,Alendronate,2,Yes,Independent,Regular,Moderate,Moderate,23.9,None,2,Limited,0.674,Non-adherent
+SYN-0898,42,Male,Alendronate,69,Yes,Mild limitation,Irregular,None,Low,8.8,None,0,Partial,0.691,Non-adherent
+SYN-0899,43,Female,Alendronate,47,Yes,Moderate limitation,Occasional,Mild,High,9.3,None,2,Limited,0.485,Non-adherent
+SYN-0900,68,Female,Risedronate,64,Yes,Moderate limitation,Regular,Moderate,Low,8.7,Moderate,5,Adequate,0.607,Non-adherent
+SYN-0901,40,Female,Zoledronic acid,67,Yes,Mild limitation,Irregular,None,Low,10.4,Moderate,3,Adequate,0.712,Non-adherent
+SYN-0902,41,Female,Denosumab,12,No,Independent,Regular,Mild,Moderate,13.8,None,4,Limited,0.861,Adherent
+SYN-0903,50,Male,Denosumab,7,No,Independent,Regular,Mild,High,8.6,Strong,5,Limited,0.822,Adherent
+SYN-0904,80,Female,Denosumab,56,No,Moderate limitation,Occasional,None,Moderate,23.1,Strong,4,Adequate,0.844,Adherent
+SYN-0905,61,Female,Denosumab,14,Yes,Mild limitation,Regular,None,High,21.0,None,4,Adequate,0.913,Adherent
+SYN-0906,72,Female,Alendronate,11,No,Mild limitation,Irregular,,Low,7.5,Limited,3,Adequate,0.876,Adherent
+SYN-0907,58,Male,Risedronate,34,No,Moderate limitation,Occasional,Mild,Moderate,,Moderate,1,Partial,0.714,Non-adherent
+SYN-0908,47,Female,Alendronate,66,No,,Occasional,Moderate,High,5.0,Strong,2,Limited,0.693,Non-adherent
+SYN-0909,57,Male,Alendronate,58,No,Mild limitation,Regular,Severe,Moderate,10.7,Moderate,3,Partial,0.858,Adherent
+SYN-0910,44,Female,Denosumab,38,No,Independent,Regular,None,Low,5.7,None,2,Adequate,0.865,Adherent
+SYN-0911,75,Male,Denosumab,15,No,Independent,Irregular,Mild,High,4.8,Moderate,3,Adequate,0.571,Non-adherent
+SYN-0912,48,Male,Denosumab,25,No,Independent,Regular,Mild,Low,10.6,Moderate,3,Limited,0.749,Non-adherent
+SYN-0913,57,Male,Risedronate,50,No,Independent,Occasional,Mild,Low,2.8,Moderate,1,Adequate,0.806,Adherent
+SYN-0914,85,Male,Risedronate,12,Yes,Severe limitation,Regular,Mild,High,14.0,Limited,3,Adequate,0.962,Adherent
+SYN-0915,67,Female,Risedronate,38,Yes,Independent,Regular,Mild,High,,None,3,Adequate,0.835,Adherent
+SYN-0916,61,Male,Alendronate,1,Yes,Moderate limitation,Occasional,Moderate,High,20.3,Moderate,1,,0.681,Non-adherent
+SYN-0917,64,Female,Alendronate,24,No,Mild limitation,Occasional,None,High,8.9,Moderate,2,Adequate,0.776,Non-adherent
+SYN-0918,76,Female,Risedronate,18,No,Mild limitation,Occasional,Mild,Low,12.0,Strong,2,Adequate,0.791,Non-adherent
+SYN-0919,51,Male,Alendronate,50,No,Moderate limitation,Irregular,None,High,13.1,Moderate,0,Adequate,0.812,Adherent
+SYN-0920,69,Male,Denosumab,66,No,Independent,Regular,Mild,Low,16.5,Strong,1,Limited,0.8,Adherent
+SYN-0921,80,Female,Alendronate,11,Yes,Independent,Regular,Mild,Moderate,8.2,Moderate,3,Adequate,0.977,Adherent
+SYN-0922,66,Female,Alendronate,58,No,Independent,Regular,Mild,Low,5.0,Moderate,2,Adequate,0.913,Adherent
+SYN-0923,60,Female,Denosumab,48,Yes,Independent,Occasional,None,High,9.0,Moderate,0,Adequate,0.872,Adherent
+SYN-0924,46,Female,Alendronate,70,No,Moderate limitation,Regular,None,Moderate,14.0,Strong,3,Adequate,0.832,Adherent
+SYN-0925,51,Female,Denosumab,66,Yes,Independent,Occasional,None,High,15.2,Strong,5,Partial,0.435,Non-adherent
+SYN-0926,83,Female,Denosumab,8,No,Independent,Regular,None,Low,1.5,Strong,5,Partial,0.828,Adherent
+SYN-0927,64,Female,Alendronate,54,No,Independent,Irregular,None,Low,37.2,Limited,1,Adequate,0.603,Non-adherent
+SYN-0928,53,Female,Denosumab,43,No,Mild limitation,Irregular,Moderate,Low,4.8,Strong,3,,0.654,Non-adherent
+SYN-0929,59,Female,Zoledronic acid,9,Yes,Mild limitation,Irregular,None,Low,12.2,Strong,0,Adequate,0.844,Adherent
+SYN-0930,66,Female,Denosumab,19,No,Independent,Regular,Severe,Moderate,17.7,None,1,Limited,0.835,Adherent
+SYN-0931,64,Male,Denosumab,67,No,Mild limitation,Irregular,None,Low,7.0,Strong,5,Adequate,0.657,Non-adherent
+SYN-0932,72,Female,Denosumab,40,No,Mild limitation,Regular,Mild,Moderate,15.6,Limited,2,Adequate,0.893,Adherent
+SYN-0933,51,Female,Zoledronic acid,25,No,Moderate limitation,Regular,Mild,Low,1.5,Moderate,4,Limited,0.752,Non-adherent
+SYN-0934,69,Female,Alendronate,24,Yes,Independent,Regular,Mild,Low,,Limited,3,Limited,0.885,Adherent
+SYN-0935,60,Female,Denosumab,61,No,,Regular,Mild,Moderate,14.7,Moderate,2,Partial,0.817,Adherent
+SYN-0936,83,Male,Denosumab,21,Yes,Independent,Occasional,Mild,Low,9.9,Strong,1,Partial,0.906,Adherent
+SYN-0937,47,Female,Zoledronic acid,12,Yes,Independent,Regular,Moderate,Low,14.0,Limited,3,Partial,0.803,Adherent
+SYN-0938,46,Female,Zoledronic acid,42,No,Mild limitation,Regular,Mild,Low,21.4,Limited,4,Partial,0.885,Adherent
+SYN-0939,61,Male,Risedronate,72,No,Mild limitation,Occasional,None,Low,18.1,Moderate,1,Adequate,0.905,Adherent
+SYN-0940,63,Male,Denosumab,14,Yes,Independent,Irregular,None,Moderate,7.3,Limited,2,Adequate,0.861,Adherent
+SYN-0941,71,Female,Denosumab,19,Yes,Moderate limitation,Occasional,Mild,Low,9.0,Moderate,4,Partial,0.873,Adherent
+SYN-0942,58,Female,Alendronate,34,Yes,Independent,Occasional,None,Low,6.4,Limited,2,Partial,0.856,Adherent
+SYN-0943,82,Female,Alendronate,15,Yes,Mild limitation,Regular,Mild,Moderate,5.8,Limited,2,Limited,0.959,Adherent
+SYN-0944,61,Female,Risedronate,47,No,Severe limitation,Irregular,Mild,Moderate,13.1,Strong,2,Adequate,0.779,Non-adherent
+SYN-0945,45,Female,Risedronate,19,Yes,Mild limitation,Regular,None,Moderate,6.3,Limited,2,Adequate,0.952,Adherent
+SYN-0946,45,Female,Zoledronic acid,10,No,Moderate limitation,Regular,Mild,Low,13.1,None,3,Adequate,0.911,Adherent
+SYN-0947,84,Male,Alendronate,19,Yes,Mild limitation,Regular,Mild,High,,Limited,4,Limited,0.744,Non-adherent
+SYN-0948,46,Female,Risedronate,68,Yes,Moderate limitation,Occasional,Mild,Low,7.8,Strong,2,Adequate,0.656,Non-adherent
+SYN-0949,83,Female,Zoledronic acid,68,No,Mild limitation,Regular,Mild,Low,3.8,Limited,2,Limited,0.882,Adherent
+SYN-0950,52,Female,Zoledronic acid,37,Yes,Mild limitation,Occasional,Moderate,High,12.8,Moderate,3,Adequate,0.579,Non-adherent
+SYN-0951,44,Male,Zoledronic acid,29,No,Independent,Regular,Mild,Moderate,1.4,Moderate,3,Adequate,0.94,Adherent
+SYN-0952,54,Female,Denosumab,60,No,Mild limitation,Regular,Severe,Moderate,16.4,Limited,2,Partial,0.742,Non-adherent
+SYN-0953,68,Male,Zoledronic acid,14,No,Independent,Regular,None,High,28.9,Moderate,1,Adequate,0.949,Adherent
+SYN-0954,59,Male,Denosumab,48,No,Severe limitation,Regular,Mild,Low,8.0,Limited,2,Partial,0.803,Adherent
+SYN-0955,76,Female,Zoledronic acid,49,Yes,Independent,Regular,,High,7.7,Moderate,4,Adequate,0.761,Non-adherent
+SYN-0956,68,Female,Risedronate,52,No,Independent,Occasional,None,Moderate,1.9,Strong,4,Partial,0.77,Non-adherent
+SYN-0957,58,Female,Zoledronic acid,16,No,Moderate limitation,Occasional,,Low,5.1,None,3,Partial,0.774,Non-adherent
+SYN-0958,69,Female,Alendronate,52,No,Independent,Regular,Mild,Low,14.1,Moderate,3,Limited,0.684,Non-adherent
+SYN-0959,84,Male,Alendronate,45,Yes,Independent,Occasional,,Low,15.5,Moderate,2,Adequate,0.938,Adherent
+SYN-0960,58,Female,Risedronate,64,Yes,Mild limitation,Regular,Moderate,High,8.7,Moderate,4,Adequate,0.619,Non-adherent
+SYN-0961,47,Female,Denosumab,13,Yes,Independent,Regular,None,Low,13.6,Strong,1,Partial,0.869,Adherent
+SYN-0962,58,Female,Zoledronic acid,45,Yes,Independent,Regular,None,Low,3.9,Limited,2,Limited,0.821,Adherent
+SYN-0963,78,Female,Alendronate,60,No,Mild limitation,Regular,Mild,Moderate,10.2,Moderate,8,Limited,0.82,Adherent
+SYN-0964,50,Female,Zoledronic acid,21,Yes,Independent,Regular,None,Moderate,19.2,None,2,Limited,0.64,Non-adherent
+SYN-0965,83,Female,Alendronate,54,Yes,Independent,Occasional,None,Low,11.6,None,3,Partial,0.812,Adherent
+SYN-0966,67,Female,Denosumab,8,Yes,Independent,Regular,Mild,High,21.1,Limited,4,Partial,0.786,Non-adherent
+SYN-0967,67,Female,Denosumab,52,No,Independent,Occasional,Mild,Moderate,21.6,Strong,3,Limited,0.74,Non-adherent
+SYN-0968,54,Female,Zoledronic acid,44,Yes,Independent,Regular,None,High,10.6,Limited,1,Limited,0.74,Non-adherent
+SYN-0969,82,Female,Zoledronic acid,14,No,Independent,Occasional,Mild,Low,0.5,Strong,5,Partial,0.929,Adherent
+SYN-0970,41,Female,Alendronate,5,Yes,Mild limitation,Occasional,Mild,Low,15.3,Limited,4,Partial,0.841,Adherent
+SYN-0971,53,Male,Risedronate,54,No,,Regular,Mild,Moderate,2.6,Moderate,0,Limited,0.791,Non-adherent
+SYN-0972,59,Female,Denosumab,18,Yes,Independent,Regular,None,Low,0.5,None,4,Adequate,0.88,Adherent
+SYN-0973,61,Female,Denosumab,36,No,Independent,Occasional,None,Moderate,1.2,Moderate,2,Adequate,0.863,Adherent
+SYN-0974,61,Female,Risedronate,5,Yes,Moderate limitation,Irregular,Moderate,Low,16.0,Strong,1,Limited,0.71,Non-adherent
+SYN-0975,46,Female,Alendronate,70,Yes,Mild limitation,Irregular,Mild,Moderate,10.7,None,1,Partial,0.639,Non-adherent
+SYN-0976,50,Female,Alendronate,40,Yes,Independent,Regular,None,High,8.9,Moderate,4,Adequate,0.849,Adherent
+SYN-0977,44,Female,Alendronate,68,Yes,Independent,Occasional,Moderate,High,11.4,Limited,0,Partial,0.402,Non-adherent
+SYN-0978,66,Male,Alendronate,12,Yes,Independent,Regular,None,High,1.3,None,9,Partial,0.703,Non-adherent
+SYN-0979,56,Female,Alendronate,15,No,Moderate limitation,Regular,Mild,High,6.4,Moderate,2,Partial,0.908,Adherent
+SYN-0980,66,Female,Denosumab,44,No,Moderate limitation,Occasional,Mild,Low,4.4,Moderate,3,Partial,0.701,Non-adherent
+SYN-0981,67,Female,Risedronate,44,Yes,Moderate limitation,Regular,Severe,Low,8.4,Moderate,3,Adequate,0.844,Adherent
+SYN-0982,72,Female,Alendronate,57,No,Independent,Occasional,Severe,High,8.6,Limited,4,Adequate,0.536,Non-adherent
+SYN-0983,65,Female,Alendronate,67,No,Independent,Irregular,None,High,11.1,None,2,Adequate,0.539,Non-adherent
+SYN-0984,69,Female,Alendronate,60,Yes,Independent,Regular,Mild,High,12.3,Moderate,3,Limited,0.837,Adherent
+SYN-0985,67,Female,Denosumab,11,Yes,Independent,Occasional,None,Moderate,1.3,Limited,3,Adequate,0.749,Non-adherent
+SYN-0986,70,Female,Risedronate,23,Yes,Independent,Regular,Mild,Low,6.4,Strong,6,Partial,0.804,Adherent
+SYN-0987,68,Male,Denosumab,66,Yes,Mild limitation,Regular,Mild,High,7.6,Moderate,0,Partial,0.888,Adherent
+SYN-0988,54,Female,Denosumab,40,No,Independent,Regular,None,High,2.5,Limited,4,Partial,0.916,Adherent
+SYN-0989,51,Male,Alendronate,63,No,Moderate limitation,Irregular,None,Moderate,2.3,Limited,0,Partial,0.885,Adherent
+SYN-0990,76,Female,Zoledronic acid,41,No,Independent,Regular,None,High,1.2,Moderate,2,,0.831,Adherent
+SYN-0991,55,Female,Denosumab,4,No,Independent,Regular,None,Moderate,2.0,Moderate,0,Partial,0.943,Adherent
+SYN-0992,65,Male,Risedronate,35,No,Moderate limitation,Occasional,None,High,13.5,Strong,1,Adequate,0.881,Adherent
+SYN-0993,49,Female,Alendronate,60,Yes,Mild limitation,Irregular,Moderate,Low,1.6,Strong,3,Adequate,0.756,Non-adherent
+SYN-0994,59,Male,Denosumab,48,Yes,Independent,Irregular,None,High,1.9,Moderate,6,Partial,0.558,Non-adherent
+SYN-0995,64,Female,Denosumab,10,Yes,Mild limitation,Occasional,Mild,Low,8.1,Limited,2,Adequate,0.935,Adherent
+SYN-0996,68,Female,Risedronate,16,Yes,Independent,Regular,Moderate,Low,10.1,Moderate,1,Partial,0.9,Adherent
+SYN-0997,64,Male,Risedronate,62,Yes,Independent,Occasional,Mild,Low,7.4,Moderate,3,Adequate,0.83,Adherent
+SYN-0998,56,Female,Alendronate,71,No,Independent,Irregular,None,Moderate,3.0,Limited,2,Partial,0.49,Non-adherent
+SYN-0999,84,Female,Denosumab,55,Yes,Independent,Irregular,Moderate,Low,2.3,Strong,1,Adequate,0.628,Non-adherent
+SYN-1000,63,Female,Risedronate,8,Yes,Mild limitation,Irregular,Mild,High,8.0,Strong,0,Partial,0.714,Non-adherent
