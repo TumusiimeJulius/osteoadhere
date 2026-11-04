@@ -114,8 +114,7 @@ export default function Analytics() {
             </h1>
 
             <p className="mt-1 text-sm text-slate-500">
-              Explore dataset composition, missing values, and adherence
-              distribution.
+              Explore dataset composition and adherence distribution.
             </p>
           </div>
 
@@ -298,89 +297,6 @@ export default function Analytics() {
                   </div>
                 )}
               </div>
-            </section>
-
-            <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-              <div className="mb-5">
-                <h2 className="font-semibold">
-                  Missing values by column
-                </h2>
-                <p className="mt-1 text-sm text-slate-500">
-                  Number of empty cells in each dataset variable.
-                </p>
-              </div>
-
-              {columns.length === 0 ? (
-                <p className="text-sm text-slate-500">
-                  No columns are available.
-                </p>
-              ) : (
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left text-sm">
-                    <thead>
-                      <tr className="border-b border-slate-200 text-slate-500">
-                        <th className="px-3 py-3 font-medium">
-                          Column
-                        </th>
-                        <th className="px-3 py-3 font-medium">
-                          Missing values
-                        </th>
-                        <th className="px-3 py-3 font-medium">
-                          Completeness
-                        </th>
-                      </tr>
-                    </thead>
-
-                    <tbody>
-                      {columns.map((column) => {
-                        const missing =
-                          dataset.missing_by_column?.[column] ??
-                          records.filter(
-                            (record) =>
-                              record[column] == null ||
-                              String(record[column]).trim() === ""
-                          ).length;
-
-                        const completeness =
-                          records.length > 0
-                            ? ((records.length - missing) /
-                                records.length) *
-                              100
-                            : 0;
-
-                        return (
-                          <tr
-                            key={column}
-                            className="border-b border-slate-100 last:border-0"
-                          >
-                            <td className="px-3 py-3 font-medium text-slate-700">
-                              {column}
-                            </td>
-                            <td className="px-3 py-3">
-                              {missing}
-                            </td>
-                            <td className="px-3 py-3">
-                              <div className="flex min-w-36 items-center gap-3">
-                                <div className="h-2 flex-1 rounded-full bg-slate-100">
-                                  <div
-                                    className="h-2 rounded-full bg-emerald-500"
-                                    style={{
-                                      width: `${completeness}%`,
-                                    }}
-                                  />
-                                </div>
-                                <span className="w-14 text-right text-xs text-slate-500">
-                                  {completeness.toFixed(1)}%
-                                </span>
-                              </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
-                </div>
-              )}
             </section>
 
             <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">

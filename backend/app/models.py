@@ -1,3 +1,4 @@
+
 from datetime import datetime
 
 from sqlalchemy import (
@@ -25,10 +26,7 @@ class User(Base):
 
     id = Column(Integer, primary_key=True, index=True)
 
-    full_name = Column(
-        String(150),
-        nullable=False
-    )
+    full_name = Column(String(150), nullable=False)
 
     email = Column(
         String(255),
@@ -44,15 +42,9 @@ class User(Base):
         index=True
     )
 
-    country = Column(
-        String(100),
-        nullable=False
-    )
+    country = Column(String(100), nullable=False)
 
-    password_hash = Column(
-        String(255),
-        nullable=False
-    )
+    password_hash = Column(String(255), nullable=False)
 
     role = Column(
         String(50),
@@ -70,6 +62,31 @@ class User(Base):
         Boolean,
         nullable=False,
         default=False
+    )
+
+    # SUBSCRIPTION AND FREE TRIAL
+
+    trial_predictions_used = Column(
+        Integer,
+        nullable=False,
+        default=0
+    )
+
+    subscription_plan = Column(
+        String(30),
+        nullable=False,
+        default="free"
+    )
+
+    subscription_status = Column(
+        String(30),
+        nullable=False,
+        default="trial"
+    )
+
+    subscription_expires_at = Column(
+        DateTime,
+        nullable=True
     )
 
     created_at = Column(
@@ -111,11 +128,7 @@ class EmailVerification(Base):
 
     __tablename__ = "email_verifications"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        index=True
-    )
+    id = Column(Integer, primary_key=True, index=True)
 
     user_id = Column(
         Integer,
@@ -123,20 +136,11 @@ class EmailVerification(Base):
         nullable=False
     )
 
-    otp_hash = Column(
-        String(255),
-        nullable=False
-    )
+    otp_hash = Column(String(255), nullable=False)
 
-    expires_at = Column(
-        DateTime,
-        nullable=False
-    )
+    expires_at = Column(DateTime, nullable=False)
 
-    verified_at = Column(
-        DateTime,
-        nullable=True
-    )
+    verified_at = Column(DateTime, nullable=True)
 
     created_at = Column(
         DateTime,
@@ -158,11 +162,7 @@ class PasswordResetToken(Base):
 
     __tablename__ = "password_reset_tokens"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        index=True
-    )
+    id = Column(Integer, primary_key=True, index=True)
 
     user_id = Column(
         Integer,
@@ -170,20 +170,11 @@ class PasswordResetToken(Base):
         nullable=False
     )
 
-    otp_hash = Column(
-        String(255),
-        nullable=False
-    )
+    otp_hash = Column(String(255), nullable=False)
 
-    expires_at = Column(
-        DateTime,
-        nullable=False
-    )
+    expires_at = Column(DateTime, nullable=False)
 
-    used_at = Column(
-        DateTime,
-        nullable=True
-    )
+    used_at = Column(DateTime, nullable=True)
 
     created_at = Column(
         DateTime,
@@ -205,11 +196,7 @@ class Patient(Base):
 
     __tablename__ = "patients"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        index=True
-    )
+    id = Column(Integer, primary_key=True, index=True)
 
     patient_code = Column(
         String(100),
@@ -218,70 +205,31 @@ class Patient(Base):
         index=True
     )
 
-    age_years = Column(
-        Integer,
-        nullable=False
-    )
+    age_years = Column(Integer, nullable=False)
 
-    sex = Column(
-        String(30),
-        nullable=False
-    )
+    sex = Column(String(30), nullable=False)
 
-    osteoporosis_treatment = Column(
-        String(100),
-        nullable=False
-    )
+    osteoporosis_treatment = Column(String(100), nullable=False)
 
-    treatment_duration_months = Column(
-        Integer,
-        nullable=False
-    )
+    treatment_duration_months = Column(Integer, nullable=False)
 
-    previous_fracture = Column(
-        String(20),
-        nullable=False
-    )
+    previous_fracture = Column(String(20), nullable=False)
 
-    functional_status = Column(
-        String(100),
-        nullable=True
-    )
+    functional_status = Column(String(100), nullable=True)
 
-    followup_attendance = Column(
-        String(100),
-        nullable=False
-    )
+    followup_attendance = Column(String(100), nullable=False)
 
-    side_effects = Column(
-        String(100),
-        nullable=True
-    )
+    side_effects = Column(String(100), nullable=True)
 
-    medication_cost_burden = Column(
-        String(100),
-        nullable=False
-    )
+    medication_cost_burden = Column(String(100), nullable=False)
 
-    distance_to_clinic_km = Column(
-        Float,
-        nullable=True
-    )
+    distance_to_clinic_km = Column(Float, nullable=True)
 
-    caregiver_support = Column(
-        String(100),
-        nullable=True
-    )
+    caregiver_support = Column(String(100), nullable=True)
 
-    missed_doses_last_30_days = Column(
-        Integer,
-        nullable=False
-    )
+    missed_doses_last_30_days = Column(Integer, nullable=False)
 
-    health_education = Column(
-        String(100),
-        nullable=True
-    )
+    health_education = Column(String(100), nullable=True)
 
     created_by_user_id = Column(
         Integer,
@@ -315,11 +263,7 @@ class Prediction(Base):
 
     __tablename__ = "predictions"
 
-    id = Column(
-        Integer,
-        primary_key=True,
-        index=True
-    )
+    id = Column(Integer, primary_key=True, index=True)
 
     patient_id = Column(
         Integer,
@@ -327,50 +271,23 @@ class Prediction(Base):
         nullable=False
     )
 
-    logistic_prediction = Column(
-        String(50),
-        nullable=False
-    )
+    logistic_prediction = Column(String(50), nullable=False)
 
-    logistic_probability_adherent = Column(
-        Float,
-        nullable=False
-    )
+    logistic_probability_adherent = Column(Float, nullable=False)
 
-    logistic_probability_non_adherent = Column(
-        Float,
-        nullable=False
-    )
+    logistic_probability_non_adherent = Column(Float, nullable=False)
 
-    svm_prediction = Column(
-        String(50),
-        nullable=False
-    )
+    svm_prediction = Column(String(50), nullable=False)
 
-    svm_probability_adherent = Column(
-        Float,
-        nullable=False
-    )
+    svm_probability_adherent = Column(Float, nullable=False)
 
-    svm_probability_non_adherent = Column(
-        Float,
-        nullable=False
-    )
+    svm_probability_non_adherent = Column(Float, nullable=False)
 
-    gradient_prediction = Column(
-        String(50),
-        nullable=False
-    )
+    gradient_prediction = Column(String(50), nullable=False)
 
-    gradient_probability_adherent = Column(
-        Float,
-        nullable=False
-    )
+    gradient_probability_adherent = Column(Float, nullable=False)
 
-    gradient_probability_non_adherent = Column(
-        Float,
-        nullable=False
-    )
+    gradient_probability_non_adherent = Column(Float, nullable=False)
 
     created_at = Column(
         DateTime,

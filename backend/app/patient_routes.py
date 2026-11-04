@@ -1,3 +1,4 @@
+
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException
@@ -34,6 +35,23 @@ class PatientCreate(BaseModel):
     missed_doses_last_30_days: int
     health_education: Optional[str] = None
     created_by_user_id: Optional[int] = None
+
+
+class PatientUpdate(BaseModel):
+    patient_code: str
+    age_years: int
+    sex: str
+    osteoporosis_treatment: str
+    treatment_duration_months: int
+    previous_fracture: str
+    functional_status: Optional[str] = None
+    followup_attendance: str
+    side_effects: Optional[str] = None
+    medication_cost_burden: str
+    distance_to_clinic_km: Optional[float] = None
+    caregiver_support: Optional[str] = None
+    missed_doses_last_30_days: int
+    health_education: Optional[str] = None
 
 
 # ============================================================
@@ -141,21 +159,7 @@ def create_patient(
         )
 
     patient = Patient(
-        patient_code=patient_data.patient_code,
-        age_years=patient_data.age_years,
-        sex=patient_data.sex,
-        osteoporosis_treatment=patient_data.osteoporosis_treatment,
-        treatment_duration_months=patient_data.treatment_duration_months,
-        previous_fracture=patient_data.previous_fracture,
-        functional_status=patient_data.functional_status,
-        followup_attendance=patient_data.followup_attendance,
-        side_effects=patient_data.side_effects,
-        medication_cost_burden=patient_data.medication_cost_burden,
-        distance_to_clinic_km=patient_data.distance_to_clinic_km,
-        caregiver_support=patient_data.caregiver_support,
-        missed_doses_last_30_days=patient_data.missed_doses_last_30_days,
-        health_education=patient_data.health_education,
-        created_by_user_id=patient_data.created_by_user_id,
+        **patient_data.model_dump()
     )
 
     db.add(patient)
@@ -184,4 +188,89 @@ def create_patient(
             "created_by_user_id": patient.created_by_user_id,
             "created_at": patient.created_at,
         },
+    }
+
+
+# ============================================================
+# UPDATE PATIENT
+# ============================================================
+
+@router.put("/{patient_id}")
+def update_patient(
+    patient_id: int,
+    patient_data: PatientUpdate,
+    db: Session = Depends(get_db),
+):
+
+    patient = (
+        db.query(Patient)
+        .filter(Patient.id == patient_id)
+        .first()
+    )
+
+    if patient is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found.",
+        )
+
+    existing_patient = (
+        db.query(Patient)
+        .filter(
+            Patient.patient_code == patient_data.patient_code,
+            Patient.id != patient_id,
+        )
+        .first()
+    )
+
+    if existing_patient:
+        raise HTTPException(
+            status_code=400,
+            detail="Another patient with this patient code already exists.",
+        )
+
+    update_data = patient_data.model_dump()
+
+    for field, value in update_data.items():
+        setattr(patient, field, value)
+
+    db.commit()
+    db.refresh(patient)
+
+    return {
+        "status": "success",
+        "message": "Patient updated successfully.",
+        "patient_id": patient.id,
+    }
+
+
+# ============================================================
+# DELETE PATIENT
+# ============================================================
+
+@router.delete("/{patient_id}")
+def delete_patient(
+    patient_id: int,
+    db: Session = Depends(get_db),
+):
+
+    patient = (
+        db.query(Patient)
+        .filter(Patient.id == patient_id)
+        .first()
+    )
+
+    if patient is None:
+        raise HTTPException(
+            status_code=404,
+            detail="Patient not found.",
+        )
+
+    db.delete(patient)
+    db.commit()
+
+    return {
+        "status": "success",
+        "message": "Patient deleted successfully.",
+        "patient_id": patient_id,
     }

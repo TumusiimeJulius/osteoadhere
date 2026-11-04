@@ -1,3 +1,8 @@
+
+import os
+
+from pathlib import Path
+
 from sqlalchemy import create_engine
 from sqlalchemy.orm import declarative_base, sessionmaker
 
@@ -6,21 +11,34 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 # DATABASE CONFIGURATION
 # ============================================================
 
-DATABASE_URL = "sqlite:///./osteoporosis_adherence.db"
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    f"sqlite:///{(BASE_DIR / 'osteoporosis_adherence.db').as_posix()}"
+)
 
 
 # ============================================================
 # DATABASE ENGINE
 # ============================================================
 
+connect_args = {}
+
+if DATABASE_URL.startswith("sqlite"):
+    connect_args = {
+        "check_same_thread": False
+    }
+
 engine = create_engine(
     DATABASE_URL,
-    connect_args={"check_same_thread": False}
+    connect_args=connect_args,
+    echo=False
 )
 
 
 # ============================================================
-# SESSION
+# DATABASE SESSION
 # ============================================================
 
 SessionLocal = sessionmaker(

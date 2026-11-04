@@ -1,11 +1,32 @@
 
 const API_BASE_URL = "http://127.0.0.1:8000";
 
+const TOKEN_KEY = "access_token";
+
+/* ---------------- TOKEN MANAGEMENT ---------------- */
+
+export function saveToken(token) {
+  localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function removeToken() {
+  localStorage.removeItem(TOKEN_KEY);
+}
+
+/* ---------------- API REQUEST ---------------- */
+
 async function apiRequest(endpoint, options = {}) {
+  const token = getToken();
+
   const response = await fetch(`${API_BASE_URL}${endpoint}`, {
     method: options.method || "GET",
     headers: {
       "Content-Type": "application/json",
+      ...(token ? { Authorization: `Bearer ${token}` } : {}),
       ...(options.headers || {}),
     },
     body: options.body
@@ -50,48 +71,41 @@ export async function registerUser(userData) {
 export async function verifyEmail(email, otp) {
   return apiRequest("/auth/verify-email", {
     method: "POST",
-    body: {
-      email,
-      otp,
-    },
+    body: { email, otp },
   });
 }
 
 export async function resendVerification(email) {
   return apiRequest("/auth/resend-verification", {
     method: "POST",
-    body: {
-      email,
-    },
+    body: { email },
   });
 }
 
 export async function loginUser(email, password) {
-  return apiRequest("/auth/login", {
+  const data = await apiRequest("/auth/login", {
     method: "POST",
-    body: {
-      email,
-      password,
-    },
+    body: { email, password },
   });
+
+  if (data.access_token) {
+    saveToken(data.access_token);
+  }
+
+  return data;
 }
 
 export async function forgotPassword(email) {
   return apiRequest("/auth/forgot-password", {
     method: "POST",
-    body: {
-      email,
-    },
+    body: { email },
   });
 }
 
 export async function verifyResetOtp(email, otp) {
   return apiRequest("/auth/verify-reset-otp", {
     method: "POST",
-    body: {
-      email,
-      otp,
-    },
+    body: { email, otp },
   });
 }
 
@@ -131,9 +145,6 @@ export async function predictAllModels(inputData) {
   });
 }
 
-/* ---------------- API CONFIGURATION ---------------- */
-
-export { API_BASE_URL };
 /* ---------------- PATIENTS ---------------- */
 
 export async function getPatients() {
@@ -150,3 +161,20 @@ export async function createPatient(patientData) {
     body: patientData,
   });
 }
+
+export async function updatePatient(patientId, patientData) {
+  return apiRequest(`/patients/${patientId}`, {
+    method: "PUT",
+    body: patientData,
+  });
+}
+
+export async function deletePatient(patientId) {
+  return apiRequest(`/patients/${patientId}`, {
+    method: "DELETE",
+  });
+}
+
+/* ---------------- API CONFIGURATION ---------------- */
+
+export { API_BASE_URL };

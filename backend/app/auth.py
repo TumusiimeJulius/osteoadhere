@@ -4,6 +4,7 @@ import os
 from datetime import datetime, timedelta, timezone
 
 from fastapi import APIRouter, Depends, HTTPException
+from fastapi.security import OAuth2PasswordBearer
 from sqlalchemy.orm import Session
 
 from app.database import get_db
@@ -29,7 +30,9 @@ from app.security import (
     hash_otp,
     verify_otp,
     hash_password,
-    verify_password
+    verify_password,
+    create_access_token,
+    decode_access_token
 )
 
 from app.email_service import (
@@ -46,6 +49,50 @@ router = APIRouter(
     prefix="/auth",
     tags=["Authentication"]
 )
+
+
+# ============================================================
+# AUTHENTICATION
+# ============================================================
+
+oauth2_scheme = OAuth2PasswordBearer(
+    tokenUrl="/auth/login"
+)
+
+
+def get_current_user(
+    token: str = Depends(oauth2_scheme),
+    db: Session = Depends(get_db)
+):
+    credentials_exception = HTTPException(
+        status_code=401,
+        detail="Invalid or expired authentication token.",
+        headers={"WWW-Authenticate": "Bearer"}
+    )
+
+    payload = decode_access_token(token)
+
+    if not payload:
+        raise credentials_exception
+
+    user_id = payload.get("sub")
+
+    if not user_id or not str(user_id).isdigit():
+        raise credentials_exception
+
+    user = (
+        db.query(User)
+        .filter(User.id == int(user_id))
+        .first()
+    )
+
+    if not user:
+        raise credentials_exception
+
+    if not user.is_active or not user.email_verified:
+        raise credentials_exception
+
+    return user
 
 
 # ============================================================
@@ -80,27 +127,13 @@ def register(
     db: Session = Depends(get_db)
 ):
 
-    # --------------------------------------------------------
-    # CHECK PASSWORDS
-    # --------------------------------------------------------
-
     if data.password != data.confirm_password:
         raise HTTPException(
             status_code=400,
             detail="Passwords do not match."
         )
 
-
-    # --------------------------------------------------------
-    # NORMALIZE EMAIL
-    # --------------------------------------------------------
-
     email = data.email.lower().strip()
-
-
-    # --------------------------------------------------------
-    # CHECK EMAIL
-    # --------------------------------------------------------
 
     existing_email = (
         db.query(User)
@@ -117,11 +150,6 @@ def register(
                 "or log in."
             )
         )
-
-
-    # --------------------------------------------------------
-    # CHECK PHONE
-    # --------------------------------------------------------
 
     phone = data.phone_number.strip()
 
@@ -140,19 +168,12 @@ def register(
             )
         )
 
-
-    # --------------------------------------------------------
-    # CREATE USER
-    # --------------------------------------------------------
-
     user = User(
         full_name=data.full_name.strip(),
         email=email,
         phone_number=phone,
         country=data.country.strip(),
-        password_hash=hash_password(
-            data.password
-        ),
+        password_hash=hash_password(data.password),
         role="user",
         email_verified=False,
         is_active=False
@@ -162,26 +183,13 @@ def register(
     db.commit()
     db.refresh(user)
 
-
-    # --------------------------------------------------------
-    # GENERATE OTP
-    # --------------------------------------------------------
-
     otp = generate_otp()
-
     otp_hash = hash_otp(otp)
 
     expires_at = (
         utc_now()
-        + timedelta(
-            minutes=OTP_EXPIRATION_MINUTES
-        )
+        + timedelta(minutes=OTP_EXPIRATION_MINUTES)
     )
-
-
-    # --------------------------------------------------------
-    # SAVE OTP
-    # --------------------------------------------------------
 
     verification = EmailVerification(
         user_id=user.id,
@@ -192,13 +200,7 @@ def register(
     db.add(verification)
     db.commit()
 
-
-    # --------------------------------------------------------
-    # SEND VERIFICATION OTP
-    # --------------------------------------------------------
-
     try:
-
         send_verification_otp(
             email,
             otp
@@ -211,7 +213,6 @@ def register(
             repr(e)
         )
 
-        # Remove incomplete registration
         db.delete(user)
         db.commit()
 
@@ -219,11 +220,6 @@ def register(
             status_code=500,
             detail=f"Email sending failed: {str(e)}"
         )
-
-
-    # --------------------------------------------------------
-    # SUCCESS RESPONSE
-    # --------------------------------------------------------
 
     return {
         "status": "success",
@@ -248,29 +244,23 @@ def verify_email(
 
     email = data.email.lower().strip()
 
-
     user = (
         db.query(User)
         .filter(User.email == email)
         .first()
     )
 
-
     if not user:
-
         raise HTTPException(
             status_code=404,
             detail="Email does not exist."
         )
 
-
     if user.email_verified:
-
         return {
             "status": "success",
             "message": "Email is already verified."
         }
-
 
     verification = (
         db.query(EmailVerification)
@@ -284,9 +274,7 @@ def verify_email(
         .first()
     )
 
-
     if not verification:
-
         raise HTTPException(
             status_code=400,
             detail=(
@@ -295,34 +283,27 @@ def verify_email(
             )
         )
 
-
     if utc_now() > verification.expires_at:
-
         raise HTTPException(
             status_code=400,
             detail="OTP has expired. Please request a new OTP."
         )
 
-
     if not verify_otp(
         data.otp,
         verification.otp_hash
     ):
-
         raise HTTPException(
             status_code=400,
             detail="Invalid OTP."
         )
 
-
     verification.verified_at = utc_now()
 
     user.email_verified = True
-
     user.is_active = True
 
     db.commit()
-
 
     return {
         "status": "success",
@@ -345,41 +326,31 @@ def resend_verification(
 
     email = data.email.lower().strip()
 
-
     user = (
         db.query(User)
         .filter(User.email == email)
         .first()
     )
 
-
     if not user:
-
         raise HTTPException(
             status_code=404,
             detail="Email does not exist."
         )
 
-
     if user.email_verified:
-
         raise HTTPException(
             status_code=400,
             detail="Email is already verified."
         )
 
-
     otp = generate_otp()
-
     otp_hash = hash_otp(otp)
 
     expires_at = (
         utc_now()
-        + timedelta(
-            minutes=OTP_EXPIRATION_MINUTES
-        )
+        + timedelta(minutes=OTP_EXPIRATION_MINUTES)
     )
-
 
     verification = EmailVerification(
         user_id=user.id,
@@ -390,9 +361,7 @@ def resend_verification(
     db.add(verification)
     db.commit()
 
-
     try:
-
         send_verification_otp(
             email,
             otp
@@ -409,7 +378,6 @@ def resend_verification(
             status_code=500,
             detail=f"Email sending failed: {str(e)}"
         )
-
 
     return {
         "status": "success",
@@ -432,35 +400,28 @@ def login(
 
     email = data.email.lower().strip()
 
-
     user = (
         db.query(User)
         .filter(User.email == email)
         .first()
     )
 
-
     if not user:
-
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password."
         )
-
 
     if not verify_password(
         data.password,
         user.password_hash
     ):
-
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password."
         )
 
-
     if not user.email_verified:
-
         raise HTTPException(
             status_code=403,
             detail=(
@@ -469,25 +430,36 @@ def login(
             )
         )
 
-
     if not user.is_active:
-
         raise HTTPException(
             status_code=403,
             detail="Your account is inactive."
         )
 
+    access_token = create_access_token({
+        "sub": str(user.id)
+    })
 
     return {
         "status": "success",
         "message": "Login successful.",
+        "access_token": access_token,
+        "token_type": "bearer",
         "user": {
             "id": user.id,
             "full_name": user.full_name,
             "email": user.email,
             "phone_number": user.phone_number,
             "country": user.country,
-            "role": user.role
+            "role": user.role,
+            "trial_predictions_used": user.trial_predictions_used,
+            "subscription_plan": user.subscription_plan,
+            "subscription_status": user.subscription_status,
+            "subscription_expires_at": (
+                user.subscription_expires_at.isoformat()
+                if user.subscription_expires_at
+                else None
+            )
         }
     }
 
@@ -504,32 +476,19 @@ def forgot_password(
 
     email = data.email.lower().strip()
 
-
     user = (
         db.query(User)
         .filter(User.email == email)
         .first()
     )
 
-
-    # --------------------------------------------------------
-    # CHECK EMAIL EXISTS
-    # --------------------------------------------------------
-
     if not user:
-
         raise HTTPException(
             status_code=404,
             detail="Email does not exist."
         )
 
-
-    # --------------------------------------------------------
-    # CHECK EMAIL VERIFIED
-    # --------------------------------------------------------
-
     if not user.email_verified:
-
         raise HTTPException(
             status_code=403,
             detail=(
@@ -538,22 +497,13 @@ def forgot_password(
             )
         )
 
-
-    # --------------------------------------------------------
-    # GENERATE RESET OTP
-    # --------------------------------------------------------
-
     otp = generate_otp()
-
     otp_hash = hash_otp(otp)
 
     expires_at = (
         utc_now()
-        + timedelta(
-            minutes=OTP_EXPIRATION_MINUTES
-        )
+        + timedelta(minutes=OTP_EXPIRATION_MINUTES)
     )
-
 
     reset_token = PasswordResetToken(
         user_id=user.id,
@@ -564,13 +514,7 @@ def forgot_password(
     db.add(reset_token)
     db.commit()
 
-
-    # --------------------------------------------------------
-    # SEND RESET OTP
-    # --------------------------------------------------------
-
     try:
-
         send_password_reset_otp(
             user.email,
             otp
@@ -587,7 +531,6 @@ def forgot_password(
             status_code=500,
             detail=f"Password reset email failed: {str(e)}"
         )
-
 
     return {
         "status": "success",
@@ -610,21 +553,17 @@ def verify_reset_otp(
 
     email = data.email.lower().strip()
 
-
     user = (
         db.query(User)
         .filter(User.email == email)
         .first()
     )
 
-
     if not user:
-
         raise HTTPException(
             status_code=404,
             detail="Email does not exist."
         )
-
 
     reset_token = (
         db.query(PasswordResetToken)
@@ -638,17 +577,13 @@ def verify_reset_otp(
         .first()
     )
 
-
     if not reset_token:
-
         raise HTTPException(
             status_code=400,
             detail="No active password reset OTP found."
         )
 
-
     if utc_now() > reset_token.expires_at:
-
         raise HTTPException(
             status_code=400,
             detail=(
@@ -657,17 +592,14 @@ def verify_reset_otp(
             )
         )
 
-
     if not verify_otp(
         data.otp,
         reset_token.otp_hash
     ):
-
         raise HTTPException(
             status_code=400,
             detail="Invalid OTP."
         )
-
 
     return {
         "status": "success",
@@ -689,15 +621,12 @@ def reset_password(
 ):
 
     if data.new_password != data.confirm_password:
-
         raise HTTPException(
             status_code=400,
             detail="Passwords do not match."
         )
 
-
     email = data.email.lower().strip()
-
 
     user = (
         db.query(User)
@@ -705,14 +634,11 @@ def reset_password(
         .first()
     )
 
-
     if not user:
-
         raise HTTPException(
             status_code=404,
             detail="Email does not exist."
         )
-
 
     reset_token = (
         db.query(PasswordResetToken)
@@ -726,37 +652,26 @@ def reset_password(
         .first()
     )
 
-
     if not reset_token:
-
         raise HTTPException(
             status_code=400,
             detail="No active password reset OTP found."
         )
 
-
     if utc_now() > reset_token.expires_at:
-
         raise HTTPException(
             status_code=400,
             detail="OTP has expired."
         )
 
-
     if not verify_otp(
         data.otp,
         reset_token.otp_hash
     ):
-
         raise HTTPException(
             status_code=400,
             detail="Invalid OTP."
         )
-
-
-    # --------------------------------------------------------
-    # UPDATE PASSWORD
-    # --------------------------------------------------------
 
     user.password_hash = hash_password(
         data.new_password
@@ -766,7 +681,6 @@ def reset_password(
 
     db.commit()
 
-
     return {
         "status": "success",
         "message": (
@@ -774,4 +688,3 @@ def reset_password(
             "You can now log in with your new password."
         )
     }
-

@@ -1,5 +1,7 @@
+
 from pathlib import Path
 
+import joblib
 import pandas as pd
 
 from sklearn.compose import ColumnTransformer
@@ -7,7 +9,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-import joblib
 
 
 # ============================================================
@@ -16,165 +17,97 @@ import joblib
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DATA_FILE = (
+DATASET_PATH = (
     PROJECT_ROOT
-    / "ml"
+    / "backend"
     / "data"
-    / "synthetic_osteoporosis_treatment_adherence_dataset.csv"
+    / "synthetic_osteoporosis_treatment_adherence_2000.csv"
 )
 
 RESULTS_DIR = PROJECT_ROOT / "ml" / "results"
 RESULTS_DIR.mkdir(parents=True, exist_ok=True)
 
-PREPROCESSOR_FILE = RESULTS_DIR / "preprocessor.joblib"
+PREPROCESSOR_PATH = RESULTS_DIR / "preprocessor.joblib"
 
 
 # ============================================================
-# 2. LOAD DATA
+# 2. LOAD AND VALIDATE DATA
 # ============================================================
 
 print("=" * 70)
 print("OSTEOPOROSIS TREATMENT ADHERENCE - DATA PREPROCESSING")
 print("=" * 70)
 
-print("\nLoading dataset:")
-print(DATA_FILE)
+df = pd.read_csv(DATASET_PATH)
 
-if not DATA_FILE.exists():
-    raise FileNotFoundError(
-        f"Dataset not found:\n{DATA_FILE}"
-    )
+print("\nDataset shape:", df.shape)
 
-df = pd.read_csv(DATA_FILE)
+TARGET = "adherence_binary"
 
-print(f"\nDataset shape: {df.shape}")
+if TARGET not in df.columns:
+    raise ValueError(f"Target column '{TARGET}' was not found.")
 
+if df[TARGET].isna().any():
+    raise ValueError("The target column contains missing values.")
 
-# ============================================================
-# 3. REMOVE IDENTIFIER AND POTENTIAL DATA LEAKAGE
-# ============================================================
+df[TARGET] = pd.to_numeric(df[TARGET], errors="raise").astype(int)
 
-print("\n" + "=" * 70)
-print("REMOVING NON-PREDICTIVE / LEAKAGE VARIABLES")
-print("=" * 70)
+if not set(df[TARGET].unique()).issubset({0, 1}):
+    raise ValueError("Target must contain only 0 and 1.")
 
-# patient_id is an identifier and should not be used for prediction.
-#
-# adherence_score is excluded because it appears to encode the
-# adherence outcome. Using it could cause target leakage.
-
-columns_to_remove = [
+# Exclude identifiers and all target-related columns.
+excluded_columns = [
     "patient_id",
-    "adherence_score"
+    "adherence",
+    "adherence_binary"
 ]
 
-df_model = df.drop(columns=columns_to_remove)
+X = df.drop(
+    columns=[c for c in excluded_columns if c in df.columns]
+)
 
-print("Removed columns:")
-for column in columns_to_remove:
-    print(f"- {column}")
+y = df[TARGET]
 
+if X.shape[1] == 0:
+    raise ValueError("No predictor columns remain after exclusions.")
 
-# ============================================================
-# 4. SEPARATE FEATURES AND TARGET
-# ============================================================
-
-print("\n" + "=" * 70)
-print("SEPARATING FEATURES AND TARGET")
-print("=" * 70)
-
-X = df_model.drop(columns=["adherence"])
-y = df_model["adherence"]
-
-print(f"\nNumber of features before encoding: {X.shape[1]}")
-print(f"Number of records: {X.shape[0]}")
-
-
-# ============================================================
-# 5. ENCODE TARGET
-# ============================================================
-
-print("\n" + "=" * 70)
-print("ENCODING TARGET VARIABLE")
-print("=" * 70)
-
-target_mapping = {
-    "Non-adherent": 0,
-    "Adherent": 1
-}
-
-y = y.map(target_mapping)
-
-if y.isnull().any():
-    raise ValueError(
-        "The adherence column contains unexpected values."
-    )
-
-y = y.astype(int)
-
-print("\nTarget mapping:")
-print("Non-adherent = 0")
-print("Adherent     = 1")
-
+print("Predictor columns:", X.shape[1])
 print("\nTarget distribution:")
 print(y.value_counts().sort_index())
 
 
 # ============================================================
-# 6. IDENTIFY NUMERICAL AND CATEGORICAL FEATURES
+# 3. IDENTIFY FEATURE TYPES
 # ============================================================
 
-print("\n" + "=" * 70)
-print("IDENTIFYING FEATURE TYPES")
-print("=" * 70)
-
 numeric_features = X.select_dtypes(
-    include=["int64", "float64"]
+    include=["number"]
 ).columns.tolist()
 
 categorical_features = X.select_dtypes(
-    include=["str"]
+    exclude=["number"]
 ).columns.tolist()
 
-print("\nNumerical features:")
-for feature in numeric_features:
-    print(f"- {feature}")
-
-print("\nCategorical features:")
-for feature in categorical_features:
-    print(f"- {feature}")
+print("\nNumeric features:", len(numeric_features))
+print("Categorical features:", len(categorical_features))
 
 
 # ============================================================
-# 7. NUMERICAL PREPROCESSING
+# 4. DEFINE PREPROCESSING PIPELINES
 # ============================================================
 
 numeric_pipeline = Pipeline(
     steps=[
-        (
-            "imputer",
-            SimpleImputer(strategy="median")
-        ),
-        (
-            "scaler",
-            StandardScaler()
-        )
+        ("imputer", SimpleImputer(strategy="median")),
+        ("scaler", StandardScaler())
     ]
 )
 
-
-# ============================================================
-# 8. CATEGORICAL PREPROCESSING
-# ============================================================
-
 categorical_pipeline = Pipeline(
     steps=[
+        ("imputer", SimpleImputer(strategy="most_frequent")),
         (
-            "imputer",
-            SimpleImputer(strategy="most_frequent")
-        ),
-        (
-            "onehot",
+            "encoder",
             OneHotEncoder(
                 handle_unknown="ignore",
                 sparse_output=False
@@ -183,45 +116,29 @@ categorical_pipeline = Pipeline(
     ]
 )
 
-
-# ============================================================
-# 9. COMBINE PREPROCESSING
-# ============================================================
-
 preprocessor = ColumnTransformer(
     transformers=[
-        (
-            "numerical",
-            numeric_pipeline,
-            numeric_features
-        ),
-        (
-            "categorical",
-            categorical_pipeline,
-            categorical_features
-        )
-    ]
+        ("num", numeric_pipeline, numeric_features),
+        ("cat", categorical_pipeline, categorical_features)
+    ],
+    remainder="drop"
 )
 
 
 # ============================================================
-# 10. TRAIN / TEST SPLIT
+# 5. STRATIFIED 70:30 TRAIN-TEST SPLIT
 # ============================================================
-
-print("\n" + "=" * 70)
-print("TRAIN / TEST SPLIT")
-print("=" * 70)
 
 X_train, X_test, y_train, y_test = train_test_split(
     X,
     y,
-    test_size=0.20,
+    test_size=0.30,
     random_state=42,
     stratify=y
 )
 
-print(f"\nTraining records: {len(X_train)}")
-print(f"Testing records:  {len(X_test)}")
+print("\nTraining records:", len(X_train))
+print("Testing records:", len(X_test))
 
 print("\nTraining target distribution:")
 print(y_train.value_counts().sort_index())
@@ -231,99 +148,77 @@ print(y_test.value_counts().sort_index())
 
 
 # ============================================================
-# 11. FIT PREPROCESSOR ONLY ON TRAINING DATA
+# 6. FIT PREPROCESSOR ON TRAINING DATA ONLY
 # ============================================================
 
-print("\n" + "=" * 70)
-print("FITTING PREPROCESSING PIPELINE")
-print("=" * 70)
+print("\nFitting preprocessing pipeline...")
 
 X_train_processed = preprocessor.fit_transform(X_train)
 
 X_test_processed = preprocessor.transform(X_test)
 
-print("\nPreprocessing completed.")
+feature_names = preprocessor.get_feature_names_out()
 
-print(
-    f"Processed training shape: {X_train_processed.shape}"
+X_train_df = pd.DataFrame(
+    X_train_processed,
+    columns=feature_names
 )
 
-print(
-    f"Processed testing shape:  {X_test_processed.shape}"
+X_test_df = pd.DataFrame(
+    X_test_processed,
+    columns=feature_names
 )
 
-
-# ============================================================
-# 12. SAVE PREPROCESSOR
-# ============================================================
-
-joblib.dump(
-    preprocessor,
-    PREPROCESSOR_FILE
-)
-
-print("\nPreprocessor saved to:")
-print(PREPROCESSOR_FILE)
+print("\nProcessed training shape:", X_train_df.shape)
+print("Processed testing shape:", X_test_df.shape)
 
 
 # ============================================================
-# 13. SAVE PROCESSED DATA
+# 7. SAVE PREPROCESSOR AND PROCESSED DATA
 # ============================================================
 
-train_output = RESULTS_DIR / "X_train_processed.csv"
-test_output = RESULTS_DIR / "X_test_processed.csv"
+joblib.dump(preprocessor, PREPROCESSOR_PATH)
 
-train_target_output = RESULTS_DIR / "y_train.csv"
-test_target_output = RESULTS_DIR / "y_test.csv"
-
-pd.DataFrame(X_train_processed).to_csv(
-    train_output,
+X_train_df.to_csv(
+    RESULTS_DIR / "X_train_processed.csv",
     index=False
 )
 
-pd.DataFrame(X_test_processed).to_csv(
-    test_output,
+X_test_df.to_csv(
+    RESULTS_DIR / "X_test_processed.csv",
     index=False
 )
 
-y_train.to_csv(
-    train_target_output,
+y_train.to_frame(name=TARGET).to_csv(
+    RESULTS_DIR / "y_train.csv",
     index=False
 )
 
-y_test.to_csv(
-    test_target_output,
+y_test.to_frame(name=TARGET).to_csv(
+    RESULTS_DIR / "y_test.csv",
     index=False
 )
 
 
 # ============================================================
-# 14. FINAL SUMMARY
+# 8. FINAL SUMMARY
 # ============================================================
 
 print("\n" + "=" * 70)
-print("PREPROCESSING SUMMARY")
+print("PREPROCESSING COMPLETED SUCCESSFULLY")
 print("=" * 70)
 
-print(f"\nOriginal records: {len(df)}")
-print(f"Training records: {len(X_train)}")
-print(f"Testing records: {len(X_test)}")
+print("Dataset:", DATASET_PATH)
+print("Training records:", len(X_train))
+print("Testing records:", len(X_test))
+print("Processed features:", len(feature_names))
+print("Preprocessor saved:", PREPROCESSOR_PATH)
 
-print(
-    f"\nOriginal predictor variables: {X.shape[1]}"
-)
-
-print(
-    f"Encoded predictor variables: {X_train_processed.shape[1]}"
-)
-
-print("\nFiles created:")
-print(f"- {train_output}")
-print(f"- {test_output}")
-print(f"- {train_target_output}")
-print(f"- {test_target_output}")
-print(f"- {PREPROCESSOR_FILE}")
-
-print("\nPreprocessing completed successfully.")
+print("\nGenerated files:")
+print("- X_train_processed.csv")
+print("- X_test_processed.csv")
+print("- y_train.csv")
+print("- y_test.csv")
+print("- preprocessor.joblib")
 
 print("=" * 70)

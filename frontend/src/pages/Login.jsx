@@ -69,10 +69,7 @@ function Login() {
       /*
        * Send login request through the centralized API service.
        */
-      const data = await loginUser(
-        email,
-        password
-      );
+      const data = await loginUser(email, password);
 
       console.log("LOGIN RESPONSE:", data);
 
@@ -106,18 +103,18 @@ function Login() {
        * Remember email only when requested.
        */
       if (rememberMe) {
-        localStorage.setItem(
-          "login_email",
-          email
-        );
+        localStorage.setItem("login_email", email);
       } else {
         localStorage.removeItem("login_email");
       }
 
       /*
        * Login successful.
+       * Display subscription notification before
+       * allowing the user into the dashboard.
        */
-      navigate("/dashboard");
+      navigate("/subscription-notice");
+
     } catch (err) {
       setError(
         err.message ||
@@ -321,9 +318,7 @@ function Login() {
                 <button
                   type="button"
                   onClick={() =>
-                    setShowPassword(
-                      (previous) => !previous
-                    )
+                    setShowPassword((previous) => !previous)
                   }
                   className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
                   aria-label={
@@ -373,9 +368,7 @@ function Login() {
               disabled={loading}
               className="w-full rounded-lg bg-blue-600 py-3.5 font-semibold text-white transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
             >
-              {loading
-                ? "Signing in..."
-                : "Sign in"}
+              {loading ? "Signing in..." : "Sign in"}
             </button>
 
           </form>
@@ -408,4 +401,3 @@ function Login() {
 }
 
 export default Login;
-

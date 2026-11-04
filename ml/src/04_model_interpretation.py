@@ -1,4 +1,3 @@
-
 from pathlib import Path
 import warnings
 
@@ -9,986 +8,455 @@ import matplotlib.pyplot as plt
 
 from sklearn.inspection import permutation_importance
 
+warnings.filterwarnings("ignore")
+
 
 # ============================================================
-# 1. PATHS
+# 1. PATHS AND CONFIGURATION
 # ============================================================
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
-DATA_FILE = (
+DATASET_PATH = (
     PROJECT_ROOT
-    / "ml"
+    / "backend"
     / "data"
-    / "synthetic_osteoporosis_treatment_adherence_dataset.csv"
+    / "synthetic_osteoporosis_treatment_adherence_2000.csv"
 )
 
 RESULTS_DIR = PROJECT_ROOT / "ml" / "results"
-MODELS_DIR = RESULTS_DIR / "models"
-FIGURES_DIR = RESULTS_DIR / "figures"
+MODEL_DIR = RESULTS_DIR / "models"
 
-FIGURES_DIR.mkdir(
-    parents=True,
-    exist_ok=True
-)
+OUTPUT_DIR = RESULTS_DIR / "interpretability"
+FIGURES_DIR = OUTPUT_DIR / "figures"
+
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+FIGURES_DIR.mkdir(parents=True, exist_ok=True)
+
+TARGET = "adherence_binary"
+
+PREPROCESSOR_PATH = RESULTS_DIR / "preprocessor.joblib"
+
+LOGISTIC_PATH = MODEL_DIR / "logistic_regression.joblib"
+SVM_PATH = MODEL_DIR / "support_vector_machine.joblib"
+GRADIENT_PATH = MODEL_DIR / "gradient_boosting.joblib"
+
+X_TEST_PATH = RESULTS_DIR / "X_test_processed.csv"
+Y_TEST_PATH = RESULTS_DIR / "y_test.csv"
 
 
 # ============================================================
-# 2. ORIGINAL FEATURES
+# 2. LOAD DATA AND MODEL ARTIFACTS
 # ============================================================
 
-TARGET = "adherence"
+print("=" * 70)
+print("OSTEOPOROSIS TREATMENT ADHERENCE - MODEL INTERPRETATION")
+print("=" * 70)
 
-EXCLUDED_COLUMNS = [
+print("\nLoading dataset...")
+
+df = pd.read_csv(DATASET_PATH)
+
+if TARGET not in df.columns:
+    raise ValueError(f"Target column '{TARGET}' was not found.")
+
+excluded_columns = [
     "patient_id",
-    "adherence_score",
+    "adherence",
     TARGET
 ]
 
-NUMERICAL_FEATURES = [
-    "age_years",
-    "treatment_duration_months",
-    "distance_to_clinic_km",
-    "missed_doses_last_30_days"
-]
-
-CATEGORICAL_FEATURES = [
-    "sex",
-    "osteoporosis_treatment",
-    "previous_fracture",
-    "functional_status",
-    "followup_attendance",
-    "side_effects",
-    "medication_cost_burden",
-    "caregiver_support",
-    "health_education"
-]
-
-ORIGINAL_FEATURES = (
-    NUMERICAL_FEATURES +
-    CATEGORICAL_FEATURES
-)
-
-
-# ============================================================
-# 3. HEADER
-# ============================================================
-
-print("=" * 70)
-print("OSTEOPOROSIS TREATMENT ADHERENCE")
-print("MODEL INTERPRETABILITY ANALYSIS")
-print("=" * 70)
-
-
-# ============================================================
-# 4. LOAD ORIGINAL DATA
-# ============================================================
-
-print("\nLoading original dataset...")
-
-df = pd.read_csv(DATA_FILE)
-
-print(f"Dataset shape: {df.shape}")
-
-
 X_original = df.drop(
-    columns=EXCLUDED_COLUMNS
+    columns=[column for column in excluded_columns if column in df.columns]
 )
 
-y = df[TARGET].map({
-    "Non-adherent": 0,
-    "Adherent": 1
-})
+original_features = X_original.columns.tolist()
 
+print("Dataset shape:", df.shape)
+print("Original predictor variables:", len(original_features))
 
-print(
-    f"Original predictor variables: "
-    f"{X_original.shape[1]}"
-)
-
-
-# ============================================================
-# 5. LOAD PREPROCESSOR
-# ============================================================
 
 print("\nLoading preprocessing pipeline...")
 
-preprocessor_file = (
-    RESULTS_DIR / "preprocessor.joblib"
-)
+preprocessor = joblib.load(PREPROCESSOR_PATH)
 
-preprocessor = joblib.load(
-    preprocessor_file
-)
+X_test = pd.read_csv(X_TEST_PATH)
+y_test = pd.read_csv(Y_TEST_PATH)[TARGET]
 
-print("Preprocessor loaded successfully.")
+y_test = y_test.astype(int)
 
-
-# ============================================================
-# 6. LOAD PROCESSED TEST DATA
-# ============================================================
-
-print("\nLoading processed test data...")
-
-X_test_file = (
-    RESULTS_DIR / "X_test_processed.csv"
-)
-
-y_test_file = (
-    RESULTS_DIR / "y_test.csv"
-)
-
-X_test = pd.read_csv(
-    X_test_file
-)
-
-y_test = pd.read_csv(
-    y_test_file
-).squeeze("columns")
-
-
-print(
-    f"Test dataset shape: {X_test.shape}"
-)
+logistic_model = joblib.load(LOGISTIC_PATH)
+svm_model = joblib.load(SVM_PATH)
+gradient_model = joblib.load(GRADIENT_PATH)
 
 
 # ============================================================
-# 7. GET ENCODED FEATURE NAMES
+# 3. VALIDATE FEATURE STRUCTURE
 # ============================================================
 
-encoded_features = (
-    preprocessor.get_feature_names_out()
+encoded_features = preprocessor.get_feature_names_out().tolist()
+
+if len(encoded_features) != X_test.shape[1]:
+    raise ValueError(
+        "The processed test data does not match the preprocessor "
+        "feature count."
+    )
+
+if len(encoded_features) != len(logistic_model.coef_[0]):
+    raise ValueError(
+        "Logistic Regression coefficients do not match "
+        "the processed feature count."
+    )
+
+print("\nEncoded features:", len(encoded_features))
+print("Test records:", len(X_test))
+
+
+# ============================================================
+# 4. MAP ENCODED FEATURES TO ORIGINAL VARIABLES
+# ============================================================
+
+numeric_features = list(preprocessor.transformers_[0][2])
+categorical_features = list(preprocessor.transformers_[1][2])
+
+# Check longer feature names first to avoid incorrect matches.
+categorical_features = sorted(
+    categorical_features,
+    key=len,
+    reverse=True
 )
 
-print(
-    f"Encoded feature variables: "
-    f"{len(encoded_features)}"
-)
-
-
-# ============================================================
-# 8. MAP ENCODED FEATURES TO ORIGINAL FEATURES
-# ============================================================
 
 def map_to_original_feature(encoded_name):
-    """
-    Maps a one-hot encoded feature back to its
-    original predictor variable.
-    """
 
-    if encoded_name.startswith("numerical__"):
+    if encoded_name.startswith("num__"):
+        return encoded_name[len("num__"):]
 
-        return encoded_name.replace(
-            "numerical__",
-            "",
-            1
-        )
+    if encoded_name.startswith("cat__"):
 
-    if encoded_name.startswith("categorical__"):
+        feature_name = encoded_name[len("cat__"):]
 
-        name = encoded_name.replace(
-            "categorical__",
-            "",
-            1
-        )
-
-        for feature in CATEGORICAL_FEATURES:
+        for original_name in categorical_features:
 
             if (
-                name == feature
-                or name.startswith(feature + "_")
+                feature_name == original_name
+                or feature_name.startswith(original_name + "_")
             ):
-                return feature
+                return original_name
 
     return encoded_name
 
 
-feature_mapping = {
-    feature: map_to_original_feature(feature)
-    for feature in encoded_features
-}
-
-
-# ============================================================
-# 9. LOAD TRAINED MODELS
-# ============================================================
-
-print("\nLoading trained models...")
-
-logistic_model = joblib.load(
-    MODELS_DIR / "logistic_regression.joblib"
-)
-
-svm_model = joblib.load(
-    MODELS_DIR / "support_vector_machine.joblib"
-)
-
-gradient_model = joblib.load(
-    MODELS_DIR / "gradient_boosting.joblib"
-)
-
-print("All models loaded successfully.")
-
-
-# ============================================================
-# PART A
-# LOGISTIC REGRESSION FEATURE IMPORTANCE
-# ============================================================
-
-print("\n" + "=" * 70)
-print("PART A: LOGISTIC REGRESSION FEATURE IMPORTANCE")
-print("=" * 70)
-
-
-logistic_coefficients = (
-    logistic_model.coef_[0]
-)
-
-logistic_encoded = pd.DataFrame({
+feature_mapping = pd.DataFrame({
     "encoded_feature": encoded_features,
-    "coefficient": logistic_coefficients
+    "original_feature": [
+        map_to_original_feature(feature)
+        for feature in encoded_features
+    ]
 })
 
-logistic_encoded[
-    "original_feature"
-] = logistic_encoded[
-    "encoded_feature"
-].map(feature_mapping)
-
-logistic_encoded[
-    "absolute_coefficient"
-] = (
-    logistic_encoded["coefficient"]
-    .abs()
-)
-
-
-# Aggregate one-hot encoded features
-logistic_original = (
-    logistic_encoded
-    .groupby(
-        "original_feature",
-        as_index=False
-    )
-    .agg(
-        total_absolute_coefficient=(
-            "absolute_coefficient",
-            "sum"
-        )
-    )
-    .sort_values(
-        "total_absolute_coefficient",
-        ascending=False
-    )
-)
-
-
-logistic_file = (
-    RESULTS_DIR
-    / "logistic_regression_feature_importance.csv"
-)
-
-logistic_original.to_csv(
-    logistic_file,
+feature_mapping.to_csv(
+    OUTPUT_DIR / "encoded_to_original_feature_mapping.csv",
     index=False
 )
 
-
-print("\nLogistic Regression importance:")
-
-print(
-    logistic_original.to_string(
-        index=False
-    )
-)
-
-
-# ------------------------------------------------------------
-# Logistic Regression Plot
-# ------------------------------------------------------------
-
-logistic_plot_data = (
-    logistic_original
-    .sort_values(
-        "total_absolute_coefficient"
-    )
-)
-
-plt.figure(
-    figsize=(10, 7)
-)
-
-plt.barh(
-    logistic_plot_data[
-        "original_feature"
-    ],
-    logistic_plot_data[
-        "total_absolute_coefficient"
-    ]
-)
-
-plt.xlabel(
-    "Total Absolute Coefficient"
-)
-
-plt.ylabel(
-    "Original Predictor"
-)
-
-plt.title(
-    "Logistic Regression Feature Importance"
-)
-
-plt.tight_layout()
-
-logistic_plot = (
-    FIGURES_DIR
-    / "logistic_regression_feature_importance.png"
-)
-
-plt.savefig(
-    logistic_plot,
-    dpi=300,
-    bbox_inches="tight"
-)
-
-plt.close()
+print("Feature mapping created successfully.")
 
 
 # ============================================================
-# PART B
-# GRADIENT BOOSTING SHAP
+# 5. LOGISTIC REGRESSION FEATURE IMPORTANCE
 # ============================================================
 
-print("\n" + "=" * 70)
-print("PART B: GRADIENT BOOSTING SHAP INTERPRETABILITY")
-print("=" * 70)
+print("\nCalculating Logistic Regression feature importance...")
 
+logistic_coefficients = np.asarray(logistic_model.coef_)
+
+if logistic_coefficients.ndim == 2:
+    logistic_importance = np.mean(
+        np.abs(logistic_coefficients),
+        axis=0
+    )
+else:
+    logistic_importance = np.abs(logistic_coefficients)
+
+logistic_df = pd.DataFrame({
+    "encoded_feature": encoded_features,
+    "importance": logistic_importance
+})
+
+logistic_df["original_feature"] = (
+    logistic_df["encoded_feature"].map(
+        dict(zip(
+            feature_mapping["encoded_feature"],
+            feature_mapping["original_feature"]
+        ))
+    )
+)
+
+logistic_original = (
+    logistic_df.groupby("original_feature")["importance"]
+    .sum()
+    .sort_values(ascending=False)
+)
+
+logistic_original.to_csv(
+    OUTPUT_DIR / "logistic_regression_feature_importance.csv"
+)
+
+print("Logistic Regression importance completed.")
+
+
+# ============================================================
+# 6. GRADIENT BOOSTING SHAP INTERPRETATION
+# ============================================================
+
+print("\nCalculating SHAP feature importance...")
 
 shap_original = None
-shap_file = None
-shap_plot = None
-
 
 try:
 
     import shap
 
-    print(
-        f"\nSHAP version: {shap.__version__}"
-    )
-
-    print(
-        "Calculating SHAP values..."
-    )
-
-    X_test_array = X_test.to_numpy()
-
-    explainer = shap.TreeExplainer(
-        gradient_model
-    )
+    explainer = shap.TreeExplainer(gradient_model)
 
     shap_values = explainer.shap_values(
-        X_test_array
+        X_test.to_numpy()
     )
 
-    shap_values = np.asarray(
-        shap_values
-    )
+    if isinstance(shap_values, list):
 
-    # --------------------------------------------------------
-    # Handle different SHAP output shapes
-    # --------------------------------------------------------
+        # Binary classification: use the positive class.
+        shap_array = np.asarray(shap_values[1])
 
-    if shap_values.ndim == 3:
+    else:
 
-        if shap_values.shape[-1] == 2:
+        shap_array = np.asarray(shap_values)
 
-            # Binary classification
-            shap_values = shap_values[:, :, 1]
+        if shap_array.ndim == 3:
 
-        else:
+            # Common format: samples x features x classes.
+            if shap_array.shape[-1] == 2:
+                shap_array = shap_array[:, :, 1]
 
-            shap_values = shap_values[:, :, 0]
+            # Alternative format: classes x samples x features.
+            elif shap_array.shape[0] == 2:
+                shap_array = shap_array[1]
 
-
-    if shap_values.ndim != 2:
-
+    if shap_array.ndim != 2:
         raise ValueError(
-            "Unexpected SHAP value shape: "
-            f"{shap_values.shape}"
+            f"Unexpected SHAP output shape: {shap_array.shape}"
         )
 
+    if shap_array.shape[1] != len(encoded_features):
+        raise ValueError(
+            "SHAP feature count does not match encoded features."
+        )
 
-    mean_absolute_shap = (
-        np.abs(shap_values)
-        .mean(axis=0)
+    mean_absolute_shap = np.mean(
+        np.abs(shap_array),
+        axis=0
     )
 
-
-    shap_encoded = pd.DataFrame({
+    shap_df = pd.DataFrame({
         "encoded_feature": encoded_features,
-        "mean_absolute_shap":
-            mean_absolute_shap
+        "importance": mean_absolute_shap
     })
 
-
-    shap_encoded[
-        "original_feature"
-    ] = shap_encoded[
-        "encoded_feature"
-    ].map(feature_mapping)
-
-
-    # --------------------------------------------------------
-    # Aggregate encoded variables
-    # --------------------------------------------------------
+    shap_df["original_feature"] = (
+        shap_df["encoded_feature"].map(
+            dict(zip(
+                feature_mapping["encoded_feature"],
+                feature_mapping["original_feature"]
+            ))
+        )
+    )
 
     shap_original = (
-        shap_encoded
-        .groupby(
-            "original_feature",
-            as_index=False
-        )
-        .agg(
-            mean_absolute_shap=(
-                "mean_absolute_shap",
-                "sum"
-            )
-        )
-        .sort_values(
-            "mean_absolute_shap",
-            ascending=False
-        )
+        shap_df.groupby("original_feature")["importance"]
+        .sum()
+        .sort_values(ascending=False)
     )
-
-
-    shap_file = (
-        RESULTS_DIR
-        / "gradient_boosting_shap_importance.csv"
-    )
-
 
     shap_original.to_csv(
-        shap_file,
-        index=False
+        OUTPUT_DIR / "gradient_boosting_shap_importance.csv"
     )
 
+    print("SHAP interpretation completed successfully.")
 
-    print(
-        "\nGradient Boosting SHAP importance:"
+except Exception as error:
+
+    print("\nSHAP interpretation could not be completed.")
+    print("Reason:", str(error))
+
+
+# ============================================================
+# 7. SUPPORT VECTOR MACHINE PERMUTATION IMPORTANCE
+# ============================================================
+
+print("\nCalculating SVM permutation importance...")
+
+permutation_result = permutation_importance(
+    svm_model,
+    X_test,
+    y_test,
+    scoring="roc_auc",
+    n_repeats=5,
+    random_state=42,
+    n_jobs=-1
+)
+
+svm_df = pd.DataFrame({
+    "encoded_feature": encoded_features,
+    "importance": permutation_result.importances_mean
+})
+
+svm_df["original_feature"] = (
+    svm_df["encoded_feature"].map(
+        dict(zip(
+            feature_mapping["encoded_feature"],
+            feature_mapping["original_feature"]
+        ))
+    )
+)
+
+svm_original = (
+    svm_df.groupby("original_feature")["importance"]
+    .sum()
+    .sort_values(ascending=False)
+)
+
+svm_original.to_csv(
+    OUTPUT_DIR / "svm_permutation_importance.csv"
+)
+
+print("SVM permutation importance completed.")
+
+
+# ============================================================
+# 8. COMBINE FEATURE IMPORTANCE RESULTS
+# ============================================================
+
+print("\nCombining interpretation results...")
+
+combined = pd.DataFrame({
+    "original_feature": original_features
+})
+
+combined["logistic_regression_importance"] = (
+    combined["original_feature"].map(logistic_original)
+)
+
+combined["gradient_boosting_shap_importance"] = np.nan
+
+if shap_original is not None:
+
+    combined["gradient_boosting_shap_importance"] = (
+        combined["original_feature"].map(shap_original)
     )
 
-    print(
-        shap_original.to_string(
-            index=False
-        )
+combined["svm_permutation_importance"] = (
+    combined["original_feature"].map(svm_original)
+)
+
+combined.to_csv(
+    OUTPUT_DIR / "combined_feature_importance.csv",
+    index=False
+)
+
+print("Combined feature importance saved.")
+
+
+# ============================================================
+# 9. GENERATE FEATURE IMPORTANCE FIGURES
+# ============================================================
+
+def create_importance_plot(series, title, filename, xlabel):
+
+    if series is None or len(series) == 0:
+        print(f"Skipping figure: {title}")
+        return
+
+    top_features = series.sort_values(
+        ascending=True
+    ).tail(15)
+
+    plt.figure(figsize=(10, 7))
+
+    top_features.plot(
+        kind="barh"
     )
 
-
-    # --------------------------------------------------------
-    # SHAP Plot
-    # --------------------------------------------------------
-
-    shap_plot_data = (
-        shap_original
-        .sort_values(
-            "mean_absolute_shap"
-        )
-    )
-
-
-    plt.figure(
-        figsize=(10, 7)
-    )
-
-    plt.barh(
-        shap_plot_data[
-            "original_feature"
-        ],
-        shap_plot_data[
-            "mean_absolute_shap"
-        ]
-    )
-
-    plt.xlabel(
-        "Mean Absolute SHAP Value"
-    )
-
-    plt.ylabel(
-        "Original Predictor"
-    )
-
-    plt.title(
-        "Gradient Boosting SHAP Feature Importance"
-    )
+    plt.title(title)
+    plt.xlabel(xlabel)
+    plt.ylabel("Original predictor variable")
 
     plt.tight_layout()
 
-
-    shap_plot = (
-        FIGURES_DIR
-        / "gradient_boosting_shap_importance.png"
-    )
-
-
     plt.savefig(
-        shap_plot,
+        FIGURES_DIR / filename,
         dpi=300,
         bbox_inches="tight"
     )
 
     plt.close()
 
+    print("Saved figure:", filename)
 
-except Exception as error:
 
-    print(
-        "\nSHAP analysis failed."
-    )
+create_importance_plot(
+    logistic_original,
+    "Logistic Regression Feature Importance",
+    "logistic_regression_importance.png",
+    "Sum of absolute coefficients"
+)
 
-    print(
-        f"Error: {error}"
-    )
+create_importance_plot(
+    shap_original,
+    "Gradient Boosting SHAP Feature Importance",
+    "gradient_boosting_shap_importance.png",
+    "Mean absolute SHAP value"
+)
 
-    shap_original = None
+create_importance_plot(
+    svm_original,
+    "SVM Permutation Feature Importance",
+    "svm_permutation_importance.png",
+    "Mean decrease in ROC-AUC"
+)
 
 
 # ============================================================
-# PART C
-# SVM PERMUTATION IMPORTANCE
-# ============================================================
-
-print("\n" + "=" * 70)
-print("PART C: SUPPORT VECTOR MACHINE")
-print("PERMUTATION FEATURE IMPORTANCE")
-print("=" * 70)
-
-
-print(
-    "\nCalculating permutation importance..."
-)
-
-
-with warnings.catch_warnings():
-
-    warnings.simplefilter(
-        "ignore"
-    )
-
-    permutation = (
-        permutation_importance(
-            svm_model,
-            X_test,
-            y_test,
-            n_repeats=10,
-            random_state=42,
-            scoring="f1"
-        )
-    )
-
-
-svm_encoded = pd.DataFrame({
-    "encoded_feature": encoded_features,
-
-    "importance_mean":
-        permutation.importances_mean,
-
-    "importance_std":
-        permutation.importances_std
-})
-
-
-svm_encoded[
-    "original_feature"
-] = svm_encoded[
-    "encoded_feature"
-].map(feature_mapping)
-
-
-# ------------------------------------------------------------
-# Aggregate encoded features
-# ------------------------------------------------------------
-
-svm_original = (
-    svm_encoded
-    .groupby(
-        "original_feature",
-        as_index=False
-    )
-    .agg(
-        importance_mean=(
-            "importance_mean",
-            "sum"
-        )
-    )
-    .sort_values(
-        "importance_mean",
-        ascending=False
-    )
-)
-
-
-svm_file = (
-    RESULTS_DIR
-    / "svm_permutation_importance.csv"
-)
-
-
-svm_original.to_csv(
-    svm_file,
-    index=False
-)
-
-
-print(
-    "\nSVM permutation importance:"
-)
-
-print(
-    svm_original.to_string(
-        index=False
-    )
-)
-
-
-# ------------------------------------------------------------
-# SVM Plot
-# ------------------------------------------------------------
-
-svm_plot_data = (
-    svm_original
-    .sort_values(
-        "importance_mean"
-    )
-)
-
-
-plt.figure(
-    figsize=(10, 7)
-)
-
-plt.barh(
-    svm_plot_data[
-        "original_feature"
-    ],
-    svm_plot_data[
-        "importance_mean"
-    ]
-)
-
-plt.xlabel(
-    "Mean Decrease in F1 Score"
-)
-
-plt.ylabel(
-    "Original Predictor"
-)
-
-plt.title(
-    "SVM Permutation Feature Importance"
-)
-
-plt.tight_layout()
-
-
-svm_plot = (
-    FIGURES_DIR
-    / "svm_permutation_importance.png"
-)
-
-
-plt.savefig(
-    svm_plot,
-    dpi=300,
-    bbox_inches="tight"
-)
-
-plt.close()
-
-
-# ============================================================
-# PART D
-# COMBINED FEATURE IMPORTANCE
+# 10. FINAL SUMMARY
 # ============================================================
 
 print("\n" + "=" * 70)
-print("PART D: COMBINED FEATURE IMPORTANCE")
+print("MODEL INTERPRETATION COMPLETED")
 print("=" * 70)
 
-
-# ------------------------------------------------------------
-# Prepare Logistic Regression results
-# ------------------------------------------------------------
-
-logistic_combined = logistic_original[
-    [
-        "original_feature",
-        "total_absolute_coefficient"
-    ]
-].copy()
-
-logistic_combined = logistic_combined.rename(
-    columns={
-        "total_absolute_coefficient":
-            "logistic_importance"
-    }
-)
-
-
-# ------------------------------------------------------------
-# Prepare SHAP results
-# ------------------------------------------------------------
+print("\nTop Logistic Regression features:")
+print(logistic_original.head(10))
 
 if shap_original is not None:
 
-    shap_combined = shap_original[
-        [
-            "original_feature",
-            "mean_absolute_shap"
-        ]
-    ].copy()
-
-    shap_combined = shap_combined.rename(
-        columns={
-            "mean_absolute_shap":
-                "gradient_boosting_shap"
-        }
-    )
-
-else:
-
-    # Create an empty table containing
-    # all original predictors.
-    shap_combined = pd.DataFrame({
-        "original_feature":
-            ORIGINAL_FEATURES,
-
-        "gradient_boosting_shap":
-            0.0
-    })
-
-
-# ------------------------------------------------------------
-# Prepare SVM results
-# ------------------------------------------------------------
-
-svm_combined = svm_original[
-    [
-        "original_feature",
-        "importance_mean"
-    ]
-].copy()
-
-svm_combined = svm_combined.rename(
-    columns={
-        "importance_mean":
-            "svm_permutation_importance"
-    }
-)
-
-
-# ------------------------------------------------------------
-# Merge all analyses
-# ------------------------------------------------------------
-
-combined = pd.DataFrame({
-    "original_feature":
-        ORIGINAL_FEATURES
-})
-
-
-combined = combined.merge(
-    logistic_combined,
-    on="original_feature",
-    how="left"
-)
-
-
-combined = combined.merge(
-    shap_combined,
-    on="original_feature",
-    how="left"
-)
-
-
-combined = combined.merge(
-    svm_combined,
-    on="original_feature",
-    how="left"
-)
-
-
-# ------------------------------------------------------------
-# Replace missing values
-# ------------------------------------------------------------
-
-combined = combined.fillna(0)
-
-
-# ------------------------------------------------------------
-# Save combined results
-# ------------------------------------------------------------
-
-combined_path = (
-    RESULTS_DIR
-    / "combined_feature_importance.csv"
-)
-
-
-combined.to_csv(
-    combined_path,
-    index=False
-)
-
-
-# ------------------------------------------------------------
-# Display combined results
-# ------------------------------------------------------------
-
-print(
-    "\nCombined feature importance:"
-)
-
-print(
-    combined.to_string(
-        index=False
-    )
-)
-
-
-print(
-    "\nCombined feature importance saved to:"
-)
-
-print(
-    combined_path
-)
-
-
-# ============================================================
-# PART E
-# SAVE FEATURE MAPPING
-# ============================================================
-
-mapping_df = pd.DataFrame({
-    "encoded_feature": encoded_features,
-
-    "original_feature": [
-        feature_mapping[f]
-        for f in encoded_features
-    ]
-})
-
-
-mapping_file = (
-    RESULTS_DIR
-    / "encoded_to_original_feature_mapping.csv"
-)
-
-
-mapping_df.to_csv(
-    mapping_file,
-    index=False
-)
-
-
-print(
-    "\nEncoded-to-original feature mapping saved to:"
-)
-
-print(
-    mapping_file
-)
-
-
-# ============================================================
-# PART F
-# SAVE A COMPLETE INTERPRETABILITY SUMMARY
-# ============================================================
-
-print("\n" + "=" * 70)
-print("PART F: COMPLETE INTERPRETABILITY SUMMARY")
-print("=" * 70)
-
-
-summary_file = (
-    RESULTS_DIR
-    / "model_interpretability_summary.csv"
-)
-
-
-combined.to_csv(
-    summary_file,
-    index=False
-)
-
-
-print(
-    "\nComplete interpretability summary saved to:"
-)
-
-print(
-    summary_file
-)
-
-
-# ============================================================
-# 10. FINAL OUTPUT
-# ============================================================
-
-print("\n" + "=" * 70)
-print("MODEL INTERPRETABILITY ANALYSIS COMPLETED")
-print("=" * 70)
-
-
-print("\nCSV files created:")
-
-print(
-    f"- {logistic_file}"
-)
-
-if shap_original is not None:
-
-    print(
-        f"- {shap_file}"
-    )
-
-print(
-    f"- {svm_file}"
-)
-
-print(
-    f"- {combined_path}"
-)
-
-print(
-    f"- {mapping_file}"
-)
-
-print(
-    f"- {summary_file}"
-)
-
-
-print("\nFigure files created:")
-
-print(
-    f"- {logistic_plot}"
-)
-
-if shap_original is not None:
-
-    print(
-        f"- {shap_plot}"
-    )
-
-print(
-    f"- {svm_plot}"
-)
-
-
-print("\nStep 4 completed successfully.")
+    print("\nTop Gradient Boosting SHAP features:")
+    print(shap_original.head(10))
+
+print("\nTop SVM permutation features:")
+print(svm_original.head(10))
+
+print("\nOutput directory:")
+print(OUTPUT_DIR)
+
+print("\nGenerated files:")
+print("- logistic_regression_feature_importance.csv")
+print("- gradient_boosting_shap_importance.csv (if SHAP succeeds)")
+print("- svm_permutation_importance.csv")
+print("- combined_feature_importance.csv")
+print("- encoded_to_original_feature_mapping.csv")
+print("- figures folder")
+
+print("\nNote: These importance values describe model behaviour.")
+print("They do not establish causal relationships.")
 
 print("=" * 70)
-
