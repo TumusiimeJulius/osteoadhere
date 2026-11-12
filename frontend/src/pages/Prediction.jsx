@@ -1,7 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { getPatient, predictAllModels } from "../services/api";
+import { getPatient, predictAdherence } from "../services/api";
 import { ArrowLeft } from "lucide-react";
 
 const initialFormData = {
@@ -323,18 +323,21 @@ function Prediction() {
     setLoading(true);
 
     try {
-      const response = await predictAllModels(payload);
-      const predictions = response?.predictions;
+      const response = await predictAdherence(payload);
+      const result = response?.result;
 
-      if (!predictions || Object.keys(predictions).length === 0) {
-        throw new Error("The backend returned no prediction results.");
+      if (!result) {
+        throw new Error("The backend returned no prediction result.");
       }
 
       navigate("/prediction-results", {
         state: {
-          results: predictions,
+          result,
           patientId: patientId || null,
           patientData: payload,
+          trial_predictions_used: response.trial_predictions_used,
+          trial_limit: response.trial_limit,
+          subscription_active: response.subscription_active,
         },
       });
     } catch (err) {
@@ -356,7 +359,6 @@ function Prediction() {
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8">
       <div className="mx-auto max-w-7xl">
-
         <button
           type="button"
           onClick={() => navigate("/dashboard")}
@@ -373,7 +375,7 @@ function Prediction() {
 
           <p className="mt-2 text-gray-600">
             Enter patient information to predict osteoporosis treatment
-            adherence using the trained machine learning models.
+            adherence using the selected Support Vector Machine (SVM) model.
           </p>
         </div>
 
@@ -453,7 +455,7 @@ function Prediction() {
               disabled={loading || loadingPatient}
               className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:opacity-50"
             >
-              {loading ? "Generating Predictions..." : "Generate Predictions"}
+              {loading ? "Generating Prediction..." : "Generate Prediction"}
             </button>
 
             <button

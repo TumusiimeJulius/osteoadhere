@@ -37,28 +37,20 @@ PREPROCESSOR_PATH = os.path.join(
 
 
 # ============================================================
-# 2. LOAD PREPROCESSOR AND MODELS
+# 2. LOAD PREPROCESSOR AND SELECTED MODEL
 # ============================================================
 
 preprocessor = joblib.load(PREPROCESSOR_PATH)
 
-models = {
-    "logistic_regression": joblib.load(
-        os.path.join(MODELS_DIR, "logistic_regression.joblib")
-    ),
-    "support_vector_machine": joblib.load(
-        os.path.join(MODELS_DIR, "support_vector_machine.joblib")
-    ),
-    "gradient_boosting": joblib.load(
-        os.path.join(MODELS_DIR, "gradient_boosting.joblib")
+svm_model = joblib.load(
+    os.path.join(
+        MODELS_DIR,
+        "support_vector_machine.joblib"
     )
-}
+)
 
-model_names = {
-    "logistic_regression": "Logistic Regression",
-    "support_vector_machine": "Support Vector Machine",
-    "gradient_boosting": "Gradient Boosting"
-}
+MODEL_NAME = "Support Vector Machine"
+MODEL_KEY = "support_vector_machine"
 
 FEATURE_NAMES = list(preprocessor.feature_names_in_)
 
@@ -261,63 +253,7 @@ def build_feature_explanations(
 
 
 # ============================================================
-# 7. LOGISTIC REGRESSION EXPLANATION
-# ============================================================
-
-def explain_logistic_regression(
-    model,
-    processed_data
-):
-
-    try:
-
-        coefficients = np.asarray(
-            model.coef_,
-            dtype=float
-        )
-
-        if coefficients.ndim == 2:
-            coefficients = coefficients[0]
-
-        values = np.asarray(
-            processed_data,
-            dtype=float
-        ).reshape(-1)
-
-        if len(coefficients) != len(values):
-            raise ValueError(
-                "Logistic Regression feature dimensions do not match."
-            )
-
-        if SHAP_BACKGROUND is not None:
-
-            baseline = np.mean(
-                SHAP_BACKGROUND,
-                axis=0
-            )
-
-        else:
-
-            baseline = np.zeros_like(values)
-
-        # Contribution relative to the background reference.
-        contributions = coefficients * (
-            values - baseline
-        )
-
-        return build_feature_explanations(
-            contributions,
-            "Logistic Regression relative contribution"
-        )
-
-    except Exception as error:
-
-        print("Logistic Regression explanation error:", error)
-        return []
-
-
-# ============================================================
-# 8. NORMALISE SHAP OUTPUT
+# 7. NORMALISE SHAP OUTPUT
 # ============================================================
 
 def extract_positive_class_shap(shap_values):
@@ -339,11 +275,9 @@ def extract_positive_class_shap(shap_values):
 
     if values.ndim == 3:
 
-        # Shape: samples x features x classes
         if values.shape[-1] == 2:
             values = values[0, :, 1]
 
-        # Shape: classes x samples x features
         elif values.shape[0] == 2:
             values = values[1, 0, :]
 
@@ -366,42 +300,7 @@ def extract_positive_class_shap(shap_values):
 
 
 # ============================================================
-# 9. GRADIENT BOOSTING SHAP EXPLANATION
-# ============================================================
-
-def explain_gradient_boosting(
-    model,
-    processed_data
-):
-
-    if shap is None:
-        return []
-
-    try:
-
-        explainer = shap.TreeExplainer(model)
-
-        shap_values = explainer.shap_values(
-            processed_data
-        )
-
-        contributions = extract_positive_class_shap(
-            shap_values
-        )
-
-        return build_feature_explanations(
-            contributions,
-            "SHAP"
-        )
-
-    except Exception as error:
-
-        print("Gradient Boosting SHAP error:", error)
-        return []
-
-
-# ============================================================
-# 10. SUPPORT VECTOR MACHINE SHAP EXPLANATION
+# 8. SUPPORT VECTOR MACHINE SHAP EXPLANATION
 # ============================================================
 
 _svm_shap_explainer = None
@@ -418,8 +317,6 @@ def get_svm_shap_explainer():
         return _svm_shap_explainer
 
     try:
-
-        svm_model = models["support_vector_machine"]
 
         def predict_probability(data):
 
@@ -476,55 +373,21 @@ def explain_svm(processed_data):
 
 
 # ============================================================
-# 11. INTERPRETABILITY ROUTER
+# 9. INTERPRETABILITY
 # ============================================================
 
-def get_interpretability(
-    model,
-    model_key,
-    processed_data
-):
+def get_interpretability(processed_data):
 
-    explanations = []
-    method = "Unavailable"
-
-    if model_key == "logistic_regression":
-
-        explanations = explain_logistic_regression(
-            model,
-            processed_data
-        )
-
-        if explanations:
-            method = "Logistic Regression relative contribution"
-
-    elif model_key == "support_vector_machine":
-
-        explanations = explain_svm(
-            processed_data
-        )
-
-        if explanations:
-            method = "SHAP"
-
-    elif model_key == "gradient_boosting":
-
-        explanations = explain_gradient_boosting(
-            model,
-            processed_data
-        )
-
-        if explanations:
-            method = "SHAP"
+    explanations = explain_svm(processed_data)
 
     return {
-        "method": method,
+        "method": "SHAP" if explanations else "Unavailable",
         "top_features": explanations
     }
 
 
 # ============================================================
-# 12. VALIDATE PATIENT INPUT
+# 10. VALIDATE PATIENT INPUT
 # ============================================================
 
 def prepare_patient_data(data):
@@ -556,15 +419,10 @@ def prepare_patient_data(data):
 
 
 # ============================================================
-# 13. PREDICT WITH ONE MODEL
+# 11. PREDICT USING SVM ONLY
 # ============================================================
 
-def predict_with_model(data: dict, model_key: str):
-
-    if model_key not in models:
-        raise ValueError(
-            f"Unknown model: {model_key}"
-        )
+def predict_with_svm(data: dict):
 
     input_data = prepare_patient_data(data)
 
@@ -572,21 +430,19 @@ def predict_with_model(data: dict, model_key: str):
         input_data
     )
 
-    model = models[model_key]
-
     prediction = int(
-        model.predict(processed_data)[0]
+        svm_model.predict(processed_data)[0]
     )
 
-    probabilities = model.predict_proba(
+    probabilities = svm_model.predict_proba(
         processed_data
     )[0]
 
-    classes = list(model.classes_)
+    classes = list(svm_model.classes_)
 
     if 1 not in classes or 0 not in classes:
         raise ValueError(
-            "Model must have class labels 0 and 1."
+            "SVM must have class labels 0 and 1."
         )
 
     probability_adherent = float(
@@ -604,13 +460,11 @@ def predict_with_model(data: dict, model_key: str):
     )
 
     interpretability = get_interpretability(
-        model,
-        model_key,
         processed_data
     )
 
     return {
-        "model": model_names[model_key],
+        "model": MODEL_NAME,
         "prediction": prediction_label,
         "probability_adherent": round(
             probability_adherent, 4
@@ -620,21 +474,3 @@ def predict_with_model(data: dict, model_key: str):
         ),
         "interpretability": interpretability
     }
-
-
-# ============================================================
-# 14. PREDICT WITH ALL MODELS
-# ============================================================
-
-def predict_all_models(data: dict):
-
-    results = {}
-
-    for model_key in models:
-
-        results[model_key] = predict_with_model(
-            data,
-            model_key
-        )
-
-    return results

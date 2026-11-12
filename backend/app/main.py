@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session
 
 from app.database import engine, get_db
 from app.models import Base, User
-from app.predictor import predict_with_model, predict_all_models
+from app.predictor import predict_with_svm, MODEL_NAME
 from app.auth import router as auth_router, get_current_user
 from app.patient_routes import router as patient_router
 
@@ -39,10 +39,10 @@ DATASET_PATH = (
 # ============================================================
 
 app = FastAPI(
-    title="Osteoporosis Treatment Adherence Prediction System",
+    title="OsteoPredict - Osteoporosis Treatment Adherence Prediction",
     description=(
-        "Interpretable machine learning system for predicting "
-        "osteoporosis treatment adherence among adults in healthcare."
+        "Interpretable osteoporosis treatment adherence prediction "
+        "system powered by Support Vector Machine."
     ),
     version="1.0.0",
 )
@@ -50,13 +50,13 @@ app = FastAPI(
 
 # ============================================================
 # CORS CONFIGURATION
-# CURRENT FRONTEND: http://localhost:5174
 # ============================================================
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:5173",
+        "http://localhost:5174",
     ],
     allow_credentials=True,
     allow_methods=["*"],
@@ -73,14 +73,10 @@ app.include_router(patient_router)
 
 
 # ============================================================
-# AVAILABLE MODELS
+# SELECTED MODEL
 # ============================================================
 
-VALID_MODELS = {
-    "logistic_regression": "Logistic Regression",
-    "support_vector_machine": "Support Vector Machine",
-    "gradient_boosting": "Gradient Boosting",
-}
+SELECTED_MODEL = MODEL_NAME
 
 
 # ============================================================
@@ -198,10 +194,12 @@ class PredictionInput(BaseModel):
 
 @app.get("/")
 def root():
+
     return {
-        "message": "Osteoporosis Treatment Adherence Prediction System",
+        "message": "OsteoPredict",
         "status": "running",
         "version": "1.0.0",
+        "selected_model": SELECTED_MODEL,
     }
 
 
@@ -211,19 +209,27 @@ def root():
 
 @app.get("/health")
 def health_check():
+
     return {
         "status": "healthy",
-        "models_loaded": list(VALID_MODELS.values()),
+        "selected_model": SELECTED_MODEL,
+        "models_loaded": [SELECTED_MODEL],
     }
 
 
 # ============================================================
-# MODELS
+# SELECTED MODEL
 # ============================================================
 
 @app.get("/models")
 def available_models():
-    return {"models": VALID_MODELS}
+
+    return {
+        "selected_model": SELECTED_MODEL,
+        "models": {
+            "support_vector_machine": SELECTED_MODEL
+        },
+    }
 
 
 # ============================================================
@@ -240,6 +246,7 @@ def get_dataset():
         )
 
     try:
+
         with DATASET_PATH.open(
             mode="r",
             encoding="utf-8-sig",
@@ -251,6 +258,7 @@ def get_dataset():
             records = []
 
             for row in reader:
+
                 cleaned_row = {
                     key: (
                         value.strip()
@@ -293,6 +301,7 @@ def get_dataset():
         raise
 
     except Exception as e:
+
         raise HTTPException(
             status_code=500,
             detail=f"Failed to read dataset: {str(e)}",
@@ -300,12 +309,11 @@ def get_dataset():
 
 
 # ============================================================
-# PREDICT USING ALL MODELS
-# ONE GENERATION COUNTS AS ONE
+# PREDICT USING SELECTED SVM MODEL
 # ============================================================
 
-@app.post("/predict/all")
-def predict_all(
+@app.post("/predict")
+def predict(
     input_data: PredictionInput,
     current_user: User = Depends(get_current_user),
     db: Session = Depends(get_db),
@@ -314,7 +322,8 @@ def predict_all(
     check_prediction_access(current_user, db)
 
     try:
-        results = predict_all_models(
+
+        result = predict_with_svm(
             input_data.model_dump()
         )
 
@@ -322,62 +331,8 @@ def predict_all(
 
         return {
             "status": "success",
-            "predictions": results,
-            "trial_predictions_used": current_user.trial_predictions_used,
-            "trial_limit": FREE_TRIAL_LIMIT,
-            "subscription_active": has_active_subscription(current_user),
-        }
-
-    except HTTPException:
-        raise
-
-    except Exception as e:
-        db.rollback()
-
-        raise HTTPException(
-            status_code=500,
-            detail={
-                "error": "Prediction failed",
-                "message": str(e),
-            },
-        )
-
-
-# ============================================================
-# PREDICT USING A SPECIFIC MODEL
-# ============================================================
-
-@app.post("/predict/{model_name}")
-def predict(
-    model_name: str,
-    input_data: PredictionInput,
-    current_user: User = Depends(get_current_user),
-    db: Session = Depends(get_db),
-):
-
-    if model_name not in VALID_MODELS:
-        raise HTTPException(
-            status_code=400,
-            detail={
-                "error": "Invalid model name",
-                "requested_model": model_name,
-                "available_models": list(VALID_MODELS.keys()),
-            },
-        )
-
-    check_prediction_access(current_user, db)
-
-    try:
-        result = predict_with_model(
-            input_data.model_dump(),
-            model_name,
-        )
-
-        record_prediction_generation(current_user, db)
-
-        return {
-            "status": "success",
             "result": result,
+            "selected_model": SELECTED_MODEL,
             "trial_predictions_used": current_user.trial_predictions_used,
             "trial_limit": FREE_TRIAL_LIMIT,
             "subscription_active": has_active_subscription(current_user),
@@ -387,6 +342,7 @@ def predict(
         raise
 
     except Exception as e:
+
         db.rollback()
 
         raise HTTPException(

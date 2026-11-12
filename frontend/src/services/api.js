@@ -138,8 +138,8 @@ export async function getModels() {
 
 /* ---------------- PREDICTION ---------------- */
 
-export async function predictAllModels(inputData) {
-  return apiRequest("/predict/all", {
+export async function predictAdherence(inputData) {
+  return apiRequest("/predict", {
     method: "POST",
     body: inputData,
   });
