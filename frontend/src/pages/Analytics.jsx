@@ -12,7 +12,7 @@ import {
   Users,
 } from "lucide-react";
 
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "https://osteoadhere.onrender.com";
 
 export default function Analytics() {
   const [dataset, setDataset] = useState(null);
