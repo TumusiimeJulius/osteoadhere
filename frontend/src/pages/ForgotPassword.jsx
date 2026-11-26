@@ -1,32 +1,163 @@
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
-import { forgotPassword } from "../services/api";
+import { Link, useNavigate } from "react-router-dom";
+import {
+  forgotPassword,
+  verifyResetOtp,
+  resetPassword,
+} from "../services/api";
 
 function ForgotPassword() {
+  const navigate = useNavigate();
+
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const clearMessages = () => {
     setMessage("");
     setError("");
+  };
+
+  // STEP 1: Send reset code
+  const handleSendCode = async (e) => {
+    e.preventDefault();
+    clearMessages();
     setLoading(true);
 
     try {
       const response = await forgotPassword(email);
+
       setMessage(
         response.message || "Password reset code sent to your email."
       );
+
+      setStep(2);
     } catch (err) {
       setError(
-        err.response?.data?.detail || "Unable to send password reset code."
+        err.response?.data?.detail ||
+          "Unable to send password reset code."
       );
     } finally {
       setLoading(false);
     }
+  };
+
+  // STEP 2: Verify reset code
+  const handleVerifyCode = async (e) => {
+    e.preventDefault();
+    clearMessages();
+    setLoading(true);
+
+    try {
+      const response = await verifyResetOtp(email, otp);
+
+      setMessage(
+        response.message || "Code verified successfully."
+      );
+
+      setStep(3);
+    } catch (err) {
+      setError(
+        err.response?.data?.detail ||
+          "Invalid or expired reset code."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // STEP 3: Reset password
+  const handleResetPassword = async (e) => {
+    e.preventDefault();
+    clearMessages();
+
+    if (newPassword !== confirmPassword) {
+      setError("Passwords do not match.");
+      return;
+    }
+
+    if (newPassword.length < 8) {
+      setError("Password must contain at least 8 characters.");
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      const response = await resetPassword(
+        email,
+        otp,
+        newPassword,
+        confirmPassword
+      );
+
+      setMessage(
+        response.message || "Password reset successfully."
+      );
+
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } catch (err) {
+      setError(
+        err.response?.data?.detail ||
+          "Unable to reset password."
+      );
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const inputStyle = {
+    width: "100%",
+    padding: "14px 15px",
+    border: "1px solid #dce5eb",
+    borderRadius: "10px",
+    fontSize: "14px",
+    outline: "none",
+    boxSizing: "border-box",
+    marginBottom: "20px",
+    background: "#fbfdfe",
+  };
+
+  const labelStyle = {
+    display: "block",
+    color: "#344b59",
+    fontWeight: "600",
+    fontSize: "14px",
+    marginBottom: "9px",
+  };
+
+  const buttonStyle = {
+    width: "100%",
+    padding: "15px",
+    border: "none",
+    borderRadius: "10px",
+    background: loading ? "#75b8aa" : "#087f6b",
+    color: "#ffffff",
+    fontSize: "15px",
+    fontWeight: "700",
+    cursor: loading ? "not-allowed" : "pointer",
+    boxShadow: "0 5px 14px rgba(8, 127, 107, 0.2)",
+  };
+
+  const stepTitles = {
+    1: "Forgot Password?",
+    2: "Verify Reset Code",
+    3: "Create New Password",
+  };
+
+  const stepDescriptions = {
+    1: "Enter your registered email address and we'll send you a password reset code.",
+    2: "Enter the six-digit reset code sent to your email address.",
+    3: "Your code has been verified. Create a new password for your account.",
   };
 
   return (
@@ -69,7 +200,7 @@ function ForgotPassword() {
               fontSize: "32px",
             }}
           >
-            ✉
+            {step === 1 ? "✉" : step === 2 ? "🔐" : "🔑"}
           </div>
 
           <h2
@@ -80,7 +211,7 @@ function ForgotPassword() {
               margin: "0 0 12px",
             }}
           >
-            Forgot Password?
+            {stepTitles[step]}
           </h2>
 
           <p
@@ -91,65 +222,174 @@ function ForgotPassword() {
               margin: 0,
             }}
           >
-            Don't worry! Enter your registered email address and we'll send
-            you a password reset code.
+            {stepDescriptions[step]}
           </p>
         </div>
 
-        <form onSubmit={handleSubmit}>
-          <label
-            htmlFor="reset-email"
-            style={{
-              display: "block",
-              color: "#344b59",
-              fontWeight: "600",
-              fontSize: "14px",
-              marginBottom: "9px",
-            }}
-          >
-            Email Address
-          </label>
+        {/* Progress indicator */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            gap: "8px",
+            marginBottom: "28px",
+          }}
+        >
+          {[1, 2, 3].map((number) => (
+            <div
+              key={number}
+              style={{
+                width: "32px",
+                height: "6px",
+                borderRadius: "10px",
+                background: step >= number ? "#087f6b" : "#e4ebef",
+              }}
+            />
+          ))}
+        </div>
 
-          <input
-            id="reset-email"
-            type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{
-              width: "100%",
-              padding: "14px 15px",
-              border: "1px solid #dce5eb",
-              borderRadius: "10px",
-              fontSize: "14px",
-              outline: "none",
-              boxSizing: "border-box",
-              marginBottom: "20px",
-              background: "#fbfdfe",
-            }}
-          />
+        {/* STEP 1: Email */}
+        {step === 1 && (
+          <form onSubmit={handleSendCode}>
+            <label htmlFor="reset-email" style={labelStyle}>
+              Email Address
+            </label>
 
-          <button
-            type="submit"
-            disabled={loading}
-            style={{
-              width: "100%",
-              padding: "15px",
-              border: "none",
-              borderRadius: "10px",
-              background: loading ? "#75b8aa" : "#087f6b",
-              color: "#ffffff",
-              fontSize: "15px",
-              fontWeight: "700",
-              cursor: loading ? "not-allowed" : "pointer",
-              boxShadow: "0 5px 14px rgba(8, 127, 107, 0.2)",
-            }}
-          >
-            {loading ? "Sending..." : "Send Reset Code"}
-          </button>
-        </form>
+            <input
+              id="reset-email"
+              type="email"
+              placeholder="Enter your email address"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              style={inputStyle}
+            />
 
+            <button
+              type="submit"
+              disabled={loading}
+              style={buttonStyle}
+            >
+              {loading ? "Sending..." : "Send Reset Code"}
+            </button>
+          </form>
+        )}
+
+        {/* STEP 2: OTP */}
+        {step === 2 && (
+          <form onSubmit={handleVerifyCode}>
+            <label htmlFor="reset-otp" style={labelStyle}>
+              Six-Digit Reset Code
+            </label>
+
+            <input
+              id="reset-otp"
+              type="text"
+              inputMode="numeric"
+              maxLength="6"
+              placeholder="Enter your six-digit code"
+              value={otp}
+              onChange={(e) =>
+                setOtp(e.target.value.replace(/\D/g, "").slice(0, 6))
+              }
+              required
+              style={{
+                ...inputStyle,
+                textAlign: "center",
+                letterSpacing: "8px",
+                fontSize: "20px",
+                fontWeight: "700",
+              }}
+            />
+
+            <p
+              style={{
+                color: "#718096",
+                fontSize: "12px",
+                marginTop: "-10px",
+                marginBottom: "20px",
+              }}
+            >
+              Code sent to {email}
+            </p>
+
+            <button
+              type="submit"
+              disabled={loading || otp.length !== 6}
+              style={buttonStyle}
+            >
+              {loading ? "Verifying..." : "Verify Code"}
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setStep(1);
+                setOtp("");
+                clearMessages();
+              }}
+              style={{
+                width: "100%",
+                marginTop: "12px",
+                padding: "12px",
+                border: "1px solid #dce5eb",
+                borderRadius: "10px",
+                background: "#ffffff",
+                color: "#526777",
+                fontWeight: "600",
+                cursor: "pointer",
+              }}
+            >
+              Change Email Address
+            </button>
+          </form>
+        )}
+
+        {/* STEP 3: New Password */}
+        {step === 3 && (
+          <form onSubmit={handleResetPassword}>
+            <label htmlFor="new-password" style={labelStyle}>
+              New Password
+            </label>
+
+            <input
+              id="new-password"
+              type="password"
+              placeholder="Enter new password"
+              value={newPassword}
+              onChange={(e) => setNewPassword(e.target.value)}
+              minLength="8"
+              required
+              style={inputStyle}
+            />
+
+            <label htmlFor="confirm-password" style={labelStyle}>
+              Confirm New Password
+            </label>
+
+            <input
+              id="confirm-password"
+              type="password"
+              placeholder="Confirm new password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              minLength="8"
+              required
+              style={inputStyle}
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+              style={buttonStyle}
+            >
+              {loading ? "Resetting Password..." : "Reset Password"}
+            </button>
+          </form>
+        )}
+
+        {/* Messages */}
         {message && (
           <p
             style={{
