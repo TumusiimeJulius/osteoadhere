@@ -1,5 +1,5 @@
 
-const API_BASE_URL = "http://127.0.0.1:8000";
+const API_BASE_URL = "https://osteoadhere.onrender.com";
 
 const TOKEN_KEY = "access_token";
 
@@ -138,8 +138,8 @@ export async function getModels() {
 
 /* ---------------- PREDICTION ---------------- */
 
-export async function predictAllModels(inputData) {
-  return apiRequest("/predict/all", {
+export async function predictAdherence(inputData) {
+  return apiRequest("/predict", {
     method: "POST",
     body: inputData,
   });
