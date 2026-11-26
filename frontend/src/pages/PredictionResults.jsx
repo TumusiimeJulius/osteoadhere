@@ -9,17 +9,11 @@ import {
   Download,
 } from "lucide-react";
 
-const modelNames = {
-  logistic_regression: "Logistic Regression",
-  support_vector_machine: "Support Vector Machine",
-  gradient_boosting: "Gradient Boosting",
-};
-
 function PredictionResults() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const results = location.state?.results;
+  const result = location.state?.result;
   const patientId = location.state?.patientId;
 
   const downloadResults = () => {
@@ -40,9 +34,9 @@ function PredictionResults() {
     return (
       <div className="mt-4">
         <div className="mb-3">
-          <h4 className="font-semibold text-gray-800">
+          <h3 className="font-semibold text-gray-800">
             Feature-level explanations
-          </h4>
+          </h3>
 
           <p className="text-xs text-gray-500">
             Explanation method: {interpretability.method || "Not specified"}
@@ -99,7 +93,7 @@ function PredictionResults() {
     );
   };
 
-  if (!results || Object.keys(results).length === 0) {
+  if (!result) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-gray-50 p-6">
         <div className="w-full max-w-lg rounded-xl border border-gray-200 bg-white p-8 text-center shadow-sm">
@@ -110,8 +104,8 @@ function PredictionResults() {
           </h1>
 
           <p className="mt-2 text-sm text-gray-600">
-            No prediction results were found. Generate predictions first to
-            view the results here.
+            No prediction result was found. Generate a prediction first to
+            view the result here.
           </p>
 
           <Link
@@ -125,12 +119,24 @@ function PredictionResults() {
     );
   }
 
+  const adherent = result.prediction === "Adherent";
+
+  const adherentProbability = Math.min(
+    Math.max(Number(result.probability_adherent) * 100 || 0, 0),
+    100
+  );
+
+  const nonAdherentProbability = Math.min(
+    Math.max(Number(result.probability_non_adherent) * 100 || 0, 0),
+    100
+  );
+
   return (
     <div className="min-h-screen bg-gray-50 p-4 md:p-8 print:min-h-0 print:bg-white print:p-0">
       <style>
         {`
           @page {
-            size: A4 landscape;
+            size: A4 portrait;
             margin: 12mm;
           }
 
@@ -151,30 +157,17 @@ function PredictionResults() {
               margin: 0 !important;
             }
 
-            .results-grid {
-              grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-              gap: 12px !important;
-            }
-
-            .model-card {
-              break-inside: avoid;
-              page-break-inside: avoid;
-              box-shadow: none !important;
-            }
-
+            .result-card,
             .clinical-notice {
               break-inside: avoid;
               page-break-inside: avoid;
-            }
-
-            h1, h2, h3, h4 {
-              break-after: avoid;
+              box-shadow: none !important;
             }
           }
         `}
       </style>
 
-      <div className="results-container mx-auto max-w-7xl">
+      <div className="results-container mx-auto max-w-5xl">
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
             <h1 className="text-2xl font-bold text-gray-900 md:text-3xl">
@@ -182,7 +175,8 @@ function PredictionResults() {
             </h1>
 
             <p className="mt-2 text-gray-600">
-              Comparison of the three trained machine learning models.
+              Osteoporosis treatment adherence prediction using the selected
+              Support Vector Machine model.
             </p>
           </div>
 
@@ -197,6 +191,7 @@ function PredictionResults() {
             </button>
 
             <button
+              type="button"
               onClick={() => navigate("/prediction")}
               className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 font-semibold text-gray-700 hover:bg-gray-100"
             >
@@ -217,97 +212,82 @@ function PredictionResults() {
 
           <div>
             <p className="font-semibold text-green-800">
-              Predictions generated successfully
+              Prediction generated successfully
             </p>
+
             <p className="text-sm text-green-700">
-              All available model results are displayed below.
+              The selected Support Vector Machine model has completed the
+              prediction.
             </p>
           </div>
         </div>
 
-        <div className="results-grid grid grid-cols-1 gap-5 lg:grid-cols-3">
-          {Object.entries(results).map(([key, result]) => {
-            const adherent = result.prediction === "Adherent";
+        <div className="result-card rounded-xl border border-gray-200 bg-white p-5 shadow-sm md:p-7">
+          <div className="flex items-center gap-2">
+            <Activity className="text-blue-700" size={22} />
 
-            const adherentProbability = Math.min(
-              Math.max(Number(result.probability_adherent) * 100 || 0, 0),
-              100
-            );
+            <h2 className="text-xl font-bold text-gray-900">
+              {result.model || "Support Vector Machine"}
+            </h2>
+          </div>
 
-            const nonAdherentProbability = Math.min(
-              Math.max(Number(result.probability_non_adherent) * 100 || 0, 0),
-              100
-            );
+          <div
+            className={`mt-6 rounded-lg p-5 ${
+              adherent ? "bg-green-50" : "bg-red-50"
+            }`}
+          >
+            <p className="text-sm text-gray-600">
+              Predicted Treatment Adherence
+            </p>
 
-            return (
-              <div
-                key={key}
-                className="model-card rounded-xl border border-gray-200 bg-white p-5 shadow-sm"
-              >
-                <div className="flex items-center gap-2">
-                  <Activity className="text-blue-700" size={20} />
+            <p
+              className={`mt-2 text-3xl font-bold ${
+                adherent ? "text-green-700" : "text-red-700"
+              }`}
+            >
+              {result.prediction}
+            </p>
+          </div>
 
-                  <h2 className="text-lg font-bold text-gray-900">
-                    {modelNames[key] || result.model || key}
-                  </h2>
-                </div>
+          <div className="mt-6 space-y-5">
+            <div>
+              <div className="mb-2 flex justify-between text-sm">
+                <span className="font-medium text-gray-700">
+                  Probability of Adherence
+                </span>
 
-                <div
-                  className={`mt-4 rounded-lg p-4 ${
-                    adherent ? "bg-green-50" : "bg-red-50"
-                  }`}
-                >
-                  <p className="text-sm text-gray-600">
-                    Predicted Treatment Adherence
-                  </p>
-
-                  <p
-                    className={`mt-1 text-2xl font-bold ${
-                      adherent ? "text-green-700" : "text-red-700"
-                    }`}
-                  >
-                    {result.prediction}
-                  </p>
-                </div>
-
-                <div className="mt-5 space-y-4">
-                  <div>
-                    <div className="mb-1 flex justify-between text-sm">
-                      <span className="text-gray-600">Adherent</span>
-
-                      <strong>{adherentProbability.toFixed(2)}%</strong>
-                    </div>
-
-                    <div className="h-2 overflow-hidden rounded-full bg-gray-200">
-                      <div
-                        className="h-full rounded-full bg-green-600"
-                        style={{ width: `${adherentProbability}%` }}
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <div className="mb-1 flex justify-between text-sm">
-                      <span className="text-gray-600">Non-adherent</span>
-
-                      <strong>{nonAdherentProbability.toFixed(2)}%</strong>
-                    </div>
-
-                    <div className="h-2 overflow-hidden rounded-full bg-gray-200">
-                      <div
-                        className="h-full rounded-full bg-red-600"
-                        style={{ width: `${nonAdherentProbability}%` }}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 border-t border-gray-100 pt-4">
-                  {renderInterpretability(result.interpretability)}
-                </div>
+                <strong>{adherentProbability.toFixed(2)}%</strong>
               </div>
-            );
-          })}
+
+              <div className="h-3 overflow-hidden rounded-full bg-gray-200">
+                <div
+                  className="h-full rounded-full bg-green-600"
+                  style={{ width: `${adherentProbability}%` }}
+                />
+              </div>
+            </div>
+
+            <div>
+              <div className="mb-2 flex justify-between text-sm">
+                <span className="font-medium text-gray-700">
+                  Probability of Non-adherence
+                </span>
+
+                <strong>{nonAdherentProbability.toFixed(2)}%</strong>
+              </div>
+
+              <div className="h-3 overflow-hidden rounded-full bg-gray-200">
+                <div
+                  className="h-full rounded-full bg-red-600"
+                  style={{ width: `${nonAdherentProbability}%` }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-7 border-t border-gray-100 pt-5">
+            {renderInterpretability(result.interpretability)}
+          </div>
         </div>
 
         <div className="clinical-notice mt-6 rounded-lg border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900">

@@ -5,20 +5,10 @@ import { Link } from "react-router-dom";
 const API_URL = "http://127.0.0.1:8000";
 
 const MODEL_DETAILS = {
-  logistic_regression: {
-    description:
-      "Estimates the likelihood of treatment adherence using a logistic regression model.",
-    type: "Classification",
-  },
   support_vector_machine: {
     description:
-      "Classifies patients according to patterns learned from their treatment and healthcare characteristics.",
-    type: "Classification",
-  },
-  gradient_boosting: {
-    description:
-      "Combines multiple decision trees to predict treatment adherence from patient characteristics.",
-    type: "Ensemble classification",
+      "Predicts osteoporosis treatment adherence by identifying patterns in patients' treatment and healthcare characteristics. It is the selected model for this system.",
+    type: "Support Vector Classification",
   },
 };
 
@@ -35,13 +25,21 @@ export default function Models() {
         const response = await fetch(`${API_URL}/models`);
 
         if (!response.ok) {
-          throw new Error("The backend could not return the available models.");
+          throw new Error("The backend could not return the selected model.");
         }
 
         const data = await response.json();
 
         if (active) {
-          setModels(data.models || {});
+          const availableModels = data.models || {};
+
+          setModels(
+            Object.fromEntries(
+              Object.entries(availableModels).filter(
+                ([key]) => key === "support_vector_machine"
+              )
+            )
+          );
           setError("");
         }
       } catch {
@@ -74,12 +72,12 @@ export default function Models() {
             </p>
 
             <h1 className="mt-2 text-3xl font-bold text-slate-900">
-              Machine Learning Models
+              Machine Learning Model
             </h1>
 
             <p className="mt-2 max-w-2xl text-slate-600">
-              View the models available for predicting osteoporosis
-              treatment adherence among adults.
+              View the selected machine learning model used for predicting
+              osteoporosis treatment adherence among adults.
             </p>
           </div>
 
@@ -93,8 +91,7 @@ export default function Models() {
 
         <div className="mb-6 grid gap-4 sm:grid-cols-2">
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
-            <p className="text-sm text-slate-500">Available models</p>
-
+            <p className="text-sm text-slate-500">Selected models</p>
             <p className="mt-2 text-3xl font-bold text-slate-900">
               {loading ? "..." : Object.keys(models).length}
             </p>
@@ -102,7 +99,6 @@ export default function Models() {
 
           <div className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
             <p className="text-sm text-slate-500">Backend connection</p>
-
             <p
               className={`mt-2 text-lg font-semibold ${
                 error
@@ -128,12 +124,12 @@ export default function Models() {
 
         {loading ? (
           <div className="rounded-xl border border-slate-200 bg-white p-10 text-center text-slate-500">
-            Loading available models...
+            Loading selected model...
           </div>
         ) : Object.keys(models).length === 0 ? (
           !error && (
             <div className="rounded-xl border border-slate-200 bg-white p-10 text-center text-slate-500">
-              No models were returned by the backend.
+              The selected SVM model was not returned by the backend.
             </div>
           )
         ) : (
@@ -144,7 +140,7 @@ export default function Models() {
               return (
                 <article
                   key={key}
-                  className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm"
+                  className="rounded-xl border border-blue-200 bg-white p-6 shadow-sm"
                 >
                   <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                     <svg
@@ -165,8 +161,7 @@ export default function Models() {
                   </h2>
 
                   <p className="mt-3 min-h-16 text-sm leading-6 text-slate-600">
-                    {details?.description ||
-                      "A machine learning model available in the backend."}
+                    {details.description}
                   </p>
 
                   <div className="mt-4 border-t border-slate-100 pt-4">
@@ -175,7 +170,7 @@ export default function Models() {
                     </p>
 
                     <p className="mt-1 text-sm font-medium text-slate-700">
-                      {details?.type || "Machine learning"}
+                      {details.type}
                     </p>
 
                     <p className="mt-3 text-xs font-medium uppercase tracking-wide text-slate-400">
@@ -205,11 +200,11 @@ export default function Models() {
           </h2>
 
           <p className="mt-2 text-sm leading-6 text-slate-700">
-            Model predictions should be evaluated using appropriate
-            performance metrics and interpretability techniques.
-            This page displays the models registered by the backend;
-            it does not independently verify their accuracy or
-            explanation results.
+            The selected Support Vector Machine model provides predictions
+            supported by feature-level explanations. These explanations
+            help users understand how input characteristics contribute
+            to individual predictions. They do not establish causal
+            relationships or independently verify clinical accuracy.
           </p>
         </div>
       </div>

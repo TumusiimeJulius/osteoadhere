@@ -1,46 +1,19 @@
 import os
-import smtplib
+import json
+import urllib.request
+import urllib.error
 
-from email.message import EmailMessage
 from dotenv import load_dotenv
-
-
-# ============================================================
-# LOAD ENVIRONMENT VARIABLES
-# ============================================================
 
 load_dotenv()
 
-
-SMTP_HOST = os.getenv(
-    "SMTP_HOST",
-    "smtp.gmail.com"
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+BREVO_SENDER_EMAIL = os.getenv("BREVO_SENDER_EMAIL")
+BREVO_SENDER_NAME = os.getenv(
+    "BREVO_SENDER_NAME",
+    "OsteoAdhere"
 )
 
-SMTP_PORT = int(
-    os.getenv(
-        "SMTP_PORT",
-        "587"
-    )
-)
-
-SMTP_USERNAME = os.getenv(
-    "SMTP_USERNAME"
-)
-
-SMTP_PASSWORD = os.getenv(
-    "SMTP_PASSWORD"
-)
-
-SMTP_FROM_NAME = os.getenv(
-    "SMTP_FROM_NAME",
-    "Osteoporosis Adherence System"
-)
-
-
-# ============================================================
-# SEND EMAIL
-# ============================================================
 
 def send_email(
     recipient_email: str,
@@ -48,46 +21,61 @@ def send_email(
     body: str
 ):
 
-    if not SMTP_USERNAME:
+    if not BREVO_API_KEY:
         raise RuntimeError(
-            "SMTP_USERNAME is not configured."
+            "BREVO_API_KEY is not configured."
         )
 
-    if not SMTP_PASSWORD:
+    if not BREVO_SENDER_EMAIL:
         raise RuntimeError(
-            "SMTP_PASSWORD is not configured."
+            "BREVO_SENDER_EMAIL is not configured."
         )
 
-    message = EmailMessage()
+    payload = {
+        "sender": {
+            "name": BREVO_SENDER_NAME,
+            "email": BREVO_SENDER_EMAIL
+        },
+        "to": [
+            {
+                "email": recipient_email
+            }
+        ],
+        "subject": subject,
+        "textContent": body
+    }
 
-    message["From"] = (
-        f"{SMTP_FROM_NAME} <{SMTP_USERNAME}>"
+    request = urllib.request.Request(
+        "https://api.brevo.com/v3/smtp/email",
+        data=json.dumps(payload).encode("utf-8"),
+        headers={
+            "accept": "application/json",
+            "api-key": BREVO_API_KEY,
+            "content-type": "application/json"
+        },
+        method="POST"
     )
 
-    message["To"] = recipient_email
+    try:
+        with urllib.request.urlopen(
+            request,
+            timeout=30
+        ) as response:
+            return json.loads(
+                response.read().decode("utf-8")
+            )
 
-    message["Subject"] = subject
+    except urllib.error.HTTPError as error:
+        details = error.read().decode("utf-8")
+        raise RuntimeError(
+            f"Brevo email API error: {details}"
+        ) from error
 
-    message.set_content(body)
+    except urllib.error.URLError as error:
+        raise RuntimeError(
+            f"Could not connect to Brevo: {error.reason}"
+        ) from error
 
-    with smtplib.SMTP(
-        SMTP_HOST,
-        SMTP_PORT
-    ) as server:
-
-        server.starttls()
-
-        server.login(
-            SMTP_USERNAME,
-            SMTP_PASSWORD
-        )
-
-        server.send_message(message)
-
-
-# ============================================================
-# EMAIL VERIFICATION OTP
-# ============================================================
 
 def send_verification_otp(
     recipient_email: str,
@@ -123,10 +111,6 @@ Osteoporosis Adherence System
         body
     )
 
-
-# ============================================================
-# PASSWORD RESET OTP
-# ============================================================
 
 def send_password_reset_otp(
     recipient_email: str,
