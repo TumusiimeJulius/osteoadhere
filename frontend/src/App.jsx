@@ -20,6 +20,7 @@ import Analytics from "./pages/Analytics";
 import Learning from "./pages/Learning";
 import Settings from "./pages/Settings";
 import SubscriptionNotice from "./pages/SubscriptionNotice";
+import ForgotPassword from "./pages/ForgotPassword";
 
 /* PROTECTED ROUTES */
 
@@ -44,6 +45,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify-email" element={<VerifyEmail />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         {/* PROTECTED APPLICATION ROUTES */}
         <Route element={<ProtectedRoute />}>
